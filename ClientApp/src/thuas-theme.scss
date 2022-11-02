@@ -1,0 +1,117 @@
+@import '~@angular/material/theming';   // theming package
+@include mat-core();                    // base-styles of Material
+
+/* The weird THUAS Green according to CI (prim) */
+$md-groen: (
+    50 : #f3f4e0,
+    100 : #e2e5b3,
+    200 : #cfd380,
+    300 : #bbc14d,
+    400 : #adb426,
+    500 : #9ea700,
+    600 : #969f00,
+    700 : #8c9600,
+    800 : #828c00,
+    900 : #707c00,
+    A100 : #f6ffa9,
+    A200 : #f0ff76,
+    A400 : #eaff43,
+    A700 : #e8ff2a,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* The THUAS gray (prim) */
+$md-gray: (
+    50 : #e4e7e8,
+    100 : #bdc2c7,
+    200 : #9199a1,
+    300 : #64707b,
+    400 : #43525f,
+    500 : #223343,
+    600 : #1e2e3d,
+    700 : #192734,
+    800 : #14202c,
+    900 : #0c141e,
+    A100 : #5ea8ff,
+    A200 : #2b8dff,
+    A400 : #0072f7,
+    A700 : #0066de,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+/* The THUAS red (sec) */
+$md-red: (
+    50 : #f9e8e8,
+    100 : #efc7c5,
+    200 : #e5a19e,
+    300 : #da7b77,
+    400 : #d25f59,
+    500 : #ca433c,
+    600 : #c53d36,
+    700 : #bd342e,
+    800 : #b72c27,
+    900 : #ab1e1a,
+    A100 : #ffe1e0,
+    A200 : #ffafad,
+    A400 : #ff7d7a,
+    A700 : #ff6461,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$thuas-theme-primary: mat-palette($md-gray);
+$thuas-theme-accent: mat-palette($md-groen);
+$thuas-theme-warn: mat-palette($md-red);
+
+// injection into mat-light-theme
+$thuas-theme: mat-light-theme(
+    $thuas-theme-primary,
+    $thuas-theme-accent,
+    $thuas-theme-warn
+);
+
+@include angular-material-theme($thuas-theme);
