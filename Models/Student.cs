@@ -3,7 +3,7 @@
     public int StudentID { get; set; }
     public string StudentEmail { get; set; }
 
-    //relations
+    //relations s
     Course takes;
     CourseClassGroup Isin;
     Feedback gives;
