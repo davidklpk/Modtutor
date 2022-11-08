@@ -11,6 +11,9 @@ import { MaterialModule } from './shared/material.module';
 import { ContainerComponent } from './components/container/container.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './pages/start/start.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ClassesComponent } from './pages/classes/classes.component';
+import { StudentlistComponent } from './pages/studentlist/studentlist.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { StartComponent } from './pages/start/start.component';
     AppComponent,
     LoginComponent,
     ContainerComponent,
-    StartComponent
+    StartComponent,
+    SidenavComponent,
+    ClassesComponent,
+    StudentlistComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
