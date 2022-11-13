@@ -1,0 +1,21 @@
+<mat-card class="h-full">
+    <div class="absolute bottom-2 left-0">
+        <div class="relative px-2">
+            <button mat-button [routerLink]="['/classes', class.slug]">
+                SELECT
+                <mat-icon class="-mt-[3px] -ml-0.5">chevron_right</mat-icon>
+            </button>
+        </div>  
+    </div>
+
+    <div class="mb-14">
+        <mat-card-subtitle>
+            <mat-icon class="scale-75 -mb-1.5">calendar_month</mat-icon>
+            {{ class.semester }}
+        </mat-card-subtitle>
+        <mat-card-title>{{ class.name }}</mat-card-title>
+        <mat-card-content class="">
+            <p>{{ class.description }}</p>
+        </mat-card-content>
+    </div>
+</mat-card>

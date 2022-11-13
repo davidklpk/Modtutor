@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ClassComponent } from './pages/class/class.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { ClassesComponent } from './pages/classes/classes.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -26,13 +27,18 @@ const routes: Routes = [
     component: ClassesComponent
   },
   {
+    path: 'classes/:slug',        // Slug is replaced by class name
+    component: ClassComponent
+  },
+  {
     path: 'students',
     component: StudentlistComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  // If route changes, scroll automatically to top
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

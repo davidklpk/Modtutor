@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
@@ -14,7 +13,11 @@ import { StartComponent } from './pages/start/start.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ClassesComponent } from './pages/classes/classes.component';
 import { StudentlistComponent } from './pages/studentlist/studentlist.component';
-
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ClassComponent } from './pages/class/class.component';
+import { CardClassComponent } from './components/card-class/card-class.component';
+import { CardCourseComponent } from './components/card-course/card-course.component';
+import { ClassesPipe } from './pipes/classes.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,11 @@ import { StudentlistComponent } from './pages/studentlist/studentlist.component'
     StartComponent,
     SidenavComponent,
     ClassesComponent,
-    StudentlistComponent
+    StudentlistComponent,
+    ClassComponent,
+    CardClassComponent,
+    CardCourseComponent,
+    ClassesPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -39,6 +46,7 @@ import { StudentlistComponent } from './pages/studentlist/studentlist.component'
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
