@@ -1,16 +1,24 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { Assignment } from 'src/app/interfaces/assignment';
+import { Course } from 'src/app/interfaces/course';
 import { Student } from 'src/app/interfaces/student';
 
 @Component({
-  selector: 'app-studentlist',
-  templateUrl: './studentlist.component.html',
-  styleUrls: ['./studentlist.component.css']
+  selector: 'app-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.css']
 })
-export class StudentlistComponent implements OnInit, AfterViewInit {
+export class CourseComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Input() course !: Course;
+
+  assignmentList : Assignment[] = [
+    { name: "Mid-term Report" },
+    { name: "Research Report" },
+    { name: "Hand-In Homework" },
+  ]
 
   studentList : Student[] = [
     {name: "Jon Doe", id: "123456", classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
@@ -24,15 +32,17 @@ export class StudentlistComponent implements OnInit, AfterViewInit {
     {name: "Jon Doe", id: "123456", classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
   ]
 
-  displayedColumns: string[] = ['name', 'id', 'classes'];
+  //displayedColumns: string[] = ['name', 'id', 'classes'];
+  displayedColumns: string[] = ['name', 'id'];
   dataSource = new MatTableDataSource<Student>(this.studentList);;
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  navigate(student : string){
+    this.router.navigate(['/profile', student]); 
   }
+
 }

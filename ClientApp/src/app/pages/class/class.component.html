@@ -1,4 +1,4 @@
-<app-container>
+<!--<app-container>
     <div class="grid grid-col grid-cols-3 gap-2 ">
         <div class="flex justify-center">
             <mat-card class="w-72 h-64">
@@ -31,5 +31,13 @@
             </mat-card>
         </div>
     </div>
-</app-container>
+</app-container>-->
+
+<mat-tab-group color="acccent" backgroundColor="primary" dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center">
+    <ng-container *ngFor="let course of courseList">
+        <mat-tab label="{{ course.name }}"> 
+            <app-course [course]="course"></app-course>
+        </mat-tab>
+    </ng-container>
+</mat-tab-group>
 

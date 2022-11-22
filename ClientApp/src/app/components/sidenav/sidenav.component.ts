@@ -1,7 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { Router } from '@angular/router';
 import { map, Observable, share } from 'rxjs';
 
 @Component({
@@ -19,13 +18,10 @@ export class SidenavComponent implements OnInit {
     share()
   );
 
-  currentRoute = this.router.url;
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router) { }
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
-  ngOnInit(): void {
-    console.log(this.currentRoute);
-   }
+  ngOnInit(): void { }
 
   /**
    * Sets or removes a class in the global <html> tag to toggle

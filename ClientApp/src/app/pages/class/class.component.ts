@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApexNonAxisChartSeries, ApexResponsive, ApexChart, ChartComponent } from "ng-apexcharts";
+import { Course } from 'src/app/interfaces/course';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -18,7 +19,15 @@ export class ClassComponent implements OnInit {
   @ViewChild("chart") chart !: ChartComponent;
   public chartOptions !: Partial<ChartOptions>;
 
-  slug: string = "example"
+  slug: string = ""
+
+  courseList : Course[] = [
+    {name: "Intercultural", members: 24},
+    {name: "Programming Basics", members: 24},
+    {name: "Business English", members: 24},
+    {name: "Diversity", members: 24},
+    {name: "Dutch for Beginners", members: 24},
+  ]
 
   constructor(private route: ActivatedRoute) { 
     this.chartOptions = {

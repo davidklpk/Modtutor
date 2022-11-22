@@ -18,6 +18,11 @@ import { ClassComponent } from './pages/class/class.component';
 import { CardClassComponent } from './components/card-class/card-class.component';
 import { CardCourseComponent } from './components/card-course/card-course.component';
 import { ClassesPipe } from './pipes/classes.pipe';
+import { H1Component } from './typography/h1/h1.component';
+import { CourseComponent } from './pages/course/course.component';
+import { CardAssignmentComponent } from './components/card-assignment/card-assignment.component';
+import { AssignmentComponent } from './pages/assignment/assignment.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import { ClassesPipe } from './pipes/classes.pipe';
     ClassComponent,
     CardClassComponent,
     CardCourseComponent,
-    ClassesPipe
+    ClassesPipe,
+    H1Component,
+    CourseComponent,
+    CardAssignmentComponent,
+    AssignmentComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

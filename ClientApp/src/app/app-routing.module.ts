@@ -6,6 +6,8 @@ import { ClassesComponent } from './pages/classes/classes.component';
 import { LoginComponent } from './pages/login/login.component';
 import { StartComponent } from './pages/start/start.component';
 import { StudentlistComponent } from './pages/studentlist/studentlist.component';
+import { AssignmentComponent } from './pages/assignment/assignment.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -27,8 +29,16 @@ const routes: Routes = [
     component: ClassesComponent
   },
   {
+    path: 'profile/:slug',
+    component: ProfileComponent
+  },
+  {
     path: 'classes/:slug',        // Slug is replaced by class name
     component: ClassComponent
+  },
+  {
+    path: 'assignment/:slug',        // Slug is replaced by assignment name
+    component: AssignmentComponent
   },
   {
     path: 'students',

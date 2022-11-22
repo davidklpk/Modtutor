@@ -1,5 +1,5 @@
 <app-container>
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w-full mt-10">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w-full ">
 
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ID">
@@ -28,7 +28,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[10, 20, 30]"
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons 
         aria-label="Select page of students">
     </mat-paginator>

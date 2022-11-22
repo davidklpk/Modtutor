@@ -1,3 +1,37 @@
-<section class="w-full bg-gray-50 dark:bg-thuas-grijs-darkest">
-    great start page
-</section>
+<app-container>
+    <section class="w-full bg-gray-50 dark:bg-thuas-grijs-darkest">
+
+        <h1 class="font-medium">Goedendag, Karel! 👋</h1>
+
+        <div class="flex flex-row items-center gap-4 mt-8">
+            <mat-form-field color="accent" class="w-full -mb-4" appearance="outline">
+                <mat-icon class="mr-2" matPrefix>search</mat-icon>
+                <mat-label>Search for classes</mat-label> 
+                <input matInput class="" type="text" [(ngModel)]="searchTerm">
+                <button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="searchTerm=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-5 mb-5 sm:auto-rows-fr sm:auto-cols-fr"
+            *ngIf="(classList | classes : searchTerm).length != 0">
+            <ng-container *ngFor="let class of classList | classes: searchTerm">
+                <app-card-class [class]="class"></app-card-class>
+            </ng-container>
+        </div>
+
+        <div class="flex w-full my-5 justify-center" *ngIf="(classList | classes : searchTerm).length === 0">
+            <app-h1 class="text-center">Sorry, no results for »{{searchTerm}}« :(</app-h1>
+        </div>
+
+        <mat-divider class="my-10 mt-12"></mat-divider>
+        
+        <h1 class="font-medium">Recently Viewed</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-10 sm:auto-rows-fr sm:auto-cols-fr">
+            <ng-container *ngFor="let class of recentClassList">
+                <app-card-class [class]="class"></app-card-class>
+            </ng-container>
+        </div>
+    </section>
+</app-container>
