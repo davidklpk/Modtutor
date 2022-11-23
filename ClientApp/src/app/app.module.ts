@@ -23,6 +23,8 @@ import { CourseComponent } from './pages/course/course.component';
 import { CardAssignmentComponent } from './components/card-assignment/card-assignment.component';
 import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { FeedbackfruitsTabComponent } from './pages/feedbackfruits-tab/feedbackfruits-tab.component';
+import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     CourseComponent,
     CardAssignmentComponent,
     AssignmentComponent,
-    ProfileComponent
+    ProfileComponent,
+    FeedbackfruitsTabComponent,
+    MediasiteTabComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
