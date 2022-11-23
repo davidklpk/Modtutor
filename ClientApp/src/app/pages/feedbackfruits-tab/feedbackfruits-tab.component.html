@@ -1,8 +1,88 @@
-<div class="mt-5">
-    <apx-chart
-        [series]="chartOptions.series!"
-        [chart]="chartOptions.chart!"
-        [labels]="chartOptions.labels!"
-        [responsive]="chartOptions.responsive!"
-  ></apx-chart>
-</div>
+<app-container>
+  <div class="feedbackContainer">
+    <div class="row sparkboxes mt-4">
+      <div class="col-md-3">
+        <h2>Read Instructions</h2>
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [labels]="chartOptions.labels"
+          [grid]="chartOptions.grid"
+          [plotOptions]="chartOptions.plotOptions"
+          [responsive]="chartOptions.responsive"
+      ></apx-chart>
+      </div>
+      <div class="col-md-3">
+        <h2>Handed In</h2>
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [labels]="chartOptions.labels"
+          [grid]="chartOptions.grid"
+          [plotOptions]="chartOptions.plotOptions"
+          [responsive]="chartOptions.responsive"
+      ></apx-chart>
+      </div>
+      <div class="col-md-3">
+        <h2>Finished Feedback</h2>
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [labels]="chartOptions.labels"
+          [grid]="chartOptions.grid"
+          [plotOptions]="chartOptions.plotOptions"
+          [responsive]="chartOptions.responsive"
+      ></apx-chart>
+      </div>
+      <div class="col-md-3">
+        <h2>Read Feedback</h2>
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [labels]="chartOptions.labels"
+          [grid]="chartOptions.grid"
+          [plotOptions]="chartOptions.plotOptions"
+          [responsive]="chartOptions.responsive"
+      ></apx-chart>
+      </div>
+    </div>
+    <div class="row sparkboxes mt-4">
+      <div class="col-md-3">
+        <div class="box box1">
+          <div class="details">
+            <h3>Time Spent</h3>
+            <h4>12 min</h4>
+          </div>
+          <div id="spark1"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="box box2">
+          <div class="details">
+            <h3>Total Review Comments</h3>
+            <h4>7</h4>
+          </div>
+          <div id="spark2"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="box box3">
+          <div class="details">
+            <h3>Overall Grade</h3>
+            <h4>9</h4>
+          </div>
+          <div id="spark3"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2>Average Grade</h2>
+          <apx-chart
+            [series]="chartOptions.series"
+            [chart]="chartOptions.chart"
+            [labels]="chartOptions.labels"
+            [responsive]="chartOptions.responsive"
+        ></apx-chart>
+      </div>
+    </div>
+  </div>
+</app-container>
