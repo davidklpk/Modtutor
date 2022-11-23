@@ -1,4 +1,5 @@
 <app-container>
+  <h1>Assignment: Name</h1>
     <div class="feedbackContainer">
         <div class=" grid grid-rows-1 w-full gap-5">
           <div class="flex flex-col w-full gap-3 sm:flex-row">
@@ -13,32 +14,41 @@
           </div>
         </div>
         <div class="row sparkboxes mt-4">
-          <div class="col-md-4">
+          <div class="col-md-3">
+            <h2>Time Spent</h2>
             <div class="box box1">
               <div class="details">
-                <h3>Time Spent</h3>
-                <h4>12 min</h4>
+                <p>12 min</p>
               </div>
               <div id="spark1"></div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
+            <h2>Total Review Comments</h2>
             <div class="box box2">
               <div class="details">
-                <h3>Total Review Comments</h3>
-                <h4>7</h4>
+                <p>7</p>
               </div>
               <div id="spark2"></div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
+            <h2>Overall Grade</h2>
             <div class="box box3">
               <div class="details">
-                <h3>Overall Grade</h3>
-                <h4>9</h4>
+                <p>9</p>
               </div>
               <div id="spark3"></div>
             </div>
+          </div>
+          <div class="col-md-3">
+            <h2>Type of Feedback</h2>
+            <apx-chart
+              [series]="chartOptions1.series"
+              [chart]="chartOptions1.chart"
+              [labels]="chartOptions1.labels"
+              [responsive]="chartOptions1.responsive"
+          ></apx-chart>
           </div>
         </div>
     </div>

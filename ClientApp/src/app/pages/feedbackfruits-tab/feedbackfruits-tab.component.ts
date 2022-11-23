@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
-import { Router } from '@angular/router';
+/*import { Assignment } from 'src/app/interfaces/assignment';*/
 
-// That one defines how the ChartOptions should look like; There are many options available (see documentation)
+import {  ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
+/*import { Student } from 'src/app/interfaces/student';*/
+import { Router } from '@angular/router';
+import { color } from 'd3';
+
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -18,50 +21,56 @@ export type ChartOptions = {
   templateUrl: './feedbackfruits-tab.component.html',
   styleUrls: ['./feedbackfruits-tab.component.css']
 })
-
 export class FeedbackfruitsTabComponent implements OnInit {
 
   @ViewChild("chart") chart !: ChartComponent;
-
-  // Each chart needs its own options because it contain different data
   public chartOptions!: Partial<ChartOptions> | any;
   public chartOptions1!: Partial<ChartOptions> | any;
   public chartOptions2!: Partial<ChartOptions> | any;
 
-  // Within here, you can initialize all your charts based on its options (above)
   constructor(private router : Router) { 
+
     this.chartOptions = {
       series: [
         {
-          name: "Amount of students",
-          data: [70, 80, 60, 50]
+          name: "Grades Given",
+          data: [8, 9, 5, 8, 7, 9, 8]
+        },
+        {
+          name: "Grades Received",
+
+          data: [7, 8, 9, 10, 9, 9, 8]
         }
       ],
       chart: {
         type: "bar",
-        height: 200
+        height: 430
       },
       plotOptions: {
         bar: {
-          horizontal: true
+          horizontal: true,
+          dataLabels: {
+            position: "top"
+          }
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: true,
+        offsetX: -6,
+        style: {
+          fontSize: "12px",
+          colors: ["#2B2D3E"]
+        }
+      },
+      stroke: {
+        show: true,
+        width: 1,
+        colors: ["#2B2D3E"]
       },
       xaxis: {
-        categories: [
-          "Read Instructions",
-          "Handed In",
-          "Finished Feedback",
-          "Read Feedback"
-
-        ]
-      },
-      fill : {
-        colors: ['#9ea700'],
+        categories: ["Orientation", "In-text citations", "Quality of the primary Sources", "Reference list", "Use of secondary Sources", "New knowledge", "Search term/keywords"]
       }
-    };
+  };
   
     this.chartOptions1 = {
       series :[40,60],
@@ -86,8 +95,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
     };
 
     this.chartOptions2 = {
-      series: [44, 55, 41, 17, 15],
-      color: "#41B883",
+      series: [1],
       chart: {
         width: 380,
         type: "donut"
@@ -106,7 +114,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 100,
           options: {
             chart: {
               width: 200
@@ -118,7 +126,11 @@ export class FeedbackfruitsTabComponent implements OnInit {
         }
       ]
     };
+
+    
   }
+
+  
 
   ngOnInit(): void {
   }

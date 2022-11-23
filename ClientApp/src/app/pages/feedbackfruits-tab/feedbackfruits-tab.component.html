@@ -1,28 +1,28 @@
 <app-container>
+  <h1>ASSINGMENT 1</h1>
   <div class="feedbackContainer">
     <div class="row sparkboxes mt-4">
       <div class="col-md-3">
         <h2>Read Instructions</h2>
-        
         <!-- In here, you have to adjust the paramter based on the charts options-->
         <apx-chart
-          [series]="chartOptions.series"
-          [chart]="chartOptions.chart"
-          [labels]="chartOptions.labels"
-          [grid]="chartOptions.grid"
-          [plotOptions]="chartOptions.plotOptions"
-          [responsive]="chartOptions.responsive"
+          [series]="chartOptions2.series"
+          [chart]="chartOptions2.chart"
+          [labels]="chartOptions2.labels"
+          [grid]="chartOptions2.grid"
+          [plotOptions]="chartOptions2.plotOptions"
+          [responsive]="chartOptions2.responsive"
       ></apx-chart>
       </div>
       <div class="col-md-3">
         <h2>Handed In</h2>
         <apx-chart
-          [series]="chartOptions1.series"
-          [chart]="chartOptions1.chart"
-          [labels]="chartOptions1.labels"
-          [grid]="chartOptions1.grid"
-          [plotOptions]="chartOptions1.plotOptions"
-          [responsive]="chartOptions1.responsive"
+          [series]="chartOptions2.series"
+          [chart]="chartOptions2.chart"
+          [labels]="chartOptions2.labels"
+          [grid]="chartOptions2.grid"
+          [plotOptions]="chartOptions2.plotOptions"
+          [responsive]="chartOptions2.responsive"
       ></apx-chart>
       </div>
       <div class="col-md-3">
@@ -39,39 +39,39 @@
       <div class="col-md-3">
         <h2>Read Feedback</h2>
         <apx-chart
-          [series]="chartOptions.series"
-          [chart]="chartOptions.chart"
-          [labels]="chartOptions.labels"
-          [grid]="chartOptions.grid"
-          [plotOptions]="chartOptions.plotOptions"
-          [responsive]="chartOptions.responsive"
+          [series]="chartOptions2.series"
+          [chart]="chartOptions2.chart"
+          [labels]="chartOptions2.labels"
+          [grid]="chartOptions2.grid"
+          [plotOptions]="chartOptions2.plotOptions"
+          [responsive]="chartOptions2.responsive"
       ></apx-chart>
       </div>
     </div>
     <div class="row sparkboxes mt-4">
       <div class="col-md-3">
+        <h2>Time Spent</h2>
         <div class="box box1">
           <div class="details">
-            <h3>Time Spent</h3>
-            <h4>12 min</h4>
+            <p>12 min</p>
           </div>
           <div id="spark1"></div>
         </div>
       </div>
       <div class="col-md-3">
+        <h2>Total Review Comments</h2>
         <div class="box box2">
           <div class="details">
-            <h3>Total Review Comments</h3>
-            <h4>7</h4>
+            <p>7 com</p>
           </div>
           <div id="spark2"></div>
         </div>
       </div>
       <div class="col-md-3">
+        <h2>Overall Grade</h2>
         <div class="box box3">
           <div class="details">
-            <h3>Overall Grade</h3>
-            <h4>9</h4>
+            <p>9 p</p>
           </div>
           <div id="spark3"></div>
         </div>
@@ -79,11 +79,24 @@
       <div class="col-md-3">
         <h2>Average Grade</h2>
           <apx-chart
-            [series]="chartOptions.series"
-            [chart]="chartOptions.chart"
-            [labels]="chartOptions.labels"
-            [responsive]="chartOptions.responsive"
+          [series]="chartOptions1.series"
+          [chart]="chartOptions1.chart"
+          [labels]="chartOptions1.labels"
+          [responsive]="chartOptions1.responsive"
         ></apx-chart>
+      </div>
+    </div>
+    <div class=" grid grid-rows-1 w-full gap-5">
+      <h2>Grades per criteria</h2>
+      <div class="flex flex-col w-full gap-3 sm:flex-row">
+        <apx-chart class="w-full"
+          [series]="chartOptions.series!"
+          [chart]="chartOptions.chart!"
+          [dataLabels]="chartOptions.dataLabels!"
+          [plotOptions]="chartOptions.plotOptions!"
+          [xaxis]="chartOptions.xaxis!"
+          [fill]="chartOptions.fill!">
+        </apx-chart>
       </div>
     </div>
   </div>
