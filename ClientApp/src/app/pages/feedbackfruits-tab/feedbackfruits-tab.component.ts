@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-/*import { Assignment } from 'src/app/interfaces/assignment';*/
-
-import {  ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
-/*import { Student } from 'src/app/interfaces/student';*/
+import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { Router } from '@angular/router';
 
+// That one defines how the ChartOptions should look like; There are many options available (see documentation)
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -20,13 +18,18 @@ export type ChartOptions = {
   templateUrl: './feedbackfruits-tab.component.html',
   styleUrls: ['./feedbackfruits-tab.component.css']
 })
+
 export class FeedbackfruitsTabComponent implements OnInit {
 
   @ViewChild("chart") chart !: ChartComponent;
+
+  // Each chart needs its own options because it contain different data
   public chartOptions!: Partial<ChartOptions> | any;
+  public chartOptions1!: Partial<ChartOptions> | any;
+  public chartOptions2!: Partial<ChartOptions> | any;
 
+  // Within here, you can initialize all your charts based on its options (above)
   constructor(private router : Router) { 
-
     this.chartOptions = {
       series: [
         {
@@ -60,7 +63,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       }
     };
   
-    this.chartOptions = {
+    this.chartOptions1 = {
       series :[40,60],
       chart: {
         width: 350,
@@ -82,7 +85,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       ]
     };
 
-    this.chartOptions = {
+    this.chartOptions2 = {
       series: [44, 55, 41, 17, 15],
       color: "#41B883",
       chart: {
@@ -115,11 +118,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
         }
       ]
     };
-
-    
   }
-
-  
 
   ngOnInit(): void {
   }

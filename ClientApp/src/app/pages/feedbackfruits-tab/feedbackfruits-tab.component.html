@@ -3,6 +3,8 @@
     <div class="row sparkboxes mt-4">
       <div class="col-md-3">
         <h2>Read Instructions</h2>
+        
+        <!-- In here, you have to adjust the paramter based on the charts options-->
         <apx-chart
           [series]="chartOptions.series"
           [chart]="chartOptions.chart"
@@ -15,23 +17,23 @@
       <div class="col-md-3">
         <h2>Handed In</h2>
         <apx-chart
-          [series]="chartOptions.series"
-          [chart]="chartOptions.chart"
-          [labels]="chartOptions.labels"
-          [grid]="chartOptions.grid"
-          [plotOptions]="chartOptions.plotOptions"
-          [responsive]="chartOptions.responsive"
+          [series]="chartOptions1.series"
+          [chart]="chartOptions1.chart"
+          [labels]="chartOptions1.labels"
+          [grid]="chartOptions1.grid"
+          [plotOptions]="chartOptions1.plotOptions"
+          [responsive]="chartOptions1.responsive"
       ></apx-chart>
       </div>
       <div class="col-md-3">
         <h2>Finished Feedback</h2>
         <apx-chart
-          [series]="chartOptions.series"
-          [chart]="chartOptions.chart"
-          [labels]="chartOptions.labels"
-          [grid]="chartOptions.grid"
-          [plotOptions]="chartOptions.plotOptions"
-          [responsive]="chartOptions.responsive"
+          [series]="chartOptions2.series"
+          [chart]="chartOptions2.chart"
+          [labels]="chartOptions2.labels"
+          [grid]="chartOptions2.grid"
+          [plotOptions]="chartOptions2.plotOptions"
+          [responsive]="chartOptions2.responsive"
       ></apx-chart>
       </div>
       <div class="col-md-3">

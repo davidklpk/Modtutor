@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Assignment } from 'src/app/interfaces/assignment';
 
-import {  ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
+import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { Student } from 'src/app/interfaces/student';
 import { Router } from '@angular/router';
 
@@ -23,7 +23,7 @@ export type ChartOptions = {
 export class AssignmentComponent implements OnInit {
 
   @ViewChild("chart") chart !: ChartComponent;
-  public chartOptions!: Partial<ChartOptions> | any;
+  public chartOptions !: Partial<ChartOptions>;
 
   studentList : Student[] = [
     {name: "Jon Doe", id: "123456", classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
@@ -45,7 +45,7 @@ export class AssignmentComponent implements OnInit {
       series: [
         {
           name: "Amount of students",
-          data: [70, 80, 60, 50]
+          data: [20, 24, 11]
         }
       ],
       chart: {
@@ -62,11 +62,9 @@ export class AssignmentComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          "Read Instructions",
-          "Handed In",
-          "Finished Feedback",
-          "Read Feedback"
-
+          "Read instructions",
+          "Gave feedback",
+          "Received feedback",
         ]
       },
       fill : {
