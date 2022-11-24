@@ -1,101 +1,115 @@
 <app-container>
-  <h1>ASSINGMENT 1</h1>
   <div class="feedbackContainer">
     <div class="row sparkboxes mt-4">
       <div class="col-md-3">
-        <h2>Read Instructions</h2>
-        <!-- In here, you have to adjust the paramter based on the charts options-->
         <apx-chart
-          [series]="chartOptions2.series"
-          [chart]="chartOptions2.chart"
-          [labels]="chartOptions2.labels"
-          [grid]="chartOptions2.grid"
-          [plotOptions]="chartOptions2.plotOptions"
-          [responsive]="chartOptions2.responsive"
+          [series]="TotalReviewComments.series"
+          [labels]="TotalReviewComments.labels"
+          [chart]="TotalReviewComments.chart"
+          [responsive]="TotalReviewComments.responsive"
+          [fill]="TotalReviewComments.fill"
+          [title] = "TotalReviewComments.title"
+          [legend]= "TotalReviewComments.legend"
       ></apx-chart>
       </div>
       <div class="col-md-3">
-        <h2>Handed In</h2>
         <apx-chart
-          [series]="chartOptions2.series"
-          [chart]="chartOptions2.chart"
-          [labels]="chartOptions2.labels"
-          [grid]="chartOptions2.grid"
-          [plotOptions]="chartOptions2.plotOptions"
-          [responsive]="chartOptions2.responsive"
-      ></apx-chart>
+        [series]="TimeSpent.series"
+        [chart]="TimeSpent.chart"
+        [labels]="TimeSpent.labels"
+        [responsive]="TimeSpent.responsive"
+        [fill]="TimeSpent.fill"
+        [title] = "TimeSpent.title"
+        [legend]= "TimeSpent.legend"
+        ></apx-chart>
       </div>
       <div class="col-md-3">
-        <h2>Finished Feedback</h2>
         <apx-chart
-          [series]="chartOptions2.series"
-          [chart]="chartOptions2.chart"
-          [labels]="chartOptions2.labels"
-          [grid]="chartOptions2.grid"
-          [plotOptions]="chartOptions2.plotOptions"
-          [responsive]="chartOptions2.responsive"
-      ></apx-chart>
+          [series]="AvgGrade.series"
+          [chart]="AvgGrade.chart"
+          [responsive]="AvgGrade.responsive"
+          [fill]="AvgGrade.fill"
+          [labels]="AvgGrade.labels"
+          [title] = "AvgGrade.title"
+          [legend]= "AvgGrade.legend"
+        ></apx-chart>
       </div>
       <div class="col-md-3">
-        <h2>Read Feedback</h2>
-        <apx-chart
-          [series]="chartOptions2.series"
-          [chart]="chartOptions2.chart"
-          [labels]="chartOptions2.labels"
-          [grid]="chartOptions2.grid"
-          [plotOptions]="chartOptions2.plotOptions"
-          [responsive]="chartOptions2.responsive"
-      ></apx-chart>
+          <apx-chart
+            [series]="TypeFeedback.series"
+            [chart]="TypeFeedback.chart"
+            [labels]="TypeFeedback.labels"
+            [responsive]="TypeFeedback.responsive"
+            [fill]="TypeFeedback.fill"
+            [legend]= "TypeFeedback.legend"
+            [title] = "TypeFeedback.title"
+        ></apx-chart>
       </div>
     </div>
     <div class="row sparkboxes mt-4">
       <div class="col-md-3">
-        <h2>Time Spent</h2>
-        <div class="box box1">
-          <div class="details">
-            <p>12 min</p>
-          </div>
-          <div id="spark1"></div>
-        </div>
+        <apx-chart
+          [series]="ReadInstructions.series"
+          [chart]="ReadInstructions.chart"
+          [labels]="ReadInstructions.labels"
+          [grid]="ReadInstructions.grid"
+          [legend]= "ReadInstructions.legend"
+          [plotOptions]="ReadInstructions.plotOptions"
+          [responsive]="ReadInstructions.responsive"
+          [title] = "ReadInstructions.title"
+          [fill]="ReadInstructions.fill">
+      ></apx-chart>
       </div>
       <div class="col-md-3">
-        <h2>Total Review Comments</h2>
-        <div class="box box2">
-          <div class="details">
-            <p>7 com</p>
-          </div>
-          <div id="spark2"></div>
-        </div>
+        <apx-chart
+          [series]="HandedIn.series"
+          [chart]="HandedIn.chart"
+          [labels]="HandedIn.labels"
+          [grid]="HandedIn.grid"
+          [legend]= "HandedIn.legend"
+          [plotOptions]="HandedIn.plotOptions"
+          [responsive]="HandedIn.responsive"
+          [title] = "HandedIn.title"
+          [fill]="HandedIn.fill">
+      ></apx-chart>
       </div>
       <div class="col-md-3">
-        <h2>Overall Grade</h2>
-        <div class="box box3">
-          <div class="details">
-            <p>9 p</p>
-          </div>
-          <div id="spark3"></div>
-        </div>
+        <apx-chart
+          [series]="FinishedFeedback.series"
+          [chart]="FinishedFeedback.chart"
+          [labels]="FinishedFeedback.labels"
+          [grid]="FinishedFeedback.grid"
+          [plotOptions]="FinishedFeedback.plotOptions"
+          [responsive]="FinishedFeedback.responsive"
+          [title] = "FinishedFeedback.title"
+          [fill]="FinishedFeedback.fill"
+          [legend]= "FinishedFeedback.legend"
+      ></apx-chart>
       </div>
       <div class="col-md-3">
-        <h2>Average Grade</h2>
-          <apx-chart
-          [series]="chartOptions1.series"
-          [chart]="chartOptions1.chart"
-          [labels]="chartOptions1.labels"
-          [responsive]="chartOptions1.responsive"
-        ></apx-chart>
+        <apx-chart
+          [series]="ReadFeedback.series"
+          [chart]="ReadFeedback.chart"
+          [labels]="ReadFeedback.labels"
+          [grid]="ReadFeedback.grid"
+          [plotOptions]="ReadFeedback.plotOptions"
+          [responsive]="ReadFeedback.responsive"
+          [title] = "ReadFeedback.title"
+          [fill]="ReadFeedback.fill"
+          [legend]= "ReadFeedback.legend"
+      ></apx-chart>
       </div>
     </div>
     <div class=" grid grid-rows-1 w-full gap-5">
-      <h2>Grades per criteria</h2>
       <div class="flex flex-col w-full gap-3 sm:flex-row">
         <apx-chart class="w-full"
-          [series]="chartOptions.series!"
-          [chart]="chartOptions.chart!"
-          [dataLabels]="chartOptions.dataLabels!"
-          [plotOptions]="chartOptions.plotOptions!"
-          [xaxis]="chartOptions.xaxis!"
-          [fill]="chartOptions.fill!">
+          [series]="Grades.series!"
+          [chart]="Grades.chart!"
+          [dataLabels]="Grades.dataLabels!"
+          [plotOptions]="Grades.plotOptions!"
+          [xaxis]="Grades.xaxis!"
+          [fill]="Grades.fill"
+          [title] = "Grades.title">
         </apx-chart>
       </div>
     </div>

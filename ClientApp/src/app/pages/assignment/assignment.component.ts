@@ -24,7 +24,10 @@ export class AssignmentComponent implements OnInit {
 
   @ViewChild("chart") chart !: ChartComponent;
   public chartOptions !: Partial<ChartOptions> | any;
-  public chartOptions1 !: Partial<ChartOptions> | any;
+  public TypeFeedback !: Partial<ChartOptions> | any;
+  public TotalReviewComments !: Partial<ChartOptions> | any;
+  public TimeSpent !: Partial<ChartOptions> | any;
+  public AvgGrade !: Partial<ChartOptions> | any;
 
   studentList : Student[] = [
     {name: "Jon Doe", id: "123456", classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
@@ -49,6 +52,15 @@ export class AssignmentComponent implements OnInit {
           data: [70, 80, 60, 50]
         }
       ],
+      title:{
+        text: "Overall Data of the Class",
+        align: 'center',
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        }
+      },
       chart: {
         type: "bar",
         height: 200
@@ -67,21 +79,145 @@ export class AssignmentComponent implements OnInit {
           "Handed In",
           "Finished Feedback",
           "Read Feedback"
-
         ]
       },
       fill : {
-        colors: ['#9ea700'],
+        colors: ['#2B2D3E']
       }
     };
 
-    this.chartOptions1 = {
-      series: [50,50],
+    this.TypeFeedback = {
+      series :[40,60],
       chart: {
-        width: 380,
-        type: "pie"
+        width: 350,
+        type: "pie",
+      },
+      fill:
+        {colors: ['#2B2D3E', '#d5f40b']
+      },
+      legend: {
+        show: false,
+        horizontalAlign: 'center',
+        position: 'top',
+        labels: {
+          UseSeriesColors: true
+      }
+    },
+      title: {
+        text: "Type of Feedback",
+        align: 'center',
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        }
       },
       labels: ["Suggestions", "Compliments"],
+      responsive: [
+        {
+          breakpoint: 100,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+    this.TotalReviewComments = {
+      series :[40,60],
+      chart: {
+        width: 350,
+        type: "pie",
+      },
+      fill:
+        {colors: ['#d5f40b','#fff']
+      },
+      legend: {
+        show: false
+      },
+      title: {
+        text: "Total Review Comments",
+        align: 'center',
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 100,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+    this.TimeSpent = {
+      series :[1],
+      chart: {
+        width: 350,
+        type: "pie",
+      },
+      legend: {
+        show: false
+      },
+      fill:
+        {colors: ['#ff2903']
+      },
+      title: {
+        text: "Time Spent",
+        align: 'center',
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 100,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
+    this.AvgGrade = {
+      series :[90,10],
+      chart: {
+        width: 350,
+        type: "pie",
+      },
+      legend: {
+        show: false
+      },
+      fill:
+        {colors: ['#2B2D3E','#fff']
+      },
+      title: {
+        text: "Average Grade",
+        align: 'center',
+        style: {
+          fontSize:  '20px',
+          fontWeight:  'bold',
+          color:  '#263238'
+        }
+      },
       responsive: [
         {
           breakpoint: 100,

@@ -9,46 +9,55 @@
                   [dataLabels]="chartOptions.dataLabels!"
                   [plotOptions]="chartOptions.plotOptions!"
                   [xaxis]="chartOptions.xaxis!"
+                  [title]="chartOptions.title!"
                   [fill]="chartOptions.fill!">
               </apx-chart>
           </div>
         </div>
         <div class="row sparkboxes mt-4">
           <div class="col-md-3">
-            <h2>Time Spent</h2>
-            <div class="box box1">
-              <div class="details">
-                <p>12 min</p>
-              </div>
-              <div id="spark1"></div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h2>Total Review Comments</h2>
-            <div class="box box2">
-              <div class="details">
-                <p>7</p>
-              </div>
-              <div id="spark2"></div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h2>Overall Grade</h2>
-            <div class="box box3">
-              <div class="details">
-                <p>9</p>
-              </div>
-              <div id="spark3"></div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h2>Type of Feedback</h2>
             <apx-chart
-              [series]="chartOptions1.series"
-              [chart]="chartOptions1.chart"
-              [labels]="chartOptions1.labels"
-              [responsive]="chartOptions1.responsive"
+              [series]="TotalReviewComments.series"
+              [labels]="TotalReviewComments.labels"
+              [chart]="TotalReviewComments.chart"
+              [responsive]="TotalReviewComments.responsive"
+              [fill]="TotalReviewComments.fill"
+              [title] = "TotalReviewComments.title"
+              [legend]= "TotalReviewComments.legend"
           ></apx-chart>
+          </div>
+          <div class="col-md-3">
+            <apx-chart
+            [series]="TimeSpent.series"
+            [chart]="TimeSpent.chart"
+            [labels]="TimeSpent.labels"
+            [responsive]="TimeSpent.responsive"
+            [fill]="TimeSpent.fill"
+            [title] = "TimeSpent.title"
+            [legend]= "TimeSpent.legend"
+            ></apx-chart>
+          </div>
+          <div class="col-md-3">
+            <apx-chart
+              [series]="AvgGrade.series"
+              [chart]="AvgGrade.chart"
+              [responsive]="AvgGrade.responsive"
+              [fill]="AvgGrade.fill"
+              [labels]="AvgGrade.labels"
+              [title] = "AvgGrade.title"
+              [legend]= "AvgGrade.legend"
+            ></apx-chart>
+          </div>
+          <div class="col-md-3">
+              <apx-chart
+                [series]="TypeFeedback.series"
+                [chart]="TypeFeedback.chart"
+                [labels]="TypeFeedback.labels"
+                [responsive]="TypeFeedback.responsive"
+                [fill]="TypeFeedback.fill"
+                [legend]= "TypeFeedback.legend"
+                [title] = "TypeFeedback.title"
+            ></apx-chart>
           </div>
         </div>
     </div>
