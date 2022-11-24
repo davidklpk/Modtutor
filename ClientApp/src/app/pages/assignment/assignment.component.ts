@@ -89,11 +89,10 @@ export class AssignmentComponent implements OnInit {
     this.TypeFeedback = {
       series :[40,60],
       chart: {
-        width: 350,
         type: "pie",
       },
       fill:
-        {colors: ['#2B2D3E', '#d5f40b']
+        {colors: ['#2B2D3E','#adb426']
       },
       legend: {
         show: false,
@@ -130,11 +129,10 @@ export class AssignmentComponent implements OnInit {
     this.TotalReviewComments = {
       series :[40,60],
       chart: {
-        width: 350,
         type: "pie",
       },
       fill:
-        {colors: ['#d5f40b','#fff']
+        {colors: ['#2B2D3E','#adb426']
       },
       legend: {
         show: false
@@ -165,7 +163,6 @@ export class AssignmentComponent implements OnInit {
     this.TimeSpent = {
       series :[1],
       chart: {
-        width: 350,
         type: "pie",
       },
       legend: {
@@ -200,14 +197,13 @@ export class AssignmentComponent implements OnInit {
     this.AvgGrade = {
       series :[90,10],
       chart: {
-        width: 350,
         type: "pie",
       },
       legend: {
         show: false
       },
       fill:
-        {colors: ['#2B2D3E','#fff']
+        {colors: ['#2B2D3E','#adb426']
       },
       title: {
         text: "Average Grade",

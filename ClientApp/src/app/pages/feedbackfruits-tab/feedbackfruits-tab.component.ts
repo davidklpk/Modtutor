@@ -55,7 +55,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 430
+        height: "380"
       },
       plotOptions: {
         bar: {
@@ -74,7 +74,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
         }
       },
       fill: {
-        colors: ['#2B2D3E', '#d5f40b']
+        colors: ['#2B2D3E', '#adb426']
       },
       title: {
         text: "Grades per Criteria",
@@ -93,11 +93,10 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.TypeFeedback = {
       series :[40,60],
       chart: {
-        width: 350,
         type: "pie",
       },
       fill:
-        {colors: ['#2B2D3E', '#d5f40b']
+        {colors: ['#2B2D3E', '#adb426']
       },
       legend: {
         show: false,
@@ -134,23 +133,13 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.TotalReviewComments = {
       series :[40,60],
       chart: {
-        width: 350,
         type: "pie",
       },
       fill:
-        {colors: ['#d5f40b','#fff']
+        {colors: ['#2B2D3E','#adb426']
       },
       legend: {
         show: false
-      },
-      title: {
-        text: "Total Review Comments",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
       },
       responsive: [
         {
@@ -169,7 +158,6 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.TimeSpent = {
       series :[1],
       chart: {
-        width: 350,
         type: "pie",
       },
       legend: {
@@ -204,14 +192,13 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.AvgGrade = {
       series :[90,10],
       chart: {
-        width: 350,
         type: "pie",
       },
       legend: {
         show: false
       },
       fill:
-        {colors: ['#2B2D3E','#fff']
+        {colors: ['#9ea700','#223343']
       },
       title: {
         text: "Average Grade",
@@ -239,7 +226,6 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.ReadInstructions = {
       series: [1,0],
       chart: {
-        width: 380,
         type: "donut"
       },
       labels : ["Yes", "No"],
@@ -294,7 +280,6 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.HandedIn = {
       series: [1, 0],
       chart: {
-        width: 380,
         type: "donut"
       },
       labels : ["Yes", "No"],
@@ -345,10 +330,10 @@ export class FeedbackfruitsTabComponent implements OnInit {
         }
       ]
     };
+
     this.FinishedFeedback = {
       series: [0, 1],
       chart: {
-        width: 380,
         type: "donut"
       },
       labels : ["Yes", "No"],
@@ -403,7 +388,6 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.ReadFeedback = {
       series: [0,1],
       chart: {
-        width: 380,
         type: "donut"
       },
       labels : ["Yes", "No"],
