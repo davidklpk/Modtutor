@@ -62,6 +62,19 @@ export class FeedbackfruitsTabComponent implements OnInit {
           colors: ["#2B2D3E"]
         }
       },
+      fill: {
+        colors: ['#58D68D', '#F1948A']
+      },
+      title: {
+        text: "Grades per Criteria",
+        align: 'left',
+        style: {
+          fontSize:  '14px',
+          fontWeight:  'bold',
+          fontFamily:  undefined,
+          color:  '#263238'
+        },
+    },
       stroke: {
         show: true,
         width: 1,
