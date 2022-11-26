@@ -1,3 +1,66 @@
-<div class="mt-5">
-    media
-</div>
+<section class="my-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-2">
+  
+      <mat-card class="flex flex-col items-center align-middle justify-center">
+        <h2>Live Views</h2>
+        <apx-chart
+          [series]="LiveViews.series"
+          [labels]="LiveViews.labels"
+          [chart]="LiveViews.chart"
+          [responsive]="LiveViews.responsive"
+          [fill]="LiveViews.fill"
+          [legend]= "LiveViews.legend"
+        ></apx-chart>
+      </mat-card>
+  
+      <mat-card class="flex flex-col items-center align-middle justify-center">
+        <h2>On Demand Views</h2>
+        <apx-chart
+          [series]="OndemandViews.series"
+          [chart]="OndemandViews.chart"
+          [labels]="OndemandViews.labels"
+          [responsive]="OndemandViews.responsive"
+          [fill]="OndemandViews.fill"
+          [legend]= "OndemandViews.legend"
+        ></apx-chart>
+      </mat-card>
+  
+      <mat-card class="flex flex-col items-center align-middle justify-center">
+        <h2>Total Views</h2>
+        <apx-chart
+          [series]="TotalViews.series"
+          [chart]="TotalViews.chart"
+          [responsive]="TotalViews.responsive"
+          [fill]="TotalViews.fill"
+          [labels]="TotalViews.labels"
+          [legend]= "TotalViews.legend"
+        ></apx-chart>
+      </mat-card>
+  
+      <mat-card class="flex flex-col items-center align-middle justify-center">
+        <h2>Presentation Watched</h2>
+        <apx-chart
+          [series]="PresentationsWatched.series"
+          [chart]="PresentationsWatched.chart"
+          [labels]="PresentationsWatched.labels"
+          [responsive]="PresentationsWatched.responsive"
+          [fill]="PresentationsWatched.fill"
+          [legend]= "PresentationsWatched.legend"
+        ></apx-chart>
+      </mat-card>
+  
+      <mat-card class="flex flex-col items-center align-middle justify-center">
+        <h2>Total Time Spent</h2>
+        <apx-chart
+          [series]="TimeSpent.series"
+          [chart]="TimeSpent.chart"
+          [labels]="TimeSpent.labels"
+          [grid]="TimeSpent.grid"
+          [legend]= "TimeSpent.legend"
+          [plotOptions]="TimeSpent.plotOptions"
+          [responsive]="TimeSpent.responsive"
+          [fill]="TimeSpent.fill">
+        </apx-chart>
+      </mat-card>   
+    </div>
+</section>

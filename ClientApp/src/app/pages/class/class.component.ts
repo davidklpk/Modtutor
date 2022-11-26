@@ -22,11 +22,11 @@ export class ClassComponent implements OnInit {
   slug: string = ""
 
   courseList : Course[] = [
-    {name: "Intercultural", members: 24},
-    {name: "Programming Basics", members: 24},
-    {name: "Business English", members: 24},
-    {name: "Diversity", members: 24},
-    {name: "Dutch for Beginners", members: 24},
+    {name: "Class 1", members: 24},
+    {name: "Class 2", members: 24},
+    {name: "Class 3", members: 24},
+    {name: "Class 4", members: 24},
+    {name: "Class 5", members: 24},
   ]
 
   constructor(private route: ActivatedRoute) { 
