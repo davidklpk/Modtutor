@@ -82,7 +82,7 @@ export class AssignmentComponent implements OnInit {
         ]
       },
       fill : {
-        colors: ['#2B2D3E']
+        colors:'#00b2cd'
       }
     };
 
@@ -92,7 +92,7 @@ export class AssignmentComponent implements OnInit {
         type: "pie",
       },
       fill:
-        {colors: ['#2B2D3E','#adb426']
+        {colors: ['#ca433c','#00b2cd'] 
       },
       legend: {
         show: false,
@@ -132,7 +132,7 @@ export class AssignmentComponent implements OnInit {
         type: "pie",
       },
       fill:
-        {colors: ['#2B2D3E','#adb426']
+        {colors: ['#ca433c','#00b2cd']
       },
       legend: {
         show: false
@@ -169,7 +169,7 @@ export class AssignmentComponent implements OnInit {
         show: false
       },
       fill:
-        {colors: ['#ff2903']
+        {colors: ['#ffba00']
       },
       title: {
         text: "Time Spent",
@@ -203,7 +203,7 @@ export class AssignmentComponent implements OnInit {
         show: false
       },
       fill:
-        {colors: ['#2B2D3E','#adb426']
+        {colors: ['#00b2cd','#ca433c']
       },
       title: {
         text: "Average Grade",

@@ -74,7 +74,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
         }
       },
       fill: {
-        colors: ['#2B2D3E', '#adb426']
+        colors: ['#00b2cd', '#ffba00']
       },
       title: {
         text: "Grades per Criteria",
@@ -96,7 +96,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
         type: "pie",
       },
       fill:
-        {colors: ['#2B2D3E', '#adb426']
+        {colors: ['#ca433c', '#ffba00']
       },
       legend: {
         show: false,
@@ -136,7 +136,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
         type: "pie",
       },
       fill:
-        {colors: ['#2B2D3E','#adb426']
+        {colors: ['#ca433c','#ffba00']
       },
       legend: {
         show: false
@@ -164,7 +164,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
         show: false
       },
       fill:
-        {colors: ['#ff2903']
+        {colors: ['#ca433c']
       },
       title: {
         text: "Time Spent",
@@ -198,7 +198,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
         show: false
       },
       fill:
-        {colors: ['#9ea700','#223343']
+        {colors: ['#00b2cd','#ca433c']
       },
       title: {
         text: "Average Grade",
@@ -251,7 +251,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#2B2D3E', '#ff2903']
+        {colors: ['#00b2cd', '#ca433c']
       },
       title: {
         text: "Read Instructions",
@@ -305,7 +305,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#2B2D3E', '#ff2903']
+        {colors: ['#00b2cd', '#ca433c']
       },
       title: {
         text: "Handed in",
@@ -359,7 +359,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#00bbef', '#ff2903']
+        {colors: ['#ca433c', '#00b2cd']
       },
       title: {
         text: "Finished Feedback",
@@ -413,7 +413,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#00bbef', '#ff2903']
+        {colors: ['#ca433c', '#00b2cd']
       },
       title: {
         text: "Read Feedback",
