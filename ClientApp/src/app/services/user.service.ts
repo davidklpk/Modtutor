@@ -8,6 +8,8 @@ export class UserService {
   
   constructor() { }
 
+  
+
   /**
    * Checks whether user is logged in or not 
    * by reading the local storage
