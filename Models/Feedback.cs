@@ -1,17 +1,19 @@
+using System.ComponentModel.DataAnnotations;
+
 public class Feedback{
     //Properties
     [Key]public int FeedbackID { get; set; }
-    public boolean ReadInstructions { get; set; }
-    public boolean HandedIn { get; set; }
-    public boolean FinishedFeedback { get; set; }
-    public boolean ReadFeedback { get; set; }
+    public bool ReadInstructions { get; set; }
+    public bool HandedIn { get; set; }
+    public bool FinishedFeedback { get; set; }
+    public bool ReadFeedback { get; set; }
     public int TimeSpent { get; set; }
     public double OverallGrade { get; set; }
     public int TotalReviewComments { get; set; }
-    public boolean TypeofFeedback { get; set; }
+    public bool TypeofFeedback { get; set; }
 
     //relations
     public List<Criteria> RatingBasedOn;
-    public Assignment placeholder;
+    public Assignment IsGivenOn;
 
 }

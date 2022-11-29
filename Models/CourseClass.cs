@@ -1,8 +1,10 @@
-public class CourseClassGroup{
+using System.ComponentModel.DataAnnotations;
+
+public class CourseClass{
     //properties
     [Key]public int ClassID { get; set; }
     public string ClassName { get; set; }
 
     //Relations
-    //yikes
+    public List<Assignment> IsAssigned;
 }

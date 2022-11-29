@@ -1,4 +1,4 @@
-public class Teacher: User{
+public class Teacher{
     //properties
     public int TeacherID { get; set; }
 
@@ -7,5 +7,5 @@ public class Teacher: User{
     public string Password { get; set; }
 
     //relations
-    public List<Assigmnent> Creates;
+    public List<Assignment> Creates;
 }

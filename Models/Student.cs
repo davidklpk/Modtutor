@@ -1,4 +1,6 @@
- public class Student : User {
+using System.ComponentModel.DataAnnotations;
+
+public class Student{
    //properties
     [Key]public int StudentID { get; set; }
     public string Fullname { get; set; }
@@ -7,4 +9,5 @@
 
     //relations 
     public List<Feedback> Gives;
+    public MediaSite LooksAt;
  }

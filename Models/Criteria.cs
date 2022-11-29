@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 public class Criteria{
     [Key]public int CriteriaID { get; set; }
     public string CriteriaName { get; set; }
