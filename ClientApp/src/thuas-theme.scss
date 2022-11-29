@@ -114,4 +114,14 @@ $thuas-theme: mat-light-theme(
     $thuas-theme-warn
 );
 
+$angular-dark-theme: mat-dark-theme(
+    $thuas-theme-primary,
+    $thuas-theme-accent,
+    $thuas-theme-warn
+);
+
+.darkMode {
+  @include angular-material-theme($angular-dark-theme);
+}
+
 @include angular-material-theme($thuas-theme);

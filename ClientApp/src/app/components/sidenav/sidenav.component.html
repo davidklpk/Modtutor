@@ -1,0 +1,72 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer [fixedInViewport]="true" [opened]="(isMobile$ | async) === false" [mode]="(isMobile$ | async) ? 'over' : 'side'" class="w-64 bg-thuas-groen-base" >
+        <mat-toolbar color="accent">
+            WOS
+        </mat-toolbar>
+        <mat-nav-list>
+            <div class="flex flex-col justify-between h-full">
+                <div class="flex flex-col justify-start">
+                    <a mat-list-item routerLink="/start" routerLinkActive="font-medium bg-gray-900/5" aria-label="Go to home">
+                        <mat-icon class="scale-75 mr-2 material-icons-outlined" aria-label="Dashboard Icon">dashboard</mat-icon>
+                        Start
+                    </a>
+                    <!--<a mat-list-item routerLink="/students" routerLinkActive="font-medium bg-gray-900/5" aria-label="Go to studentlist">
+                        <mat-icon class="scale-75 mr-1" aria-label="List Icon">list</mat-icon>
+                        Studentlist
+                    </a>-->
+                </div>
+
+                <div class="h-max w-full absolute bottom-0">
+                    <div class="flex justify-end align-bottom items-end">
+                        <a mat-list-item routerLink="/start" aria-label="Go to home">
+                            <mat-icon class="scale-100 mr-2 material-icons-outlined" aria-label="Dashboard Icon">person</mat-icon>
+                            Your Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="bg-gray-50 dark:bg-thuas-grijs-darkest">
+        <mat-toolbar color="primary">
+            <div class="flex w-full items-center justify-between">
+                <div class="flex items-center justify-start">
+                    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+                        <mat-icon aria-label="Sidenav Toggle Icon">menu</mat-icon>
+                    </button>
+                    <h2 class="ml-2">
+                        Placeholder
+                    </h2>
+                </div>
+                <div class="flex justify-end gap-4 items-center">
+                    <mat-slide-toggle (change)="onChange($event)"></mat-slide-toggle>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Notification Menu">
+                        <mat-icon>notifications</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>hourglass_bottom</mat-icon>
+                            <span>
+                                Upcoming deadline
+                            </span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>hourglass_bottom</mat-icon>
+                            <span>
+                                Upcoming Deadline
+                            </span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>sentiment_dissatisfied</mat-icon>
+                            <span>
+                                Student is failing
+                            </span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </div>
+        </mat-toolbar>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

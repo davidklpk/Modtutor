@@ -1,0 +1,120 @@
+<section class="my-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-2">
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Total comments</h2>
+      <apx-chart
+        [series]="TotalReviewComments.series"
+        [labels]="TotalReviewComments.labels"
+        [chart]="TotalReviewComments.chart"
+        [responsive]="TotalReviewComments.responsive"
+        [fill]="TotalReviewComments.fill"
+        [legend]= "TotalReviewComments.legend"
+      ></apx-chart>
+    </mat-card>
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Time spent</h2>
+      <apx-chart
+        [series]="TimeSpent.series"
+        [chart]="TimeSpent.chart"
+        [labels]="TimeSpent.labels"
+        [responsive]="TimeSpent.responsive"
+        [fill]="TimeSpent.fill"
+        [legend]= "TimeSpent.legend"
+      ></apx-chart>
+    </mat-card>
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Average grade</h2>
+      <apx-chart
+        [series]="AvgGrade.series"
+        [chart]="AvgGrade.chart"
+        [responsive]="AvgGrade.responsive"
+        [fill]="AvgGrade.fill"
+        [labels]="AvgGrade.labels"
+        [legend]= "AvgGrade.legend"
+      ></apx-chart>
+    </mat-card>
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Type of feedback</h2>
+      <apx-chart
+        [series]="TypeFeedback.series"
+        [chart]="TypeFeedback.chart"
+        [labels]="TypeFeedback.labels"
+        [responsive]="TypeFeedback.responsive"
+        [fill]="TypeFeedback.fill"
+        [legend]= "TypeFeedback.legend"
+      ></apx-chart>
+    </mat-card>
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Read instructions</h2>
+      <apx-chart
+        [series]="ReadInstructions.series"
+        [chart]="ReadInstructions.chart"
+        [labels]="ReadInstructions.labels"
+        [grid]="ReadInstructions.grid"
+        [legend]= "ReadInstructions.legend"
+        [plotOptions]="ReadInstructions.plotOptions"
+        [responsive]="ReadInstructions.responsive"
+        [fill]="ReadInstructions.fill">
+      </apx-chart>
+    </mat-card>
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Handed in</h2>
+      <apx-chart
+        [series]="HandedIn.series"
+        [chart]="HandedIn.chart"
+        [labels]="HandedIn.labels"
+        [grid]="HandedIn.grid"
+        [legend]= "HandedIn.legend"
+        [plotOptions]="HandedIn.plotOptions"
+        [responsive]="HandedIn.responsive"
+        [fill]="HandedIn.fill">
+      </apx-chart>
+    </mat-card>
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Finished feedback</h2>
+      <apx-chart
+        [series]="FinishedFeedback.series"
+        [chart]="FinishedFeedback.chart"
+        [labels]="FinishedFeedback.labels"
+        [grid]="FinishedFeedback.grid"
+        [plotOptions]="FinishedFeedback.plotOptions"
+        [responsive]="FinishedFeedback.responsive"
+        [fill]="FinishedFeedback.fill"
+        [legend]= "FinishedFeedback.legend"
+    ></apx-chart>
+    </mat-card>
+
+    <mat-card class="flex flex-col items-center align-middle justify-center">
+      <h2>Read feedback</h2>
+      <apx-chart
+        [series]="ReadFeedback.series"
+        [chart]="ReadFeedback.chart"
+        [labels]="ReadFeedback.labels"
+        [grid]="ReadFeedback.grid"
+        [plotOptions]="ReadFeedback.plotOptions"
+        [responsive]="ReadFeedback.responsive"
+        [fill]="ReadFeedback.fill"
+        [legend]= "ReadFeedback.legend"
+    ></apx-chart>
+    </mat-card>
+  </div>
+
+  <mat-card class="flex flex-col w-full mt-10">
+    <h2 class="text-center m-0">Grades per criteria</h2>
+    <apx-chart class="w-full"
+      [series]="Grades.series!"
+      [chart]="Grades.chart!"
+      [dataLabels]="Grades.dataLabels!"
+      [plotOptions]="Grades.plotOptions!"
+      [xaxis]="Grades.xaxis!"
+      [fill]="Grades.fill">
+    </apx-chart>
+  </mat-card>
+</section>
