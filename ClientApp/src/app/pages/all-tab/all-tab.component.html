@@ -1,8 +1,8 @@
 <app-container>
     <h1 class="font-medium">All assignments</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-10 sm:auto-rows-fr sm:auto-cols-fr">
-        <ng-container *ngFor="let class of recentClassList">
-            <app-card-copy [class]="class"></app-card-copy>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-10 sm:auto-rows-fr sm:auto-cols-fr">
+        <ng-container *ngFor="let assignment of assignmentList">
+            <app-card-copy [assignment]="assignment"></app-card-copy>
         </ng-container>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">

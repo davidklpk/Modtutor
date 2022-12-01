@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Class } from 'src/app/interfaces/class';
+import { Assignment } from 'src/app/interfaces/assignment';
 
 @Component({
   selector: 'app-card-copy',
@@ -8,7 +8,7 @@ import { Class } from 'src/app/interfaces/class';
 })
 export class CardCopyComponent implements OnInit {
 
-  @Input() class !: Class;
+  @Input() assignment !: Assignment;
   constructor() { }
 
   ngOnInit(): void {
