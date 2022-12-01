@@ -24,6 +24,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { FeedbackfruitsTabComponent } from './pages/feedbackfruits-tab/feedbackfruits-tab.component';
 import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.component';
 import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile.component';
+import { AllTabComponent } from './pages/all-tab/all-tab.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile
     ProfileComponent,
     FeedbackfruitsTabComponent,
     MediasiteTabComponent,
-    TeacherProfileComponent
+    TeacherProfileComponent,
+    AllTabComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

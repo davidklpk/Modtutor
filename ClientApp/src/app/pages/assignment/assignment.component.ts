@@ -42,7 +42,7 @@ export class AssignmentComponent implements OnInit {
   ]
 
   displayedColumns: string[] = ['name', 'id', 'status'];
-  dataSource = new MatTableDataSource<Assignment>(this.studentList);
+  dataSource = new MatTableDataSource<Student>(this.studentList);
 
   constructor(private router : Router) { 
     this.chartOptions = {
