@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
@@ -16,7 +15,6 @@ import { StudentlistComponent } from './pages/studentlist/studentlist.component'
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ClassComponent } from './pages/class/class.component';
 import { CardClassComponent } from './components/card-class/card-class.component';
-import { CardCourseComponent } from './components/card-course/card-course.component';
 import { ClassesPipe } from './pipes/classes.pipe';
 import { H1Component } from './typography/h1/h1.component';
 import { CourseComponent } from './pages/course/course.component';
@@ -25,6 +23,7 @@ import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FeedbackfruitsTabComponent } from './pages/feedbackfruits-tab/feedbackfruits-tab.component';
 import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.component';
+import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.compo
     StudentlistComponent,
     ClassComponent,
     CardClassComponent,
-    CardCourseComponent,
     ClassesPipe,
     H1Component,
     CourseComponent,
@@ -45,7 +43,8 @@ import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.compo
     AssignmentComponent,
     ProfileComponent,
     FeedbackfruitsTabComponent,
-    MediasiteTabComponent
+    MediasiteTabComponent,
+    TeacherProfileComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

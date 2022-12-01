@@ -32,8 +32,7 @@ export class CourseComponent implements OnInit {
     {name: "Jon Doe", id: "123456", classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
   ]
 
-  //displayedColumns: string[] = ['name', 'id', 'classes'];
-  displayedColumns: string[] = ['name', 'id'];
+  displayedColumns: string[] = ['name', 'id', 'flag'];
   dataSource = new MatTableDataSource<Student>(this.studentList);;
 
   constructor(private router : Router) { }

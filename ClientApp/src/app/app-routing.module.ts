@@ -8,6 +8,7 @@ import { StartComponent } from './pages/start/start.component';
 import { StudentlistComponent } from './pages/studentlist/studentlist.component';
 import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'students',
     component: StudentlistComponent
+  },
+  {
+    path: 'your-profile',
+    component: TeacherProfileComponent
   }
 ];
 

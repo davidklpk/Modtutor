@@ -1,75 +1,7 @@
 <app-container>   
-    <div class="flex flex-col md:flex-row gap-14 mb-10">
-        <div class="flex flex-col gap-5">
-            <mat-card id="" class="w-full lg:w-96 md:w-72 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-                <div class="flex flex-rows-2 gap-5">
-                    <div class="w-36 h-36 rounded-lg bg-thuas-groen-lighter">
-                        <div class="flex w-full h-full items-center justify-center">
-                            <p class="text-5xl font-medium text-thuas-grijs-base m-0 p-0 tracking-wide">JD</p>
-                        </div>
-                    </div>
-                    <div class="flex h-full flex-col align-middle gap-1">
-                        <h2>Student</h2>
-                        <div class="flex items-center gap-2">
-                            <mat-icon>face</mat-icon>
-                            <h4 class="m-0 p-0">Jon Doe</h4>
-                        </div>
-        
-                        <div class="flex items-center gap-2">
-                            <mat-icon class="scale-75">alternate_email</mat-icon>
-                            <h4 class="m-0 p-0">jdoe@stud.hhs.nl</h4>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <mat-icon>123</mat-icon>
-                            <h4 class="m-0 p-0">2021455892</h4>
-                        </div>
-                    </div>
-                </div>  
-            </mat-card>
-
-            <mat-card class="w-full lg:w-96 md:w-72 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-                <h2>Notes for Jon</h2>
-
-                <div class="flex flex-col gap-3 mb-5">
-                    <mat-card class="w-full bg-thuas-groen-base/5 rounded-[12px] shadow-none outline outline-1 outline-thuas-groen-base/30">
-                        <p class="p-0 m-0 text-gray-600">Great research report but Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas illum at totam in, ab quo consequuntur tempore, dolore saepe inventore culpa, eum dolores. Odit quam fugit molestias, sed atque qui.</p>
-                    </mat-card>
-                </div>
-
-                <form>
-                    <mat-form-field  appearance="outline" class="w-full -mb-3 p-0">
-                        <mat-label>Add Note</mat-label>
-                        <textarea matInput placeholder="One of my best students!"></textarea>
-                    </mat-form-field>
-                    <button mat-flat-button class="bg-[#1976d2] text-white w-full uppercase text-[13px]">
-                        Save note
-                    </button>
-                </form>
-
-            </mat-card>
-        </div>
-    
-
-        <div class="flex flex-col gap-2 w-full h-screen">
-            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
-                <mat-tab label="All">
-                    <!-- Insert your content for the all-tab here-->
-                </mat-tab>
-                <mat-tab label="Feedback Fruits">
-                    <app-feedbackfruits-tab></app-feedbackfruits-tab>
-                </mat-tab>
-                <mat-tab label="Media Site">
-                    <app-mediasite-tab></app-mediasite-tab>
-                </mat-tab>
-            </mat-tab-group>
-        </div>
-    </div>
-</app-container>
-<!--
-<app-container>   
     <div class="flex flex-col sm:flex-row gap-10 mb-10">
         <div class="">
-            <mat-card class="w-full sm:w-max rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+            <mat-card class="w-full lg:w-96 md:w-72 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
                 <div class="flex flex-rows-2 gap-5">
                     <div class="w-36 h-36 rounded-lg bg-thuas-groen-lighter">
                         <div class="flex w-full h-full items-center justify-center">
@@ -96,7 +28,7 @@
             </mat-card>
         </div>
 
-        <div class="flex flex-col gap-2 w-full">
+        <mat-card class="flex flex-col w-full outline outline-1 outline-gray-300 shadow-none ">
             <h1 class="font-medium">Select classes in your courses</h1>
             <mat-accordion class="rounded-[12px] shadow-none outline outline-1 outline-gray-300" multi>
                 <mat-expansion-panel #panel1 class="shadow-none outline outline-1 outline-gray-300" hideToggle>
@@ -123,7 +55,7 @@
                 </mat-expansion-panel>
             </mat-accordion>
     
-            <mat-accordion class="rounded-[12px] shadow-none outline outline-1 outline-gray-300" multi>
+            <mat-accordion class=" shadow-none outline outline-1 outline-gray-300" multi>
                 <mat-expansion-panel #panel2 class="shadow-none outline outline-1 outline-gray-300" hideToggle>
                   <mat-expansion-panel-header>
                     <mat-panel-title class="flex w-full items-center font-base text-md">
@@ -174,6 +106,6 @@
     
                 </mat-expansion-panel>
             </mat-accordion>
-        </div>
+        </mat-card>
     </div>
-</app-container>-->
+</app-container>
