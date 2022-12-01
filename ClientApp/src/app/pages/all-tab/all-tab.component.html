@@ -1,33 +1,29 @@
 <app-container>
-<h1 class="font-medium">List Of Assignments</h1>
-   <mat-divider class="my-10"></mat-divider>
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w-full">
-    <ng-container matColumnDef="week">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by week">
-            Week
-        </th>
-        <td mat-cell *matCellDef="let alltab"> {{alltab.week}} </td>
-    </ng-container>
-    <ng-container matColumnDef="assignment">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by assignment">
-            Assignment
-        </th>
-        <td mat-cell *matCellDef="let alltab"> {{alltab.assignment}} </td>
-    </ng-container>
-    <ng-container matColumnDef="assignment">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by grade">
-            Grade
-        </th>
-        <td mat-cell *matCellDef="let alltab"> {{alltab.grade}} </td>
-    </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr class="hover:bg-thuas-groen-base/5 cursor-pointer" *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons 
-      aria-label="Select page of assignments">
-  </mat-paginator>
-
-  
+    <h1 class="font-medium">All assignments</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-10 sm:auto-rows-fr sm:auto-cols-fr">
+        <ng-container *ngFor="let class of recentClassList">
+            <app-card-copy [class]="class"></app-card-copy>
+        </ng-container>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+            <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
+            <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">5.1</p>
+            </div>
+    
+            <div class="px-5">
+            <h2 class="font-medium text-black/60">Average Grade</h2>
+            </div>
+        </mat-card>
+    
+        <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+            <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-4 w-full md:h-full h-52">
+            <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">122</p>
+            </div>
+    
+            <div class="px-5">
+            <h2 class="font-medium text-black/60">Time spent (min)</h2>
+            </div>
+        </mat-card>
+    </div>
 </app-container>

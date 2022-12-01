@@ -15,6 +15,7 @@ import { StudentlistComponent } from './pages/studentlist/studentlist.component'
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ClassComponent } from './pages/class/class.component';
 import { CardClassComponent } from './components/card-class/card-class.component';
+import { CardCopyComponent } from './components/card-copy/card-copy.component';
 import { ClassesPipe } from './pipes/classes.pipe';
 import { H1Component } from './typography/h1/h1.component';
 import { CourseComponent } from './pages/course/course.component';
@@ -46,7 +47,8 @@ import { AllTabComponent } from './pages/all-tab/all-tab.component';
     FeedbackfruitsTabComponent,
     MediasiteTabComponent,
     TeacherProfileComponent,
-    AllTabComponent
+    AllTabComponent,
+    CardCopyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

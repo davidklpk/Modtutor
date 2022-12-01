@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Alltab } from 'src/app/interfaces/all-tab';
-import { Assignment } from 'src/app/interfaces/assignment';
-import { Router } from '@angular/router';
+import { Class } from 'src/app/interfaces/class';
+
 
 @Component({
   selector: 'app-all-tab',
@@ -11,18 +9,15 @@ import { Router } from '@angular/router';
 })
 export class AllTabComponent implements OnInit {
 
-  assignmentList : Alltab[] = [
-    {week: 1, assignment: [{ name: "Literature Review", grade: 9 }]},
-    {week: 2, assignment: [{ name: "Mid term report", grade: 8 }]},
-    {week: 3, assignment: [{ name: "Video Report", grade: 7 }]},
-    {week: 4, assignment: [{ name: "End term Report", grade: 6 }]}
+  recentClassList : Class[] = [
+    { name: "Research Report", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
+    { name: "Mid term Report", slug: "data", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
+    { name: "End term Report", slug: "security", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
+    { name: "English Report", slug: "security", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
+  
   ]
 
-  displayedColumns: string[] = ['Week', 'Assignment'];
-  dataSource = new MatTableDataSource<Alltab>(this.assignmentList);
-
-
-  constructor(private router : Router) { }
+  constructor() { }
 
   ngOnInit(): void {
 
