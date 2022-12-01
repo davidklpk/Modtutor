@@ -27,7 +27,8 @@ export class StartComponent implements OnInit {
     { name: "Project Methods", slug: "security", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
   ]
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
