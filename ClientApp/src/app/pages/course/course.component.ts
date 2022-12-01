@@ -15,9 +15,9 @@ export class CourseComponent implements OnInit {
   @Input() course !: Course;
 
   assignmentList : Assignment[] = [
-    { name: "Mid-term Report", grade:9 },
-    { name: "Research Report", grade: 7},
-    { name: "Hand-In Homework", grade: 6 },
+    { name: "Mid-term Report", grade:9, week:1 },
+    { name: "Research Report", grade: 7, week:2},
+    { name: "Hand-In Homework", grade: 6, week:3 },
   ]
 
   studentList : Student[] = [
