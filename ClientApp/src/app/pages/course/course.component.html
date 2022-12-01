@@ -13,7 +13,7 @@
         <table mat-table [dataSource]="dataSource" matSort class="outline-1 w-full rounded-[12px]">
 
             <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" class="text-base text-black/80">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" class="text-base text-black/80 rounded-[12px]">
                     Name
                 </th>
                 <td mat-cell *matCellDef="let class" class="text-black/80"> {{class.name}} </td>
@@ -27,13 +27,13 @@
             </ng-container>
     
             <ng-container matColumnDef="flag">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by flag" class="text-base text-black/80">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by flag" class="text-base text-black/80 rounded-[12px]">
                     Flag
                 </th>
                 <td mat-cell *matCellDef="let class" class="text-black/80">
                     <div class="flex flex-row items-center">
                         <div class="h-4 w-4 rounded-full bg-red-400 mr-2"></div>
-                        In Danger
+                        in danger
                     </div>
                 </td>
             </ng-container>
@@ -44,7 +44,8 @@
     
         <mat-paginator [pageSizeOptions]="[5, 10, 20]"
             showFirstLastButtons 
-            aria-label="Select page of students">
+            aria-label="Select page of students"
+            class="rounded-[12px]">
         </mat-paginator>
     </div>
 </div>

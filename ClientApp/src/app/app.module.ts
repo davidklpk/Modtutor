@@ -16,7 +16,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ClassComponent } from './pages/class/class.component';
 import { CardClassComponent } from './components/card-class/card-class.component';
 import { ClassesPipe } from './pipes/classes.pipe';
-import { H1Component } from './typography/h1/h1.component';
 import { CourseComponent } from './pages/course/course.component';
 import { CardAssignmentComponent } from './components/card-assignment/card-assignment.component';
 import { AssignmentComponent } from './pages/assignment/assignment.component';
@@ -38,7 +37,6 @@ import { AllTabComponent } from './pages/all-tab/all-tab.component';
     ClassComponent,
     CardClassComponent,
     ClassesPipe,
-    H1Component,
     CourseComponent,
     CardAssignmentComponent,
     AssignmentComponent,

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApexNonAxisChartSeries, ApexResponsive, ApexChart, ChartComponent } from "ng-apexcharts";
 import { Course } from 'src/app/interfaces/course';
+import { setGlobalCurrentPage, COURSE } from 'src/app/shared/global-var';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -15,11 +16,14 @@ export type ChartOptions = {
   templateUrl: './class.component.html',
   styleUrls: ['./class.component.css']
 })
+
 export class ClassComponent implements OnInit {
+
   @ViewChild("chart") chart !: ChartComponent;
   public chartOptions !: Partial<ChartOptions>;
 
-  slug: string = ""
+  slug: string = "";
+  courseName : string = "var";
 
   courseList : Course[] = [
     {name: "Class 1", members: 24},
@@ -30,6 +34,9 @@ export class ClassComponent implements OnInit {
   ]
 
   constructor(private route: ActivatedRoute) { 
+
+    setGlobalCurrentPage(COURSE + this.courseName);
+
     this.chartOptions = {
       series: [56, 6],
       chart: {
