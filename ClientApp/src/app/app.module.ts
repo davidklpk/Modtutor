@@ -25,6 +25,7 @@ import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FeedbackfruitsTabComponent } from './pages/feedbackfruits-tab/feedbackfruits-tab.component';
 import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.component';
+import { AllTabComponent } from './pages/all-tab/all-tab.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.compo
     AssignmentComponent,
     ProfileComponent,
     FeedbackfruitsTabComponent,
-    MediasiteTabComponent
+    MediasiteTabComponent,
+    AllTabComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

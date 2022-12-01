@@ -1,3 +1,4 @@
 export interface Assignment {
-    name : string
+    name:string,
+    grade: number,
 }
