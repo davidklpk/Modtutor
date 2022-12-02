@@ -1,20 +1,17 @@
 <mat-toolbar color="primary" class="flex justify-center w-full p-0">
     <div class="flex w-full h-full max-w-screen-2xl px-5 md:px-10">
-        <div class="flex h-full items-center align-middle justify-center">
-            <!--<p class="m-0 text-white/60">Overview</p>
-            <p class="m-0 text-white/60 mx-4">></p>-->
-            <p class="m-0 font-normal">
-                <a class="w-max" routerLink="/start">
-                    <img class="w-44" src="../../../assets/img/logo.png">
-                </a>
-            </p>
-            <p class="m-0 ml-2 mr-4 font-normal">
-                |
-            </p>
-            <p class="m-0 font-normal">
-                {{  "{{ currentPage }\}"   }}
-            </p>
+
+        <div class="flex gap-1 h-full items-center align-middle justify-center">
+            <a class="w-max" routerLink="/start">
+                <img class="h-[1.1rem] object-cover" src="../../../assets/img/logo.png">
+            </a>
+            <mat-icon class="-mb-[1px]">chevron_right</mat-icon>
+            <!--<div class="h-5 w-[1.5px] ml-3 mr-2 rounded-lg bg-white"></div>-->
+            <h1 class="m-0 -mb-[1px] p-0 font-medium text-xl">
+                {{ currentPage }}
+            </h1>
         </div>
+
         <div class="flex w-full justify-end">
             <div class="flex justify-end gap-4 items-center">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Notification Menu">

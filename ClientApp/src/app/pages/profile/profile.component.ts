@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { STUDENT_PROFILE, setGlobalCurrentPage } from 'src/app/shared/global-var';
 
 @Component({
   selector: 'app-profile',
@@ -8,9 +9,17 @@ import { HostListener } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
+
+  studentName : string = "var"
+
+  constructor() { 
+    setGlobalCurrentPage(STUDENT_PROFILE + this.studentName);
+  }
+
+  ngOnInit(): void { }
+
   // Calculates the current scroll-height to apply the stickiness
   @HostListener("window:scroll", []) onWindowScroll() {
-
     var sideBar = document.getElementById("sidebar");
     let verticalOffset = window.scrollY;
     let topOffset = sideBar?.getBoundingClientRect().top !+ window.scrollY !- sideBar?.ownerDocument.documentElement.clientTop!;
@@ -27,12 +36,4 @@ export class ProfileComponent implements OnInit {
       sideBar?.classList.remove("fixed");
     }
   }
-
-  constructor() { 
-  }
-
-  ngOnInit(): void {
-  }
-
-
 }
