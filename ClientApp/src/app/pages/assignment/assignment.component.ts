@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Assignment } from 'src/app/interfaces/assignment';
-
 import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { Student } from 'src/app/interfaces/student';
 import { Router } from '@angular/router';
+import { ASSIGNMENT, setGlobalCurrentPage } from 'src/app/shared/global-var';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -20,6 +19,7 @@ export type ChartOptions = {
   templateUrl: './assignment.component.html',
   styleUrls: ['./assignment.component.css']
 })
+
 export class AssignmentComponent implements OnInit {
 
   @ViewChild("chart") chart !: ChartComponent;
@@ -43,8 +43,12 @@ export class AssignmentComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'id', 'status'];
   dataSource = new MatTableDataSource<Student>(this.studentList);
+  assignmentName : string = "name"
 
   constructor(private router : Router) { 
+
+    setGlobalCurrentPage(ASSIGNMENT + this.assignmentName);
+
     this.chartOptions = {
       series: [
         {

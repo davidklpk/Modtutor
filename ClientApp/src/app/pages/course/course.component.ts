@@ -33,9 +33,12 @@ export class CourseComponent implements OnInit {
   ]
 
   displayedColumns: string[] = ['name', 'id', 'flag'];
-  dataSource = new MatTableDataSource<Student>(this.studentList);;
+  dataSource = new MatTableDataSource<Student>(this.studentList);
 
-  constructor(private router : Router) { }
+  
+
+
+  constructor(private router : Router) {  }
 
   ngOnInit(): void {
   }
