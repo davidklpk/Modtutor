@@ -1,0 +1,55 @@
+<app-container>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-5 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+        <h2 class="font-black text-black/60">Week 1</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+                <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] w-full h-full">
+                    <apx-chart
+                    [series]="Attendance.series"
+                    [chart]="Attendance.chart"
+                    [labels]="Attendance.labels"
+                    [responsive]="Attendance.responsive"
+                    [fill]="Attendance.fill"
+                    [legend]= "Attendance.legend"
+                  ></apx-chart>
+                </div>
+            </mat-card>
+
+            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+                <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-4 w-full md:h-full h-52">
+                <p class="p-0 m-0 text-5xl md:text-5xl font-black text-thuas-groen-base">100</p>
+                </div>
+
+                <div class="px-5">
+                <h2 class="font-medium text-black/60">Hours Attened</h2>
+                </div>
+            </mat-card>
+        </div>  
+    </mat-card>
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-5 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+        <h2 class="font-black text-black/60">Week 2</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+                <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
+                <p class="p-0 m-0 text-5xl md:text-5xl font-black text-thuas-groen-base">90%</p>
+                </div>
+
+                <div class="px-5">
+                <h2 class="font-medium text-black/60">Present/Possible</h2>
+                </div>
+            </mat-card>
+
+            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+                <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-4 w-full md:h-full h-52">
+                <p class="p-0 m-0 text-5xl md:text-5xl font-black text-thuas-groen-base">120</p>
+                </div>
+
+                <div class="px-5">
+                <h2 class="font-medium text-black/60">Hours Attened</h2>
+                </div>
+            </mat-card>
+        </div>  
+    </mat-card>
+</div>
+</app-container>

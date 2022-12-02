@@ -131,13 +131,20 @@ export class FeedbackfruitsTabComponent implements OnInit {
       ]
     };
     this.TotalReviewComments = {
-      series :[40,60],
+      series :[60],
       chart: {
-        type: "pie",
+        height: 200,
+        type: "radialBar",
       },
       fill:
-        {colors: ['#ca433c','#ffba00']
+        {colors: ['#ffba00']
       },
+      dataLabels: {
+        name: {
+          show: false
+        }
+      },
+      labels: ['Total Comments'],
       legend: {
         show: false
       },
@@ -190,15 +197,22 @@ export class FeedbackfruitsTabComponent implements OnInit {
       ]
     };
     this.AvgGrade = {
-      series :[90,10],
+      series :[90],
       chart: {
-        type: "pie",
+        height: 200,
+        type: "radialBar",
       },
+      dataLabels: {
+        name: {
+          show: false
+        }
+      },
+      labels: ['Grade'],
       legend: {
         show: false
       },
       fill:
-        {colors: ['#00b2cd','#ca433c']
+        {colors: ['#00b2cd']
       },
       title: {
         text: "Average Grade",

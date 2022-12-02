@@ -26,6 +26,7 @@ import { FeedbackfruitsTabComponent } from './pages/feedbackfruits-tab/feedbackf
 import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.component';
 import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile.component';
 import { AllTabComponent } from './pages/all-tab/all-tab.component';
+import { AttendanceComponent } from './pages/attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AllTabComponent } from './pages/all-tab/all-tab.component';
     MediasiteTabComponent,
     TeacherProfileComponent,
     AllTabComponent,
-    CardCopyComponent
+    CardCopyComponent,
+    AttendanceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
