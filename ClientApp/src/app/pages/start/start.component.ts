@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Class } from 'src/app/interfaces/class';
+import { setGlobalCurrentPage, START } from 'src/app/shared/global-var';
 
 @Component({
   selector: 'app-start',
@@ -28,6 +29,7 @@ export class StartComponent implements OnInit {
   ]
 
   constructor() { 
+    setGlobalCurrentPage(START);
   }
 
   ngOnInit(): void {

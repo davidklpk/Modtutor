@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
-import { globalCurrentPage } from 'src/app/services/global-var';
+import { Router, Event, RouterEvent } from '@angular/router';
+import { filter } from 'rxjs';
+import { getGlobalCurrentPage } from 'src/app/shared/global-var';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,27 +11,19 @@ import { globalCurrentPage } from 'src/app/services/global-var';
 
 export class SidenavComponent implements OnInit {
 
-  currentPage : string = globalCurrentPage;
+  currentPage !: string;
+  
   darkMode : boolean = false;
   themeIcon : string = "light_mode";
   themeTitle : string = "Dark Theme"
 
-  constructor(private router : Router, private activeRoute : ActivatedRoute) { }
-
-  ngOnInit(): void { 
-    this.router.events.subscribe(event =>{
-      if (event instanceof NavigationStart){
-         this.changeTitle(event.url);
-      }
-   });
+  constructor(private router : Router) {
+    this.router.events.subscribe(e =>{
+      this.currentPage = getGlobalCurrentPage();
+    })
   }
 
-
-  changeTitle(url : string) {
-    let cleanedName = url.split('?')[0].split('/').pop()
-    console.log(cleanedName)
-    this.currentPage != cleanedName;
-  }
+  ngOnInit(): void { }
 
   /**
    * Sets or removes a class in the global <html> tag to toggle

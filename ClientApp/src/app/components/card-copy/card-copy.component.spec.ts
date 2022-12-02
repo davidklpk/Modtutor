@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { H1Component } from './h1.component';
+import { CardCopyComponent } from './card-copy.component';
 
-describe('H1Component', () => {
-  let component: H1Component;
-  let fixture: ComponentFixture<H1Component>;
+describe('CardCopyComponent', () => {
+  let component: CardCopyComponent;
+  let fixture: ComponentFixture<CardCopyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ H1Component ]
+      declarations: [ CardCopyComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(H1Component);
+    fixture = TestBed.createComponent(CardCopyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

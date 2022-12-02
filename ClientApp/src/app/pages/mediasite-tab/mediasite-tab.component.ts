@@ -41,7 +41,7 @@ export class MediasiteTabComponent implements OnInit {
         type: "pie",
       },
       fill:
-        {colors: ['#2B2D3E','#adb426']
+        {colors: ['#ffba00','#00b2cd']
       },
       legend: {
         show: false
@@ -69,7 +69,7 @@ export class MediasiteTabComponent implements OnInit {
         show: false
       },
       fill:
-        {colors: ['#ff2903']
+        {colors: ['#00b2cd']
       },
       title: {
         text: "Time Spent",
@@ -103,7 +103,7 @@ export class MediasiteTabComponent implements OnInit {
         show: false
       },
       fill:
-        {colors: ['#9ea700','#223343']
+        {colors: ['#00b2cd','#ffba00']
       },
       title: {
         text: "Average Grade",
@@ -156,7 +156,7 @@ export class MediasiteTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#2B2D3E', '#ff2903']
+        {colors: ['#00b2cd', '#ca433c']
       },
       title: {
         text: "Read Instructions",
@@ -183,7 +183,7 @@ export class MediasiteTabComponent implements OnInit {
     };
     
     this.TimeSpent = {
-      series: [1, 0],
+      series: [0, 1],
       chart: {
         type: "donut"
       },
@@ -210,7 +210,7 @@ export class MediasiteTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#2B2D3E', '#ff2903']
+        {colors: ['#00b2cd', '#ca433c']
       },
       title: {
         text: "Handed in",
