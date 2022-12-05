@@ -24,6 +24,4 @@ export class AllTabComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-
 }

@@ -4,46 +4,17 @@
       <h1 class="font-medium p-0 m-0">Research Report</h1>
     </div>
 
+    <!-- DROPDOWN FIELD -->
     <div class="flex flex-row w-full items-center justify-end">
       <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
         <mat-label>Select an assignment</mat-label>
-        <mat-select>
+        <mat-select [(value)]="selectedAssignment">
           <mat-option value="option1">Assignment 1</mat-option>
           <mat-option value="option2">Assignment 2</mat-option>
           <mat-option value="option3">Assignment 3</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-
-      <!--
-      <div class="inline-flex items-stretch rounded-md border bg-white">
-        <div class="relative">
-          <button type="button" (click)="toggleMenu()" class="inline-flex h-full items-center justify-center rounded-r-md border-l border-gray-100 px-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700">
-            <span class="">Filter</span>
-          </button>
-      
-          <div id="menu" class="hidden absolute right-0 z-10 mt-4 w-56 origin-top-right rounded-md border border-gray-100 bg-white shadow-lg" role="menu">
-            <div class="p-2">
-              <a href="#" class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
-                Assignment 1
-              </a>
-      
-              <a href="#" class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
-                Assignment 2
-              </a>
-      
-              <a href="#" class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
-                Assignment 3
-              </a>
-      
-              <a href="#" class="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
-                Assignment 4
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>    
-    </div>-->
   </div>
     
   <mat-divider class="my-5 mb-10"></mat-divider>

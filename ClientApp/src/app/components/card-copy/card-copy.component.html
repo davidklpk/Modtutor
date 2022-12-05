@@ -2,7 +2,7 @@
     <div class="absolute w-full bottom-2 left-0">
         <div class="relative w-full px-3 pb-1">
             <div class="flex w-full justify-end">
-                <button mat-flat-button class=" bg-[#1976d2] text-white w-full uppercase text-[13px]" [routerLink]="['/assignment', assignment.name]"> 
+                <button (click)="emitAssignment(assignment.name)" mat-flat-button class=" bg-[#1976d2] text-white w-full uppercase text-[13px]"> 
                     Go to assignment
                 </button>
             </div>
@@ -11,25 +11,27 @@
 
     <div class="mb-14">
         <div class="flex gap-5">
-
-            <div class="flex flex-col justify-center align-middle">
+            <div class="flex flex-row justify-center align-middle gap-5">
                 <div class="flex mb-1 h-full align-middle items-center gap-5">
-                    <div class="w-6 h-6 rounded-full ring ring-2 ring-offset-1 ring-gray-200">
+                    <div class="w-7 h-7 rounded-full bg-gray-100 ring-1 ring-offset-2 ring-gray-200">
                         <div class="flex w-full h-full align-middle justify-center items-center">
-                            <p class="font-semibold m-0 p-0">{{ assignment.grade }}</p>
+                            <p class="font-semibold text-gray-600 m-0 p-0">{{ assignment.grade }}</p>
                         </div>
-                    </div>
-                    <h3 class="p-0 leading-6 font-medium">{{ assignment.name }}</h3>
+                    </div>  
                 </div>
 
-                <mat-card-subtitle class="m-0 p-0 flex">
-                    <mat-icon class="w-[24px] h-[24px] mr-2">calendar_month</mat-icon>
-                    <h4 class="m-0 p-0">Week {{ assignment.week }}</h4>
-                </mat-card-subtitle>
-                <mat-card-subtitle class="m-0 p-0 flex">
-                    <mat-icon class="w-[24px] h-[24px] text-red-500 mr-2">warning</mat-icon>
-                    <h4 class="m-0 p-0">In danger</h4>
-                </mat-card-subtitle>
+                <!-- CARD NAME, WEEK, INDICATOR-->
+                <div class="flex flex-col">
+                    <h3 class="p-0 m-0 mb-2 leading-6 font-medium">{{ assignment.name }}</h3>
+                    <mat-card-subtitle class="flex m-0 p-0 mb-1 gap-2">
+                        <mat-icon class="w-[24px] h-[24px]">calendar_month</mat-icon>
+                        <h4 class="m-0 p-0">Week {{ assignment.week }}</h4>
+                    </mat-card-subtitle>
+                    <mat-card-subtitle class="flex m-0 p-0 gap-2">
+                        <mat-icon fontSet="material-icons-outlined" class="w-[24px] h-[24px] {{setFlag().colorFont}}">{{setFlag().icon}}</mat-icon>
+                        <h4 class="m-0 p-0 {{setFlag().colorFont}}">{{setFlag().title}}</h4>
+                    </mat-card-subtitle>
+                </div>
             </div>
         </div>
     </div>

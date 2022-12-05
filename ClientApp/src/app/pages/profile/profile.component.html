@@ -1,10 +1,10 @@
 <app-container>   
-    <div class="flex flex-col md:flex-row gap-5 mb-10">
+    <div class="flex flex-col lg:flex-row gap-5">
         <div class="flex flex-col gap-5">
             <!-- ID-CARD -->
-            <mat-card id="" class="w-full lg:w-96 md:w-72 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+            <mat-card id="" class="w-full lg:w-80 xl:w-96 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
                 <div class="flex flex-rows-2 gap-5">
-                    <div class="w-36 h-36 rounded-lg bg-thuas-groen-lighter">
+                    <div class="w-32 h-32 rounded-lg bg-thuas-groen-lighter">
                         <div class="flex w-full h-full items-center justify-center">
                             <p class="text-5xl font-medium text-thuas-grijs-base m-0 p-0 tracking-wide">JD</p>
                         </div>
@@ -28,7 +28,7 @@
             </mat-card>
 
             <!-- NOTES -->
-            <mat-card class="w-full lg:w-96 md:w-72 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+            <mat-card class="w-full lg:w-80 xl:w-96 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
                 <h2>Notes for Jon</h2>
                 <div class="flex flex-col gap-3 mb-5">
                     <mat-card class="w-full bg-thuas-groen-base/5 rounded-[12px] shadow-none outline outline-1 outline-thuas-groen-base/30">
@@ -49,7 +49,7 @@
         
         <!-- TAB-THINGY -->
         <div class="flex flex-col gap-2 w-full">
-            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" class="bg-white rounded-[12px] outline outline-gray-300 outline-[1px]">
+            <mat-tab-group [(selectedIndex)]="selectedTab" mat-stretch-tabs="false" mat-align-tabs="center" class="bg-white rounded-[12px] outline outline-gray-300 outline-[1px]">
                 <mat-tab label="All Assignments">
                     <app-all-tab></app-all-tab>
                 </mat-tab>

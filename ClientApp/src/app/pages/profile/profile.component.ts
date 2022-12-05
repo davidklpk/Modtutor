@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HostListener } from '@angular/core';
+import { AssignmentService } from 'src/app/services/assignment.service';
 import { STUDENT_PROFILE, setGlobalCurrentPage } from 'src/app/shared/global-var';
 
 @Component({
@@ -7,33 +7,22 @@ import { STUDENT_PROFILE, setGlobalCurrentPage } from 'src/app/shared/global-var
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
 
+  studentName : string = "var";
+  selectedTab : number = 0;
 
-  studentName : string = "var"
-
-  constructor() { 
+  constructor(private assService : AssignmentService) { 
     setGlobalCurrentPage(STUDENT_PROFILE + this.studentName);
   }
 
-  ngOnInit(): void { }
-
-  // Calculates the current scroll-height to apply the stickiness
-  @HostListener("window:scroll", []) onWindowScroll() {
-    var sideBar = document.getElementById("sidebar");
-    let verticalOffset = window.scrollY;
-    let topOffset = sideBar?.getBoundingClientRect().top !+ window.scrollY !- sideBar?.ownerDocument.documentElement.clientTop!;
-
-    console.log(verticalOffset, topOffset);
-
-    if (verticalOffset >= topOffset!) {
-      console.log("fd");
-      sideBar?.classList.add("fixed");
-      sideBar?.classList.remove("flex");
-      sideBar?.classList.add("mt-96");
-
-    } else {
-      sideBar?.classList.remove("fixed");
-    }
+  ngOnInit(): void {
+    // Gets the selected assignment in order to switch tab
+    this.assService.assignmentEventListner().subscribe(assignmentName =>{
+      if(assignmentName.length !== 0) {
+        this.selectedTab = 1;
+      }
+    })
   }
 }

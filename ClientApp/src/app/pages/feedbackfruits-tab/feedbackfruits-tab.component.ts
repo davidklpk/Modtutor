@@ -1,12 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-/*import { Assignment } from 'src/app/interfaces/assignment';*/
-
-import {  ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
-/*import { Student } from 'src/app/interfaces/student';*/
+import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
 import { Router } from '@angular/router';
 import { axisLeft, axisRight, color, text } from 'd3';
-import * as ApexCharts from 'apexcharts';
+import { AssignmentService } from 'src/app/services/assignment.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -26,8 +22,8 @@ export type ChartOptions = {
   templateUrl: './feedbackfruits-tab.component.html',
   styleUrls: ['./feedbackfruits-tab.component.css']
 })
-export class FeedbackfruitsTabComponent implements OnInit {
 
+export class FeedbackfruitsTabComponent implements OnInit {
   @ViewChild("chart") chart !: ChartComponent;
   public Grades!: Partial<ChartOptions> | any;
   public ReadInstructions!: Partial<ChartOptions> | any;
@@ -39,10 +35,10 @@ export class FeedbackfruitsTabComponent implements OnInit {
   public TimeSpent!: Partial<ChartOptions> | any;
   public AvgGrade!: Partial<ChartOptions> | any;
 
-  private menuActive : boolean = false;
+  selectedAssignment = "option1";
+  selectionOptions !: string[];
 
-  constructor(private router : Router) { 
-
+  constructor(private router : Router, private assService : AssignmentService) { 
     this.Grades = {
       series: [
         {
@@ -458,22 +454,20 @@ export class FeedbackfruitsTabComponent implements OnInit {
     
   }
 
-  
-
   ngOnInit(): void {
+    // Gets the selected assignment in order to switch tab
+    this.assService.assignmentEventListner().subscribe(assignmentName =>{
+      if(assignmentName.length !== 0) {
+        this.selectedAssignment = "option2";
+      }
+    })
   }
   
   navigate(student : string){
     this.router.navigate(['/profile', student]); 
   }
 
-  toggleMenu() {
-    let dropdown = document.getElementById("menu");
-
-    if(this.menuActive) {
-      dropdown?.classList.add("hidden")
-    } else {
-      dropdown?.classList.remove("hidden")
-    }
+  selectAssignment(selection : any) {
+    console.log(selection)
   }
 }
