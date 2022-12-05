@@ -26,6 +26,7 @@ import { MediasiteTabComponent } from './pages/mediasite-tab/mediasite-tab.compo
 import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile.component';
 import { AllTabComponent } from './pages/all-tab/all-tab.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AttendanceComponent } from './pages/attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FooterComponent } from './components/footer/footer.component';
     TeacherProfileComponent,
     AllTabComponent,
     CardCopyComponent,
-    FooterComponent
+    FooterComponent,
+    AttendanceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
