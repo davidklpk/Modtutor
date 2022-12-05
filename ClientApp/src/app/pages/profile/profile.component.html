@@ -1,6 +1,7 @@
 <app-container>   
-    <div class="flex flex-col md:flex-row gap-14 mb-10">
+    <div class="flex flex-col md:flex-row gap-5 mb-10">
         <div class="flex flex-col gap-5">
+            <!-- ID-CARD -->
             <mat-card id="" class="w-full lg:w-96 md:w-72 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
                 <div class="flex flex-rows-2 gap-5">
                     <div class="w-36 h-36 rounded-lg bg-thuas-groen-lighter">
@@ -14,7 +15,6 @@
                             <mat-icon>face</mat-icon>
                             <h4 class="m-0 p-0">Jon Doe</h4>
                         </div>
-        
                         <div class="flex items-center gap-2">
                             <mat-icon class="scale-75">alternate_email</mat-icon>
                             <h4 class="m-0 p-0">jdoe@stud.hhs.nl</h4>
@@ -27,15 +27,14 @@
                 </div>  
             </mat-card>
 
+            <!-- NOTES -->
             <mat-card class="w-full lg:w-96 md:w-72 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
                 <h2>Notes for Jon</h2>
-
                 <div class="flex flex-col gap-3 mb-5">
                     <mat-card class="w-full bg-thuas-groen-base/5 rounded-[12px] shadow-none outline outline-1 outline-thuas-groen-base/30">
                         <p class="p-0 m-0 text-gray-600">Great research report but Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas illum at totam in, ab quo consequuntur tempore, dolore saepe inventore culpa, eum dolores. Odit quam fugit molestias, sed atque qui.</p>
                     </mat-card>
                 </div>
-
                 <form>
                     <mat-form-field  appearance="outline" class="w-full -mb-3 p-0">
                         <mat-label>Add Note</mat-label>
@@ -45,135 +44,23 @@
                         Save note
                     </button>
                 </form>
-
             </mat-card>
         </div>
-    
-
-        <div class="flex flex-col gap-2 w-full h-screen">
-            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
-                <mat-tab label="All">
+        
+        <!-- TAB-THINGY -->
+        <div class="flex flex-col gap-2 w-full">
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" class="bg-white rounded-[12px] outline outline-gray-300 outline-[1px]">
+                <mat-tab label="All Assignments">
                     <app-all-tab></app-all-tab>
                 </mat-tab>
                 <mat-tab label="Feedback Fruits">
                     <app-feedbackfruits-tab></app-feedbackfruits-tab>
                 </mat-tab>
+                <!--
                 <mat-tab label="Media Site">
                     <app-mediasite-tab></app-mediasite-tab>
-                </mat-tab>
+                </mat-tab>-->
             </mat-tab-group>
         </div>
     </div>
 </app-container>
-<!--
-<app-container>   
-    <div class="flex flex-col sm:flex-row gap-10 mb-10">
-        <div class="">
-            <mat-card class="w-full sm:w-max rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-                <div class="flex flex-rows-2 gap-5">
-                    <div class="w-36 h-36 rounded-lg bg-thuas-groen-lighter">
-                        <div class="flex w-full h-full items-center justify-center">
-                            <p class="text-5xl font-medium text-thuas-grijs-base m-0 p-0 tracking-wide">JD</p>
-                        </div>
-                    </div>
-                    <div class="flex h-full flex-col align-middle gap-1">
-                        <h2>Teacher (you)</h2>
-                        <div class="flex items-center gap-2">
-                            <mat-icon>face</mat-icon>
-                            <h4 class="m-0 p-0">Jon Doe</h4>
-                        </div>
-        
-                        <div class="flex items-center gap-2">
-                            <mat-icon class="scale-75">alternate_email</mat-icon>
-                            <h4 class="m-0 p-0">jdoe@stud.hhs.nl</h4>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <mat-icon>123</mat-icon>
-                            <h4 class="m-0 p-0">2021455892</h4>
-                        </div>
-                    </div>
-                </div>  
-            </mat-card>
-        </div>
-
-        <div class="flex flex-col gap-2 w-full">
-            <h1 class="font-medium">Select classes in your courses</h1>
-            <mat-accordion class="rounded-[12px] shadow-none outline outline-1 outline-gray-300" multi>
-                <mat-expansion-panel #panel1 class="shadow-none outline outline-1 outline-gray-300" hideToggle>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title class="flex w-full items-center font-base text-md">
-                        <div class="flex w-full">
-                            <div>
-                                <div class="mr-4 ml-1 w-5 h-5 rounded-full bg-gray-100 ring-1 ring-offset-1 ring-gray-200"></div>
-                            </div>
-                            <p class="m-0 p-0">Programming</p>
-                        </div>
-                        <div class="flex w-full justify-end">
-                            <mat-icon>{{panel1.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon>
-                        </div>
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-        
-                  <div class="flex flex-col gap-2">
-                    <mat-checkbox class="">Class 1</mat-checkbox>
-                    <mat-checkbox class="">Class 2</mat-checkbox>
-                    <mat-checkbox class="">Class 3</mat-checkbox>
-                  </div>
-    
-                </mat-expansion-panel>
-            </mat-accordion>
-    
-            <mat-accordion class="rounded-[12px] shadow-none outline outline-1 outline-gray-300" multi>
-                <mat-expansion-panel #panel2 class="shadow-none outline outline-1 outline-gray-300" hideToggle>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title class="flex w-full items-center font-base text-md">
-                        <div class="flex w-full items-center">
-                            <div class="flex h-full">
-                                <div class="mr-4 ml-1 w-5 h-5 rounded-full bg-gray-100 ring-1 ring-offset-1 ring-gray-200"></div>
-                            </div>
-                            <p class="m-0 p-0">Applied Mathematics</p>
-                        </div>
-                        <div class="flex w-full justify-end">
-                            <mat-icon>{{panel2.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon>
-                        </div>
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-        
-                  <div class="flex flex-col gap-2">
-                    <mat-checkbox class="">Class 1</mat-checkbox>
-                    <mat-checkbox class="">Class 2</mat-checkbox>
-                    <mat-checkbox class="">Class 3</mat-checkbox>
-                    <mat-checkbox class="">Class 4</mat-checkbox>
-                  </div>
-    
-                </mat-expansion-panel>
-            </mat-accordion>
-    
-            <mat-accordion class="rounded-[12px] shadow-none outline outline-1 outline-gray-300" multi>
-                <mat-expansion-panel #panel3 class="shadow-none outline outline-1 outline-gray-300" hideToggle>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title class="flex w-full items-center font-base text-md">
-                        <div class="flex w-full">
-                            <div>
-                                <div class="mr-4 ml-1 w-5 h-5 rounded-full bg-gray-100 ring-1 ring-offset-1 ring-gray-200"></div>
-                            </div>
-                            <p class="m-0 p-0">Intercultural</p>
-                        </div>
-                        <div class="flex w-full justify-end">
-                            <mat-icon>{{panel3.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon>
-                        </div>
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-        
-                  <div class="flex flex-col gap-2">
-                    <mat-checkbox class="">Class 1</mat-checkbox>
-                    <mat-checkbox class="">Class 2</mat-checkbox>
-                    <mat-checkbox class="">Class 3</mat-checkbox>
-                    <mat-checkbox class="">Class 4</mat-checkbox>
-                  </div>
-    
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-    </div>
-</app-container>-->

@@ -20,6 +20,8 @@
         </div>
     </div>
 
+    <mat-divider class="my-5"></mat-divider>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-5 mb-5 sm:auto-rows-fr sm:auto-cols-fr"
         *ngIf="(classList | classes : searchTerm).length != 0">
         <ng-container *ngFor="let class of classList | classes: searchTerm">

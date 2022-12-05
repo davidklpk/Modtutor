@@ -39,6 +39,8 @@ export class FeedbackfruitsTabComponent implements OnInit {
   public TimeSpent!: Partial<ChartOptions> | any;
   public AvgGrade!: Partial<ChartOptions> | any;
 
+  private menuActive : boolean = false;
+
   constructor(private router : Router) { 
 
     this.Grades = {
@@ -55,7 +57,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: "380"
+        height: "300"
       },
       plotOptions: {
         bar: {
@@ -449,5 +451,15 @@ export class FeedbackfruitsTabComponent implements OnInit {
   
   navigate(student : string){
     this.router.navigate(['/profile', student]); 
+  }
+
+  toggleMenu() {
+    let dropdown = document.getElementById("menu");
+
+    if(this.menuActive) {
+      dropdown?.classList.add("hidden")
+    } else {
+      dropdown?.classList.remove("hidden")
+    }
   }
 }
