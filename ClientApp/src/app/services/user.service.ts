@@ -1,14 +1,50 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
+import { Course } from '../models/course';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
-  
-  constructor() { }
+export class UserService {;
 
-  
+  //Riciano's Stuff:
+    //these are the urls for the different data classes:
+  private urlAssignments = "Assignments";
+  private urlCourses = "Courses";
+  private urlCourseClasses = "CourseClasses";
+  private urlCriterias = "Criterias";
+  private urlMediaSites = "MediaSites";
+  private urlStudents = "Students";
+  private urlTeachers = "Teachers";
+
+  constructor(private http: HttpClient) { }
+
+  //Methods to [Get] the data (see app.components.ts as well):
+  public getCourses() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+  }
+  public getAssignments() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+  }
+  public getCourseClasses() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+  }
+  public getCriterias() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+  }
+  public getMediaSites() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+  }
+  public getStudents() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+  }
+  public getTeachers() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+  }
+
 
   /**
    * Checks whether user is logged in or not 

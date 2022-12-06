@@ -10,13 +10,13 @@ using student_monitoring_dashboard.Data;
 namespace student_monitoring_dashboard.Controllers
 {   
     [Produces("application/json")]
-    [Route("api/Courses")]
+    [Route("api/Assignments")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class AssignmentController : ControllerBase
     {
         private readonly DashContext _context;
 
-        public CourseController(DashContext context)
+        public AssignmentController(DashContext context)
         {
             _context = context;
         }
@@ -27,9 +27,9 @@ namespace student_monitoring_dashboard.Controllers
 
         // }
         [HttpGet]
-        public IEnumerable<Course> GetCourse()
+        public IEnumerable<Assignment> GetAssignment()
         {
-            return _context.Course;
+            return _context.Assignment;
         }
     }
 }
