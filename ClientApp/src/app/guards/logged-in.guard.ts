@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CanActivate, Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { DBService } from '../services/db.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,8 @@ import { UserService } from '../services/user.service';
 
 export class LoggedInGuard implements CanActivate  {
 
-  // Uses the userService to check if user is logged in | uses router to navigate through RouterOutlet
-  constructor(private userService : UserService, private router : Router, private _snackBar : MatSnackBar) {};
+  // Uses the DBService to check if user is logged in | uses router to navigate through RouterOutlet
+  constructor(private userService : DBService, private router : Router, private _snackBar : MatSnackBar) {};
 
   /**
    * Checks if the user is eligible to access the desired route 

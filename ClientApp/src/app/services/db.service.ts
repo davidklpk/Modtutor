@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Assignments } from '../models/assignment';
 import { Course } from '../models/course';
+import { Student } from '../models/student';
+import { Teacher } from '../models/teacher';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {;
+export class DBService {;
 
   //Riciano's Stuff:
     //these are the urls for the different data classes:
@@ -24,25 +27,29 @@ export class UserService {;
 
   //Methods to [Get] the data (see app.components.ts as well):
   public getCourses() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`)
   }
-  public getAssignments() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+
+  public getAssignments() : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}`);
   }
+
   public getCourseClasses() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourseClasses}`);
   }
   public getCriterias() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCriterias}`);
   }
   public getMediaSites() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlMediaSites}`);
   }
-  public getStudents() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+
+  public getStudents() : Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}`);
   }
-  public getTeachers() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`);
+
+  public getTeachers() : Observable<Teacher[]>{
+    return this.http.get<Teacher[]>(`${environment.apiUrl}/${this.urlTeachers}`);
   }
 
 

@@ -10,11 +10,10 @@ import { ContainerComponent } from './components/container/container.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StartComponent } from './pages/start/start.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { ClassesComponent } from './pages/classes/classes.component';
 import { StudentlistComponent } from './pages/studentlist/studentlist.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ClassComponent } from './pages/class/class.component';
-import { CardClassComponent } from './components/card-class/card-class.component';
+import { CardClassComponent } from './components/card-course/card-course.component';
 import { CardCopyComponent } from './components/card-copy/card-copy.component';
 import { ClassesPipe } from './pipes/classes.pipe';
 import { CourseComponent } from './pages/course/course.component';
@@ -35,7 +34,6 @@ import { AttendanceComponent } from './pages/attendance/attendance.component';
     ContainerComponent,
     StartComponent,
     SidenavComponent,
-    ClassesComponent,
     StudentlistComponent,
     ClassComponent,
     CardClassComponent,

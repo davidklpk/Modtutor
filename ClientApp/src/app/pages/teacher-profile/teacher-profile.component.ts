@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Teacher } from 'src/app/models/teacher';
+import { DBService } from 'src/app/services/db.service';
 import { setGlobalCurrentPage } from 'src/app/shared/global-var';
 
 @Component({
@@ -8,11 +10,31 @@ import { setGlobalCurrentPage } from 'src/app/shared/global-var';
 })
 export class TeacherProfileComponent implements OnInit {
 
-  constructor() {
-    setGlobalCurrentPage("Your Profile");
-   }
+  teacherList !: Teacher[];
 
-  ngOnInit(): void {
+  // Our selected teacher
+  teacher !: Teacher;
+  teacherAcronym !: string;
+
+  constructor(private dbService : DBService) {
+    setGlobalCurrentPage("Your Profile");
   }
 
+  ngOnInit(): void {
+    this.dbService
+    .getTeachers()
+    .subscribe((result : Teacher[]) => {
+      this.teacherList = result;
+      this.teacher = this.teacherList[1];
+      this.setAcronym();
+    });
+  }
+
+  /**
+   * Creates the acronym for the teachers name by splitting the string on whitespaces 
+   * and grabing the first letter of each word.
+   */
+  setAcronym() {
+    this.teacherAcronym = this.teacher.fullName.split(/\s/).reduce((accumulator, word) => accumulator + word.charAt(0), '');
+  }
 }

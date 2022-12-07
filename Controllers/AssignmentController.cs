@@ -21,15 +21,14 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
         
-        // public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
-        // {
-        //     return Ok(await _context.Courses.ToListAsync());
-
-        // }
         [HttpGet]
-        public IEnumerable<Assignment> GetAssignment()
+        public async Task<ActionResult<List<Course>>> GetAssignment()
+        {
+            return Ok(await _context.Assignment.ToListAsync());
+        }
+        /*public IEnumerable<Assignment> GetAssignment()
         {
             return _context.Assignment;
-        }
+        }*/
     }
 }

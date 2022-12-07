@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Assignment } from 'src/app/interfaces/assignment';
+import { Assignments } from '../../models/assignment';
 
 @Component({
   selector: 'app-card-assignment',
@@ -8,7 +8,7 @@ import { Assignment } from 'src/app/interfaces/assignment';
 })
 export class CardAssignmentComponent implements OnInit {
 
-  @Input() assignment !: Assignment;
+  @Input() assignment !: Assignments;
 
   constructor() { }
 

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Class } from 'src/app/interfaces/class';
+import { Course } from '../../models/course'
+import { DBService } from 'src/app/services/db.service';
 import { setGlobalCurrentPage, START } from 'src/app/shared/global-var';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-start',
@@ -11,37 +14,17 @@ import { setGlobalCurrentPage, START } from 'src/app/shared/global-var';
 export class StartComponent implements OnInit {
 
   searchTerm : string = "";
+  courseList : Course[] = [];
 
-  classList : Class[] = [
-    { name: "Intercultural", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-    { name: "English Language", slug: "data", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-    { name: "Project Methods", slug: "security", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-    { name: "Applied Mathematics", slug: "math", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-    { name: "Physics", slug: "swe", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-    { name: "Programming Skills", slug: "ux", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-  ]
-
-  // The last viewed classes by the user
-  recentClassList : Class[] = [
-    { name: "Intercultural", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-    { name: "English Language", slug: "data", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-    { name: "Project Methods", slug: "security", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
-  ]
-
-  constructor() { 
+  constructor(private dbService : DBService) { 
     setGlobalCurrentPage(START);
   }
 
   ngOnInit(): void {
-  }
-
-  onChange($event: MatSlideToggleChange) {
-    console.log($event);
-
-    if($event.checked) {
-      document.getElementById('dark-mode')?.classList.add("dark");
-    } else {
-      document.getElementById('dark-mode')?.classList.remove("dark");
-    }
+    this.dbService
+    .getCourses()
+    .subscribe((result : Course[]) => {
+      this.courseList = result;
+    }); 
   }
 }

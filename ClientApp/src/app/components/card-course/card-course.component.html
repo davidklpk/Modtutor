@@ -2,7 +2,7 @@
     <div class="absolute w-full bottom-2 left-0">
         <div class="relative w-full px-3 pb-1">
             <div class="flex w-full justify-end">
-                <button mat-flat-button class="bg-[#1976d2] text-white w-full uppercase text-[13px]" [routerLink]="['/classes', class.slug]">
+                <button mat-flat-button class="bg-[#1976d2] text-white w-full uppercase text-[13px]" [routerLink]="['/classes', course.courseID]">
                     Go to course
                 </button>
             </div>
@@ -17,12 +17,12 @@
 
             <div class="flex flex-col justify-center align-middle">
                 <div>
-                    <h3 class="mb-1 p-0 leading-6 font-medium">{{ class.name }}</h3>
+                    <h3 class="mb-1 p-0 leading-6 font-medium">{{ course.courseName }}</h3>
                 </div>
 
                 <mat-card-subtitle class="m-0 p-0">
-                    <mat-icon class="scale-75 -mb-1.5">calendar_month</mat-icon>
-                    {{ class.semester }}
+                    <mat-icon fontSet="" class="scale-75 -mb-2">pin</mat-icon>
+                    {{ course.courseID }}
                 </mat-card-subtitle>
             </div>
         </div>

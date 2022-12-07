@@ -1,8 +1,8 @@
 <app-container>
     <h1 class="font-medium">Recently Viewed</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-10 sm:auto-rows-fr sm:auto-cols-fr">
-        <ng-container *ngFor="let class of recentClassList">
-            <app-card-class [class]="class"></app-card-class>
+        <ng-container *ngFor="let course of courseList">
+            <app-card-course [course]="course"></app-card-course>
         </ng-container>
     </div>
     
@@ -23,13 +23,13 @@
     <mat-divider class="my-5"></mat-divider>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-5 mb-5 sm:auto-rows-fr sm:auto-cols-fr"
-        *ngIf="(classList | classes : searchTerm).length != 0">
-        <ng-container *ngFor="let class of classList | classes: searchTerm">
-            <app-card-class [class]="class"></app-card-class>
+        *ngIf="(courseList | classes : searchTerm).length != 0">
+        <ng-container *ngFor="let course of courseList | classes: searchTerm">
+            <app-card-course [course]="course"></app-card-course>
         </ng-container>
     </div>
 
-    <div class="flex w-full my-5 justify-center" *ngIf="(classList | classes : searchTerm).length === 0">
+    <div class="flex w-full my-5 justify-center" *ngIf="(courseList | classes : searchTerm).length === 0">
         <h1 class="text-center">Sorry, no results for »{{searchTerm}}« :(</h1>
     </div>
 </app-container>

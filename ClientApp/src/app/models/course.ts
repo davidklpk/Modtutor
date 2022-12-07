@@ -1,5 +1,5 @@
 export class Course{
-    CourseID= "";
-    CourseName = "";
+    courseID = "";
+    courseName = "";
 }
 
