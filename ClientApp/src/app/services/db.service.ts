@@ -33,6 +33,10 @@ export class DBService {;
     return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`)
   }
 
+  public searchCourse(id : string) {
+    this.getCourses().forEach
+  }
+
   public getAssignments() : Observable<Assignments[]>{
     return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}`);
   }

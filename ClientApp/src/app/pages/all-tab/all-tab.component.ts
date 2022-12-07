@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Assignment } from 'src/app/interfaces/assignment';
+import { DBService } from 'src/app/services/db.service';
 
 
 @Component({
@@ -19,9 +20,9 @@ export class AllTabComponent implements OnInit {
   
   ]
 
-  constructor() { }
+  constructor(private dbService : DBService) { }
 
   ngOnInit(): void {
-
+    
   }
 }

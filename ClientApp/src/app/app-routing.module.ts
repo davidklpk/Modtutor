@@ -29,7 +29,7 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
-    path: 'classes/:slug',        // Slug is replaced by class name
+    path: 'course/:slug',        // Slug is replaced by class name
     component: ClassComponent
   },
   {

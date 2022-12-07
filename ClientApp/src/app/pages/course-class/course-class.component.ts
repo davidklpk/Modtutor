@@ -10,13 +10,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Flag } from 'src/app/components/card-copy/card-copy.component';
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  selector: 'app-course-class',
+  templateUrl: './course-class.component.html',
+  styleUrls: ['./course-class.component.css']
 })
-export class CourseComponent implements OnInit {
-
-  @Input() course !: Course;  
+export class CourseClassComponent implements OnInit {
+ 
   assignmentList: Assignments[] = [];
   studentList: Student[] = [];
 

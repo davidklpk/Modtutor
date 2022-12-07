@@ -3,6 +3,7 @@ import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAx
 import { Router } from '@angular/router';
 import { axisLeft, axisRight, color, text } from 'd3';
 import { AssignmentService } from 'src/app/services/assignment.service';
+import { DBService } from 'src/app/services/db.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -38,7 +39,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
   selectedAssignment = "option1";
   selectionOptions !: string[];
 
-  constructor(private router : Router, private assService : AssignmentService) { 
+  constructor(private router : Router, private assService : AssignmentService, private dbService : DBService) { 
     this.Grades = {
       series: [
         {
@@ -455,19 +456,24 @@ export class FeedbackfruitsTabComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Gets the selected assignment in order to switch tab
-    this.assService.assignmentEventListner().subscribe(assignmentName =>{
-      if(assignmentName.length !== 0) {
-        this.selectedAssignment = "option2";
-      }
-    })
+    /*this.dbService
+    .getAssignments()
+    .subscribe((result : Course[]) => {
+      this.courseList = result;
+    }); 
+    this.getSelectedAssignment();*/
   }
   
   navigate(student : string){
     this.router.navigate(['/profile', student]); 
   }
 
-  selectAssignment(selection : any) {
-    console.log(selection)
+  getSelectedAssignment() {
+    // Gets the selected assignment in order to switch tab
+    this.assService.assignmentEventListner().subscribe(assignmentName =>{
+      if(assignmentName.length !== 0) {
+        this.selectedAssignment = "option2";
+      }
+    })
   }
 }

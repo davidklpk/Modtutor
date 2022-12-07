@@ -16,7 +16,7 @@ import { ClassComponent } from './pages/class/class.component';
 import { CardClassComponent } from './components/card-course/card-course.component';
 import { CardCopyComponent } from './components/card-copy/card-copy.component';
 import { ClassesPipe } from './pipes/classes.pipe';
-import { CourseComponent } from './pages/course/course.component';
+import { CourseClassComponent } from './pages/course-class/course-class.component';
 import { CardAssignmentComponent } from './components/card-assignment/card-assignment.component';
 import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -38,7 +38,7 @@ import { AttendanceComponent } from './pages/attendance/attendance.component';
     ClassComponent,
     CardClassComponent,
     ClassesPipe,
-    CourseComponent,
+    CourseClassComponent,
     CardAssignmentComponent,
     AssignmentComponent,
     ProfileComponent,
