@@ -27,9 +27,13 @@ namespace student_monitoring_dashboard.Controllers
 
         // }
         [HttpGet]
-        public IEnumerable<MediaSite> GetMediaSite()
+        /*public IEnumerable<MediaSite> GetMediaSite()
         {
             return _context.MediaSite;
+        }*/
+        public async Task<ActionResult<List<MediaSite>>> GetMediaSite()
+        {
+            return Ok(await _context.MediaSite.ToListAsync());
         }
     }
 }

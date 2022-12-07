@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Assignments } from '../models/assignment';
 import { Course } from '../models/course';
+import { CourseClass } from '../models/courseClass';
+import { Criteria } from '../models/criteria';
+import { Mediasite } from '../models/mediasite';
 import { Student } from '../models/student';
 import { Teacher } from '../models/teacher';
 
@@ -34,14 +37,16 @@ export class DBService {;
     return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}`);
   }
 
-  public getCourseClasses() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourseClasses}`);
+  public getCourseClasses() : Observable<CourseClass[]>{
+    return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}`);
   }
-  public getCriterias() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCriterias}`);
+
+  public getCriterias() : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}`);
   }
-  public getMediaSites() : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlMediaSites}`);
+
+  public getMediaSites() : Observable<Mediasite[]>{
+    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}`);
   }
 
   public getStudents() : Observable<Student[]>{

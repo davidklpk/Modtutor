@@ -27,9 +27,13 @@ namespace student_monitoring_dashboard.Controllers
 
         // }
         [HttpGet]
-        public IEnumerable<Criteria> GetCriteria()
+        /*public IEnumerable<Criteria> GetCriteria()
         {
             return _context.Criteria;
+        }*/
+        public async Task<ActionResult<List<Criteria>>> GetCriteria()
+        {
+            return Ok(await _context.Criteria.ToListAsync());
         }
     }
 }

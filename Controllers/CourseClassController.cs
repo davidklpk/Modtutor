@@ -27,9 +27,14 @@ namespace student_monitoring_dashboard.Controllers
 
         // }
         [HttpGet]
-        public IEnumerable<CourseClass> GetCourseClass()
+        /*public IEnumerable<CourseClass> GetCourseClass()
         {
             return _context.CourseClass;
+        }*/
+
+        public async Task<ActionResult<List<CourseClass>>> GetCourseClass()
+        {
+            return Ok(await _context.CourseClass.ToListAsync());
         }
     }
 }
