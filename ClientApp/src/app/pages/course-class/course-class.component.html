@@ -30,7 +30,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gradems" class="text-base text-black/80">
                     Mediasite
                 </th>
-                <td mat-cell *matCellDef="let class" class="text-black/80">
+                <td mat-cell *matCellDef="let student" class="text-black/80">
                     <div class="flex flex-row items-center gap-2">
                         <mat-icon class="{{setFlag(5).colorFont}}">{{setFlag(5).icon}}</mat-icon>
                         5
@@ -41,7 +41,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gradeff" class="text-base text-black/80">
                     Feedback Fruits
                 </th>
-                <td mat-cell *matCellDef="let class" class="text-black/80">
+                <td mat-cell *matCellDef="let student" class="text-black/80">
                     <div class="flex flex-row items-center gap-2">
                         <mat-icon class="{{setFlag(10).colorFont}}">{{setFlag(10).icon}}</mat-icon>
                         10
@@ -52,16 +52,16 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by gradeaa" class="text-base text-black/80">
                     Academic Attendance
                 </th>
-                <td mat-cell *matCellDef="let class" class="text-black/80">
+                <td mat-cell *matCellDef="let student" class="text-black/80">
                     <div class="flex flex-row items-center gap-2">
-                        <mat-icon class="{{setFlag(1).colorFont}}">{{setFlag(1).icon}}</mat-icon>
+                        <mat-icon fontSet="material-icons-outlined" class="{{setFlag(1).colorFont}}">{{setFlag(1).icon}}</mat-icon>
                         1
                     </div>
                 </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr class="hover:bg-black/5 cursor-pointer" mat-row (click)="navigate('jdoe')" *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="hover:bg-black/5 cursor-pointer" mat-row (click)="navigate(row.studentID)" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     
         <mat-paginator [pageSizeOptions]="[10, 15, 20]"

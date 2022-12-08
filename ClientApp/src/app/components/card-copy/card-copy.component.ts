@@ -58,7 +58,7 @@ export class CardCopyComponent implements OnInit {
     } else if(this.assignment.week == 3) {
       return generatedFlag = {
         colorFont: "text-thuas-rood-base",
-        icon: "warning_outlined",
+        icon: "error_outlined",
         title: "in danger"
       }
     }

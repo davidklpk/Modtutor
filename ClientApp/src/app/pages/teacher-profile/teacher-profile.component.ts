@@ -14,7 +14,7 @@ export class TeacherProfileComponent implements OnInit {
 
   // Our selected teacher
   teacher !: Teacher;
-  teacherAcronym !: string;
+  teacherAcronym : string = "";
 
   constructor(private dbService : DBService) {
     setGlobalCurrentPage("Your Profile");
