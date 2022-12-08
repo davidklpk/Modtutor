@@ -12,12 +12,12 @@ export type ChartOptions = {
 };
 
 @Component({
-  selector: 'app-class',
-  templateUrl: './class.component.html',
-  styleUrls: ['./class.component.css']
+  selector: 'app-student-classes',
+  templateUrl: './studentClasses.component.html',
+  styleUrls: ['./studentClasses.component.css']
 })
 
-export class ClassComponent implements OnInit {
+export class StudentClassesComponent implements OnInit {
 
   @ViewChild("chart") chart !: ChartComponent;
   public chartOptions !: Partial<ChartOptions>;

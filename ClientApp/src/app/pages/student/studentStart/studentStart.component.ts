@@ -4,11 +4,11 @@ import { Class } from 'src/app/interfaces/class';
 import { setGlobalCurrentPage, START } from 'src/app/shared/global-var';
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.component.html',
-  styleUrls: ['./start.component.css']
+  selector: 'app-student-start',
+  templateUrl: './studentStart.component.html',
+  styleUrls: ['./studentStart.component.css']
 })
-export class StartComponent implements OnInit {
+export class StudentStartComponent implements OnInit {
 
   searchTerm : string = "";
 
@@ -22,7 +22,7 @@ export class StartComponent implements OnInit {
   ]
 
   // The last viewed classes by the user
-  recentClassList : Class[] = [
+  upcomingClassList : Class[] = [
     { name: "Intercultural", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
     { name: "English Language", slug: "data", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },
     { name: "Project Methods", slug: "security", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" },

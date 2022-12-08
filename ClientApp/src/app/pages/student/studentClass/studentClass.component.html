@@ -1,0 +1,13 @@
+<div class="flex flex-col container mx-auto md:py-10 py-5 max-w-screen-2xl">
+  <h1 class="font-medium">Upcoming Assignment</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 sm:auto-rows-fr sm:auto-cols-fr">
+      <ng-container *ngFor="let assignment of assignmentList">
+          <app-card-assignment [assignment]="assignment"></app-card-assignment>
+      </ng-container>
+  </div>
+  <mat-divider class="my-10"></mat-divider>
+  <h1 class="font-medium">Score</h1>
+  <app-student-assignment></app-student-assignment>
+
+</div>
+

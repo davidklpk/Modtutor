@@ -9,6 +9,10 @@ import { StudentlistComponent } from './pages/studentlist/studentlist.component'
 import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile.component';
+import { StudentStartComponent } from './pages/student/studentStart/studentStart.component';
+import { StudentClassesComponent } from './pages/student/studentClasses/studentClasses.component';
+
+
 
 const routes: Routes = [
   {
@@ -48,7 +52,16 @@ const routes: Routes = [
   {
     path: 'your-profile',
     component: TeacherProfileComponent
+  },
+  {
+    path: 'student',
+    component : StudentStartComponent
+  },
+  {
+    path : 'studentclass/:slug',
+    component : StudentClassesComponent
   }
+
 ];
 
 @NgModule({

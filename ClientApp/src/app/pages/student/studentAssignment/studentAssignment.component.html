@@ -1,0 +1,76 @@
+<app-container>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
+        <apx-chart
+          [series]="TypeFeedback.series"
+          [chart]="TypeFeedback.chart"
+          [labels]="TypeFeedback.labels"
+          [responsive]="TypeFeedback.responsive"
+          [fill]="TypeFeedback.fill"
+          [legend]= "TypeFeedback.legend"
+        ></apx-chart>
+      </div>
+
+      <div class="px-5">
+        <h2 class="font-medium text-black/60">Total Review Comments</h2>
+      </div>
+    </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
+        <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">5.1</p>
+      </div>
+
+      <div class="px-5">
+        <h2 class="font-medium text-black/60">Average Grade</h2>
+      </div>
+    </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-4 w-full md:h-full h-52">
+        <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">122</p>
+      </div>
+
+      <div class="px-5">
+        <h2 class="font-medium text-black/60">Time spent (min)</h2>
+      </div>
+    </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-10 w-full md:h-full h-52">
+        <apx-chart
+          [series]="TypeFeedback.series"
+          [chart]="TypeFeedback.chart"
+          [labels]="TypeFeedback.labels"
+          [responsive]="TypeFeedback.responsive"
+          [fill]="TypeFeedback.fill"
+          [legend]= "TypeFeedback.legend"
+        ></apx-chart>
+      </div>
+
+      <div class="px-5">
+        <h2 class="font-medium text-black/60">Type of Feedback</h2>
+      </div>
+    </mat-card>
+  </div>
+
+  <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 mt-10 w-full rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+    <div class="bg-gray-200 rounded-t-[12px] p-5 md:px-20 md:py-10 w-full">
+      <apx-chart class="w-full"
+        [series]="chartOptions.series!"
+        [chart]="chartOptions.chart!"
+        [dataLabels]="chartOptions.dataLabels!"
+        [plotOptions]="chartOptions.plotOptions!"
+        [xaxis]="chartOptions.xaxis!"
+        [fill]="chartOptions.fill!">
+      </apx-chart>
+    </div>
+
+    <div class="px-5">
+      <h2 class="font-medium text-black/60">Total Review Comments</h2>
+    </div>
+  </mat-card>
+
+</app-container>
+
