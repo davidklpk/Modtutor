@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class MediaSite
 {
@@ -11,4 +12,5 @@ public class MediaSite
     public DateTime TotalTimeWatched { get; set; }
     public DateTime FirstWatched { get; set; }
     public DateTime LastWatched { get; set; }
+    [ForeignKey("Student")]public int StudentID { get; set; }
 }
