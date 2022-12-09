@@ -10,21 +10,21 @@ using student_monitoring_dashboard.Data;
 namespace student_monitoring_dashboard.Controllers
 {   
     [Produces("application/json")]
-    [Route("api/Assignments")]
+    [Route("api/Attendances")]
     [ApiController]
-    public class AssignmentController : ControllerBase
+    public class AttendanceController : ControllerBase
     {
         private readonly DashContext _context;
 
-        public AssignmentController(DashContext context)
+        public AttendanceController(DashContext context)
         {
             _context = context;
         }
         
         [HttpGet]
-        public async Task<ActionResult<List<Assignment>>> GetAssignment()
+        public async Task<ActionResult<List<Attendance>>> GetAttendance()
         {
-            return Ok(await _context.Assignment.ToListAsync());
+            return Ok(await _context.Attendance.ToListAsync());
         }
         /*public IEnumerable<Assignment> GetAssignment()
         {
