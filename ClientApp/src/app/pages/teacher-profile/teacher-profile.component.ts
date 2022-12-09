@@ -25,7 +25,7 @@ export class TeacherProfileComponent implements OnInit {
     .getTeachers()
     .subscribe((result : Teacher[]) => {
       this.teacherList = result;
-      this.teacher = this.teacherList[1];
+      this.teacher = this.teacherList[0];
       this.setAcronym();
     });
   }
