@@ -66,10 +66,10 @@ export class CourseClassComponent implements OnInit {
     if(grade > 8) {
       return generatedFlag = {
         colorFont: "text-amber-500",
-        icon: "grade",
+        icon: "stars",
         title: "doing superb"
       }
-    } else if(grade >= 5) {
+    } else if(grade >= 6) {
       return generatedFlag = {
         colorFont: "text-thuas-groen-base",
         icon: "check_circle",
@@ -78,7 +78,7 @@ export class CourseClassComponent implements OnInit {
     } else if(grade > 0) {
       return generatedFlag = {
         colorFont: "text-thuas-rood-base",
-        icon: "warning_outlined",
+        icon: "cancel",
         title: "in danger"
       }
     }

@@ -33,25 +33,22 @@ export class AttendanceComponent implements OnInit {
         type: "radialBar",
       },
       fill:
-        {colors: ['#00b2cd']
+        {colors: ['#9ea700']
       },
-      labels: ['Attendance'],
-      legend: {
-        show: false
-      },
-      responsive: [
-        {
-          breakpoint: 100,
-          options: {
-            chart: {
-              width: 200
+      plotOptions: {
+        radialBar: {
+          dataLabels: {
+            name: {
+              show: false,
             },
-            legend: {
-              position: "bottom"
-            }
+            value: {
+              show: true,
+              fontSize: '16px',
+              offsetY: 5,
+            },
           }
         }
-      ]
+      }
     };
   }
 
