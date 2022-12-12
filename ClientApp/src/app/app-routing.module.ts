@@ -10,7 +10,9 @@ import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile.component';
 import { StudentStartComponent } from './pages/student/studentStart/studentStart.component';
-import { StudentClassesComponent } from './pages/student/studentClasses/studentClasses.component';
+import { StudentClassComponent } from './pages/student/studentClass/studentClass.component';
+import { StudentAssignmentComponent } from './pages/student/studentAssignment/studentAssignment.component';
+
 
 
 
@@ -59,8 +61,13 @@ const routes: Routes = [
   },
   {
     path : 'studentclass/:slug',
-    component : StudentClassesComponent
-  }
+    component : StudentClassComponent
+  },
+  {
+    path : 'studentassignment/:slug',
+    component : StudentAssignmentComponent
+  },
+
 
 ];
 

@@ -16,6 +16,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ClassComponent } from './pages/class/class.component';
 import { CardClassComponent } from './components/card-class/card-class.component';
 import { CardCopyComponent } from './components/card-copy/card-copy.component';
+import { StudentCardAssignmentComponent } from './components/student-card-assignment/student-card-assignment.component';
 import { StudentCardClassComponent } from './components/student-card-class/student-card-class.component';
 import { ClassesPipe } from './pipes/classes.pipe';
 import { CourseComponent } from './pages/course/course.component';
@@ -29,8 +30,8 @@ import { AllTabComponent } from './pages/all-tab/all-tab.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AttendanceComponent } from './pages/attendance/attendance.component';
 import { StudentStartComponent } from './pages/student/studentStart/studentStart.component';
-import { StudentClassesComponent } from './pages/student/studentClasses/studentClasses.component';
 import { StudentClassComponent } from './pages/student/studentClass/studentClass.component';
+import { StudentAssignmentScoreComponent } from './pages/student/studentAssignmentScore/studentAssignmentScore.component';
 import { StudentAssignmentComponent } from './pages/student/studentAssignment/studentAssignment.component';
 
 @NgModule({
@@ -53,13 +54,14 @@ import { StudentAssignmentComponent } from './pages/student/studentAssignment/st
     MediasiteTabComponent,
     TeacherProfileComponent,
     AllTabComponent,
+    StudentCardAssignmentComponent,
     CardCopyComponent,
     FooterComponent,
     AttendanceComponent,
     StudentCardClassComponent,
     StudentStartComponent,
-    StudentClassesComponent,
     StudentClassComponent,
+    StudentAssignmentScoreComponent,
     StudentAssignmentComponent,
   ],
   imports: [

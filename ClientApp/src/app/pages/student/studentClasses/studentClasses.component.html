@@ -1,9 +1,0 @@
-<div class="flex flex-col container mx-auto mt-2 max-w-screen-xl px-5 md:px-10">
-    <mat-tab-group class="max-w-screen-2xl" dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center">
-        <ng-container *ngFor="let course of courseList">
-            <mat-tab label="{{ course.name }}">
-                <app-student-class [course]="course"></app-student-class>
-            </mat-tab>
-        </ng-container>
-    </mat-tab-group>
-</div>
