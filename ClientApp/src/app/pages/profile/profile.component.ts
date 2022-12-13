@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatestWith } from 'rxjs';
 import { Student } from 'src/app/models/student';
-import { AssignmentService } from 'src/app/services/assignment.service';
+import { LinkService } from 'src/app/services/link.service';
 import { DBService } from 'src/app/services/db.service';
 import { STUDENT_PROFILE, setGlobalCurrentPage } from 'src/app/shared/global-var';
 
@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   studentAcronym : string = ""
   studentList : Student[] = [];
 
-  constructor(private route: ActivatedRoute, private assService : AssignmentService, private dbService : DBService) { 
+  constructor(private route: ActivatedRoute, private assService : LinkService, private dbService : DBService) { 
     setGlobalCurrentPage(STUDENT_PROFILE + this.studentName);
   }
 

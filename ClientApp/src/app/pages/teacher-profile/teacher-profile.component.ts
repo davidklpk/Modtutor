@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Course } from 'src/app/models/course';
 import { Teacher } from 'src/app/models/teacher';
 import { DBService } from 'src/app/services/db.service';
 import { setGlobalCurrentPage } from 'src/app/shared/global-var';
@@ -15,6 +17,7 @@ export class TeacherProfileComponent implements OnInit {
   // Our selected teacher
   teacher !: Teacher;
   teacherAcronym : string = "";
+  courseList$ !: Observable<Course[]>;
 
   constructor(private dbService : DBService) {
     setGlobalCurrentPage("Your Profile");
@@ -28,6 +31,8 @@ export class TeacherProfileComponent implements OnInit {
       this.teacher = this.teacherList[0];
       this.setAcronym();
     });
+
+    this.courseList$ = this.dbService.getCourses()
   }
 
   /**

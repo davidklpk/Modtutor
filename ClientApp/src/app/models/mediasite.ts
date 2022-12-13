@@ -9,4 +9,5 @@ export class Mediasite {
     totalTimeWatched !: Date;
     firstWatched !: Date;
     lastWatched !: Date;
+    studentId !: number;
 }

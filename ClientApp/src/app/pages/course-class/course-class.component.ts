@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Assignments } from '../../models/assignment';
 import { Course } from '../../models/course'
 import { Student } from '../../models/student';
@@ -8,6 +8,8 @@ import { DBService } from 'src/app/services/db.service';
 import { COURSE, setGlobalCurrentPage } from 'src/app/shared/global-var';
 import { MatPaginator } from '@angular/material/paginator';
 import { Flag } from 'src/app/components/card-copy/card-copy.component';
+import { CourseClass } from 'src/app/models/courseClass';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course-class',
@@ -15,9 +17,15 @@ import { Flag } from 'src/app/components/card-copy/card-copy.component';
   styleUrls: ['./course-class.component.css']
 })
 export class CourseClassComponent implements OnInit {
+
+  @Input() course !: CourseClass;
  
   assignmentList: Assignments[] = [];
+
+  assignmentList$ !: Observable<Assignments[]>;
+
   studentList: Student[] = [];
+  slug : string = "";
 
   gradeMS : number = 4; 
   gradeFF : number = 8; 
@@ -25,20 +33,26 @@ export class CourseClassComponent implements OnInit {
 
   // Table vars
   displayedColumns: string[] = ['name', 'id', 'gradems', 'gradeff', 'gradeaa'];
-  dataSource : any;
+  dataSource !: any;
+  dataSource$ !: any;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
-  constructor(private dbService : DBService, private router : Router) {
+  constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute) {
     //setGlobalCurrentPage(COURSE + this.course.courseName);
   }
 
   ngOnInit(): void { 
-    this.dbService
-    .getAssignments()
-    .subscribe((result : Assignments[]) => {
-      this.assignmentList = result;
-    }); 
+    this.getRoute();
+    this.fetchAssignments();
+    this.fetchStudents();
+    this.fetchData();
+  }
 
+  fetchAssignments() {
+    this.assignmentList$ = this.dbService.getAssignments();
+  }
+
+  fetchStudents() {
     this.dbService
     .getStudents()
     .subscribe((result : Student[]) => {
@@ -48,8 +62,29 @@ export class CourseClassComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.setFlag(this.gradeFF);
     }); 
+
+
   }
 
+  getRoute() {
+    // gets the current course by getting the slug (.../course/slugOfCourse)
+    let route$ = this.route.params;
+    route$.subscribe((route) => {this.slug = route['slug']});
+  }
+
+  fetchData() {
+    this.dbService
+    .getAssignments()
+    .subscribe((result : Assignments[]) => {
+      this.assignmentList = result;
+    }); 
+  }
+
+  /**
+   * gets triggered if a row is selected and
+   * navigates to the profile of a specific student
+   * @param student the selected student in the table
+   */
   navigate(student : string){
     this.router.navigate(['/profile', student]); 
   }

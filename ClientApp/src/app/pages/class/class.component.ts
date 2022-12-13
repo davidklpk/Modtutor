@@ -25,12 +25,7 @@ export class ClassComponent implements OnInit {
   courseName : string = "var";
   courseClassList !: CourseClass[];
 
-  courseList : Course[] = [
-    {courseName: "Class 1", courseID: "1"},
-    {courseName: "Class 2", courseID: "2"},
-    {courseName: "Class 3", courseID: "3"},
-    {courseName: "Class 4", courseID: "4"},
-  ]
+  courseList !: Course[]; 
 
   constructor(private route: ActivatedRoute, private dbService : DBService) { }
 

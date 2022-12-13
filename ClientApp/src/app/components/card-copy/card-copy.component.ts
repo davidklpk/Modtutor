@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Assignment } from 'src/app/interfaces/assignment';
-import { AssignmentService } from 'src/app/services/assignment.service';
+import { LinkService } from 'src/app/services/link.service';
 
 // Interface for the indicator
 export interface Flag {
@@ -20,7 +20,7 @@ export class CardCopyComponent implements OnInit {
   @Input() assignment !: Assignment;
   @Output() newItemEvent = new EventEmitter<string>();
 
-  constructor(private assService : AssignmentService) {  }
+  constructor(private assService : LinkService) {  }
 
   ngOnInit(): void {   }
 
@@ -46,7 +46,7 @@ export class CardCopyComponent implements OnInit {
     if(this.assignment.week == 4) {
       return generatedFlag = {
         colorFont: "text-amber-500",
-        icon: "grade",
+        icon: "star_circle",
         title: "doing superb"
       }
     } else if(this.assignment.week == 1) {
@@ -58,13 +58,13 @@ export class CardCopyComponent implements OnInit {
     } else if(this.assignment.week == 3) {
       return generatedFlag = {
         colorFont: "text-thuas-rood-base",
-        icon: "error_outlined",
+        icon: "error_circle",
         title: "in danger"
       }
     }
     return generatedFlag = {
       colorFont: "text-thuas-grijs-base",
-      icon: "help_outlined",
+      icon: "help_circle",
       title: "unknown"
     }
   }

@@ -1,7 +1,7 @@
 <app-container>
     <h1 class="font-medium">Recently Viewed</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-10 sm:auto-rows-fr sm:auto-cols-fr">
-        <ng-container *ngFor="let course of courseList">
+        <ng-container *ngFor="let course of courseList$ | async">
             <app-card-course [course]="course"></app-card-course>
         </ng-container>
     </div>

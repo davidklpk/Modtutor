@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
 import { Router } from '@angular/router';
 import { axisLeft, axisRight, color, text } from 'd3';
-import { AssignmentService } from 'src/app/services/assignment.service';
+import { LinkService } from 'src/app/services/link.service';
 import { DBService } from 'src/app/services/db.service';
 
 export type ChartOptions = {
@@ -39,7 +39,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
   selectedAssignment = "option1";
   selectionOptions !: string[];
 
-  constructor(private router : Router, private assService : AssignmentService, private dbService : DBService) { 
+  constructor(private router : Router, private assService : LinkService, private dbService : DBService) { 
     this.Grades = {
       series: [
         {

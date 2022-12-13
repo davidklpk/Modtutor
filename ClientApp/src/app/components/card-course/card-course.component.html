@@ -2,7 +2,7 @@
     <div class="absolute w-full bottom-2 left-0">
         <div class="relative w-full px-3 pb-1">
             <div class="flex w-full justify-end">
-                <button mat-flat-button class="bg-[#1976d2] text-white w-full uppercase text-[13px]" [routerLink]="['/course', course.courseID]">
+                <button mat-flat-button class="bg-[#1976d2] text-white w-full uppercase text-[13px]" (click)="navigate(course.courseID)">
                     Go to course
                 </button>
             </div>

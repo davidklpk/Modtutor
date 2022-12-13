@@ -5,9 +5,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 
-export class AssignmentService {
+export class LinkService {
 
   private selectedAssignmentViaButton = new BehaviorSubject<string>('');
+  private selectedCourseViaButton = new BehaviorSubject<string>('');
 
   emitAssignmentEvent(assignmentName: string){
     console.log("emit")
@@ -17,6 +18,17 @@ export class AssignmentService {
   assignmentEventListner(){
     console.log("return to service")
     return this.selectedAssignmentViaButton.asObservable();
+  } 
+
+  
+  emitCourseEvent(courseName: string){
+    console.log("emit")
+    this.selectedAssignmentViaButton.next(courseName)
+  }
+
+  courseEventListner(){
+    console.log("return to service")
+    return this.selectedCourseViaButton.asObservable();
   } 
 
   constructor() { }
