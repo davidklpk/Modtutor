@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { Student } from 'src/app/interfaces/student';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ASSIGNMENT, setGlobalCurrentPage } from 'src/app/shared/global-var';
 
 export type ChartOptions = {
@@ -44,8 +44,9 @@ export class AssignmentComponent implements OnInit {
   displayedColumns: string[] = ['name', 'id', 'status'];
   dataSource = new MatTableDataSource<Student>(this.studentList);
   assignmentName : string = "name"
+  slug : string = "";
 
-  constructor(private router : Router) { 
+  constructor(private router : Router, private route : ActivatedRoute) { 
 
     setGlobalCurrentPage(ASSIGNMENT + this.assignmentName);
 
@@ -235,7 +236,15 @@ export class AssignmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRoute();
   }
+
+  getRoute() {
+    // gets the current course by getting the slug (.../course/slugOfCourse)
+    let route$ = this.route.params;
+    route$.subscribe((route) => {this.slug = route['slug']});
+  }
+
   
   navigate(student : string){
     this.router.navigate(['/profile', student]); 
