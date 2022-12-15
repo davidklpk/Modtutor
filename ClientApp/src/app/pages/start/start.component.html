@@ -1,12 +1,15 @@
 <app-container>
-    <h1 class="font-medium">Recently Viewed</h1>
+    <h1 class="font-medium">Recently Viewed Courses</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-10 sm:auto-rows-fr sm:auto-cols-fr">
         <ng-container *ngFor="let course of courseList$ | async">
             <app-card-course [course]="course"></app-card-course>
         </ng-container>
     </div>
+
     
-    <h1 class="font-medium">All courses</h1>
+    <mat-divider class="mb-10"></mat-divider>
+    
+    <h1 class="font-medium">All Courses</h1>
     <div class="flex flex-row items-center gap-4">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
         <div class="relative w-full">
@@ -19,8 +22,6 @@
             </button>
         </div>
     </div>
-
-    <mat-divider class="my-5"></mat-divider>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-5 mb-5 sm:auto-rows-fr sm:auto-cols-fr"
         *ngIf="(courseList | classes : searchTerm).length != 0">

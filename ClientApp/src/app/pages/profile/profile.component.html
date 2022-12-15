@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <div class="flex h-32 flex-col align-middle gap-1">
-                        <h2>Student</h2>
+                        <h2 class="mb-3">Student</h2>
                         <div class="flex items-center gap-2">
                             <mat-icon class="text-[#626262]">person_round</mat-icon>
                             <h4 class="m-0 p-0">{{ student.fullName }}</h4>
@@ -50,7 +50,7 @@
         <!-- TAB-THINGY -->
         <div class="flex flex-col gap-2 w-full">
             <mat-tab-group [(selectedIndex)]="selectedTab" mat-stretch-tabs="false" mat-align-tabs="center" class="bg-white rounded-[12px] outline outline-gray-300 outline-[1px]">
-                <mat-tab label="All Assignments">
+                <mat-tab label="Overview">
                     <app-all-tab></app-all-tab>
                 </mat-tab>
                 <mat-tab label="Feedback Fruits">

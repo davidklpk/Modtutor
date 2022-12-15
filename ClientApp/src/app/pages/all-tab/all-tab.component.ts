@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Assignment } from 'src/app/interfaces/assignment';
 import { DBService } from 'src/app/services/db.service';
 
+export interface KeyCard {
+  metric : string,
+  label : string
+}
 
 @Component({
   selector: 'app-all-tab',
   templateUrl: './all-tab.component.html',
   styleUrls: ['./all-tab.component.css']
 })
+
 export class AllTabComponent implements OnInit {
 
   assignmentList : Assignment[] = [
@@ -17,12 +22,20 @@ export class AllTabComponent implements OnInit {
     { name: "English Report", grade: 5, week:2 },
     { name: "Cultural Report", grade: 9, week:3 },
     { name: "Literature Review", grade: 7, week:4 },
-  
   ]
+
+  // Keycards (top row)
+  keyCardGrade !: KeyCard;
+  keyCardTime !: KeyCard;
+  keyCardAttendance !: KeyCard;
 
   constructor(private dbService : DBService) { }
 
   ngOnInit(): void {
-    
+
+    // Initialize the keyCards from DB here:
+    this.keyCardGrade  = { metric : "6.1", label : "Average Grade" }
+    this.keyCardTime = { metric : "122", label : "Time spent" }
+    this.keyCardAttendance  = { metric : "80%",  label : "Attendance" }
   }
 }

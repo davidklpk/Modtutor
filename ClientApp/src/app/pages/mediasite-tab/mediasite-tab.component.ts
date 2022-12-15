@@ -34,6 +34,8 @@ export class MediasiteTabComponent implements OnInit {
   public PresentationsWatched!: Partial<ChartOptions> | any;
   public TimeSpent!: Partial<ChartOptions> | any;
 
+  selectedAssignment = "option1";
+
   constructor(private router : Router) { 
     this.LiveViews = {
       series :[40,60],

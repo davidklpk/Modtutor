@@ -1,9 +1,27 @@
-<section class="my-10">
-  <h1 class="font-medium text-center">All videos</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-2">
-  
-      <mat-card class="flex flex-col items-center align-middle justify-center">
-        <h2>Live Views</h2>
+<div class="px-5 pt-5">
+  <div class="flex flex-row w-full">
+    <div class="flex flex-row w-full items-center justify-start">
+      <h1 class="font-medium p-0 m-0">All videos</h1>
+    </div>
+
+    <!-- DROPDOWN FIELD -->
+    <div class="flex flex-row w-full items-center justify-end">
+      <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
+        <mat-label>Select a video</mat-label>
+        <mat-select [(value)]="selectedAssignment">
+          <mat-option value="option1">Video 1</mat-option>
+          <mat-option value="option2">Video 2</mat-option>
+          <mat-option value="option3">Video 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+    
+  <mat-divider class="my-5 mb-10"></mat-divider>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-2 mb-5">
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
         <apx-chart
           [series]="LiveViews.series"
           [labels]="LiveViews.labels"
@@ -12,10 +30,14 @@
           [fill]="LiveViews.fill"
           [legend]= "LiveViews.legend"
         ></apx-chart>
-      </mat-card>
-  
-      <mat-card class="flex flex-col items-center align-middle justify-center">
-        <h2>On Demand Views</h2>
+      </div>
+      <div class="px-5">
+        <h3 class="font-medium text-black/60 leading-none text-center">Live Views</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
         <apx-chart
           [series]="OndemandViews.series"
           [chart]="OndemandViews.chart"
@@ -24,10 +46,14 @@
           [fill]="OndemandViews.fill"
           [legend]= "OndemandViews.legend"
         ></apx-chart>
-      </mat-card>
-  
-      <mat-card class="flex flex-col items-center align-middle justify-center">
-        <h2>Total Views</h2>
+      </div>
+      <div class="px-5">
+        <h3 class="font-medium text-black/60 leading-none text-center">On Demand Views</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
         <apx-chart
           [series]="TotalViews.series"
           [chart]="TotalViews.chart"
@@ -36,10 +62,14 @@
           [labels]="TotalViews.labels"
           [legend]= "TotalViews.legend"
         ></apx-chart>
-      </mat-card>
-  
-      <mat-card class="flex flex-col items-center align-middle justify-center">
-        <h2>Presentation Watched</h2>
+      </div>
+      <div class="px-5">
+        <h3 class="font-medium text-black/60 leading-none text-center">Total Views</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
         <apx-chart
           [series]="PresentationsWatched.series"
           [chart]="PresentationsWatched.chart"
@@ -48,10 +78,14 @@
           [fill]="PresentationsWatched.fill"
           [legend]= "PresentationsWatched.legend"
         ></apx-chart>
-      </mat-card>
-  
-      <mat-card class="flex flex-col items-center align-middle justify-center">
-        <h2>Total Time Spent</h2>
+      </div>
+      <div class="px-5">
+        <h3 class="font-medium text-black/60 leading-none text-center">Presentation Watched</h3>
+      </div>
+    </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
         <apx-chart
           [series]="TimeSpent.series"
           [chart]="TimeSpent.chart"
@@ -62,6 +96,10 @@
           [responsive]="TimeSpent.responsive"
           [fill]="TimeSpent.fill">
         </apx-chart>
-      </mat-card>   
-    </div>
-</section>
+      </div>
+      <div class="px-5">
+        <h3 class="font-medium text-black/60 leading-none text-center">Total Time</h3>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -26,6 +26,7 @@ import { TeacherProfileComponent } from './pages/teacher-profile/teacher-profile
 import { AllTabComponent } from './pages/all-tab/all-tab.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AttendanceComponent } from './pages/attendance/attendance.component';
+import { CardKeyNumberComponent } from './components/card-key-number/card-key-number.component';
 
 @NgModule({
   declarations: [
@@ -48,18 +49,14 @@ import { AttendanceComponent } from './pages/attendance/attendance.component';
     AllTabComponent,
     CardCopyComponent,
     FooterComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    CardKeyNumberComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule, 
-    /*RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ]),*/
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,

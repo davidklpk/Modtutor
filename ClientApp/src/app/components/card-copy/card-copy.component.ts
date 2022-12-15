@@ -46,7 +46,7 @@ export class CardCopyComponent implements OnInit {
     if(this.assignment.week == 4) {
       return generatedFlag = {
         colorFont: "text-amber-500",
-        icon: "star_circle",
+        icon: "stars",
         title: "doing superb"
       }
     } else if(this.assignment.week == 1) {
@@ -63,7 +63,7 @@ export class CardCopyComponent implements OnInit {
       }
     }
     return generatedFlag = {
-      colorFont: "text-thuas-grijs-base",
+      colorFont: "text-gray-500/80",
       icon: "help_circle",
       title: "unknown"
     }
