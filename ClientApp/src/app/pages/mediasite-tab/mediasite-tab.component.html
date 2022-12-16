@@ -8,10 +8,8 @@
     <div class="flex flex-row w-full items-center justify-end">
       <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
         <mat-label>Select a video</mat-label>
-        <mat-select [(value)]="selectedAssignment">
-          <mat-option value="option1">Video 1</mat-option>
-          <mat-option value="option2">Video 2</mat-option>
-          <mat-option value="option3">Video 3</mat-option>
+        <mat-select disabled="true" [(value)]="selectedAssignment">
+          <mat-option value="option1">All videos</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
