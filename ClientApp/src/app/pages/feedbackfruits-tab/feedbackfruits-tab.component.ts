@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { axisLeft, axisRight, color, text } from 'd3';
 import { LinkService } from 'src/app/services/link.service';
 import { DBService } from 'src/app/services/db.service';
+import { KeyCard } from '../all-tab/all-tab.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -48,9 +49,15 @@ export class FeedbackfruitsTabComponent implements OnInit {
   finishedFeedback !: number;
   readFeedback !: number;
 
+  // keyCard objects
+  keyCardGrade : KeyCard = { metric: "10", label: "Average Grade" }
+  keyCardTime : KeyCard = { metric: "122", label: "Time spent" }
+  keyCardComments : KeyCard = { metric: "21", label: "Comments" }
+
   // Other important vars
   selectedAssignment = "option1";
   selectionOptions !: string[];
+
 
   constructor(private router : Router, private assService : LinkService, private dbService : DBService) {  }
 
