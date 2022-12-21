@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DashContext>(options => 
 //options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONRiciano")));
-options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONMarta")));
+//options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONMarta")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONDavid")));
 builder.Services.AddCors(options => options.AddPolicy(name: "DashOrigins",
 policy => {
     policy.WithOrigins("http://localhost:4200/").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
