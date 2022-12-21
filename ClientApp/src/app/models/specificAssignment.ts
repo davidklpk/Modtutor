@@ -1,8 +1,6 @@
-export class Assignments{
+export class SpecificAssignments{
     assignmentID = "";
     assignmentName = "";
     handedInDate !: Date;
     madeIn !: number;
-    madeInCourse = "";
-
 }

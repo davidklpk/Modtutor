@@ -22,7 +22,10 @@ export class CourseClassComponent implements OnInit {
  
   assignmentList: Assignments[] = [];
 
+  //specificAssignmentList$ !: Observable<>;
   assignmentList$ !: Observable<Assignments[]>;
+
+  courseClasses$ !: Observable<CourseClass[]>;
 
   studentList: Student[] = [];
   slug : string = "";
@@ -46,11 +49,26 @@ export class CourseClassComponent implements OnInit {
     this.fetchAssignments();
     this.fetchStudents();
     this.fetchData();
+    this.fetchCourseClasses();
+    //console.log("assignment test ", this.dbService.getSpecificAssignments());
+
   }
+
 
   fetchAssignments() {
     this.assignmentList$ = this.dbService.getAssignments();
   }
+
+  fetchCourseClasses() {
+    let route$ = this.route.params;
+    route$.subscribe((route) => {this.slug = route['slug']});
+    this.courseClasses$ = this.dbService.getCourseClasses(this.slug);
+  }
+  
+  fetchSpecificAssignments() {
+    this.assignmentList$ = this.dbService.getAssignments();
+  }
+
 
   fetchStudents() {
     this.dbService

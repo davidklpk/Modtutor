@@ -26,6 +26,13 @@ namespace student_monitoring_dashboard.Controllers
         {
             return Ok(await _context.Assignment.ToListAsync());
         }
+
+        // [HttpGet]
+        // public async Task<ActionResult<Assignment>> GetSpecificAssignment(int ID)
+        // {
+        //     var a = await _context.Assignment.FindAsync(ID);
+        //     return Ok(a);
+        // }
         /*public IEnumerable<Assignment> GetAssignment()
         {
             return _context.Assignment;

@@ -9,23 +9,31 @@ import { Criteria } from '../models/criteria';
 import { Mediasite } from '../models/mediasite';
 import { Student } from '../models/student';
 import { Teacher } from '../models/teacher';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DBService {;
-
+  @Input() course !: Course;
   //Riciano's Stuff:
     //these are the urls for the different data classes:
   private urlAssignments = "Assignments";
+  private urlSpecificAssignment = "Assignments/GetSpecificAssignment";
+  //private urlGetCourseClassesInCourse = "CourseClasses";
   private urlCourses = "Courses";
   private urlCourseClasses = "CourseClasses";
   private urlCriterias = "Criterias";
   private urlMediaSites = "MediaSites";
   private urlStudents = "Students";
   private urlTeachers = "Teachers";
+  
+  public urlparameter = "";
 
+  seturlparameter(value : string){
+    value = this.urlparameter;
+  }
   constructor(private http: HttpClient) { }
 
   //Methods to [Get] the data (see app.components.ts as well):
@@ -41,8 +49,18 @@ export class DBService {;
     return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}`);
   }
 
-  public getCourseClasses() : Observable<CourseClass[]>{
-    return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}`);
+  
+
+  public getSpecificAssignments() : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlSpecificAssignment}`);
+  }
+
+  // public getCourseClasses2() : Observable<CourseClass[]>{
+  //   return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlGetCourseClassesInCourse}/${this.urlparameter}`);
+  // }
+
+  public getCourseClasses(yeet: string) : Observable<CourseClass[]>{
+    return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${yeet}`);
   }
 
   public getCriterias() : Observable<Criteria[]>{

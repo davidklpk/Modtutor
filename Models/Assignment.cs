@@ -7,4 +7,6 @@ public class Assignment
     public string AssignmentName { get; set; }
     public DateTime HandedInDate { get; set; }
     [ForeignKey("CourseClass")]public int MadeIn { get; set; }
+
+    [ForeignKey("Course")]public string MadeInCourse { get; set; }
 }
