@@ -4,6 +4,9 @@ import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAx
 import { Student } from 'src/app/interfaces/student';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ASSIGNMENT, setGlobalCurrentPage } from 'src/app/shared/global-var';
+import { Observable } from 'rxjs';
+import { Feedback } from 'src/app/models/feedback';
+import { DBService } from 'src/app/services/db.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -45,8 +48,9 @@ export class AssignmentComponent implements OnInit {
   dataSource = new MatTableDataSource<Student>(this.studentList);
   assignmentName : string = "name"
   slug : string = "";
+  FeedBacks$ !: Observable<Feedback[]>;
 
-  constructor(private router : Router, private route : ActivatedRoute) { 
+  constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute) { 
 
     setGlobalCurrentPage(ASSIGNMENT + this.assignmentName);
 
@@ -237,12 +241,19 @@ export class AssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoute();
+    this.fetchFeedbackFruitsData();
   }
 
   getRoute() {
     // gets the current course by getting the slug (.../course/slugOfCourse)
     let route$ = this.route.params;
     route$.subscribe((route) => {this.slug = route['slug']});
+  }
+
+  fetchFeedbackFruitsData(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {this.slug = route['slug']});
+    this.FeedBacks$ = this.dbService.getFeedBacks(this.slug);
   }
 
   

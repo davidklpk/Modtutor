@@ -31,6 +31,20 @@ namespace student_monitoring_dashboard.Controllers
         {
             return Ok(await _context.Course.ToListAsync());
         }
+
+        // [HttpGet("{string}")]
+        // public async Task<ActionResult<List<CourseClass>>> Get(string id){
+        //     // var a = await _context.CourseClass.Where(s => s.BelongsTo == id).ToListAsync();
+        //     // if (a == null){
+        //     //     return Ok(await _context.CourseClass.ToListAsync());
+        //     // }
+        //     // else return Ok(a);
+        //     //var a = _context.CourseClass.Where(s => s.BelongsTo == "ITD-HMVT22-K70_2022_VT").ToListAsync();
+        //     //return Ok( await _context.CourseClass.Where(s => s.BelongsTo == url).ToListAsync());
+        //     var a = await _context.CourseClass.Where(s => s.BelongsTo == id).ToListAsync();
+        //     return Ok(a);
+        // }
+        
         /*
         public IEnumerable<Course> GetCourse()
         {

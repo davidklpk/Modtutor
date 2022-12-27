@@ -17,6 +17,6 @@ export class CardClassComponent implements OnInit {
   ngOnInit(): void { }
   
   navigate(course : string){
-    this.router.navigate(['/course', "get(" + course + ")"]); 
+    this.router.navigate(['/course', course]); 
   }
 }

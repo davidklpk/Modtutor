@@ -21,10 +21,21 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
         
-        [HttpGet]
-        public async Task<ActionResult<List<Feedback>>> GetFeedback()
+        [HttpGet("{yoloyeet}")]
+        public async Task<ActionResult<List<Feedback>>> GetFeedback(int yoloyeet)
         {
-            return Ok(await _context.Feedback.ToListAsync());
+            var a = await _context.Feedback.Where(s => s.AssignmentID == yoloyeet).ToListAsync();
+            if (a == null)
+            {
+                var b = await _context.Feedback.ToListAsync();
+                System.Console.WriteLine("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbbb");
+                return Ok(b);
+            }
+            else
+            {
+                System.Console.WriteLine("a");
+                return Ok(a);
+            }
         }
         /*public IEnumerable<Assignment> GetAssignment()
         {
