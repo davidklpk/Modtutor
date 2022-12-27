@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using student_monitoring_dashboard.Data;
 
 namespace student_monitoring_dashboard.Controllers
-{   
+{
     [Produces("application/json")]
     [Route("api/CourseClasses")]
     [ApiController]
@@ -20,7 +20,7 @@ namespace student_monitoring_dashboard.Controllers
         {
             _context = context;
         }
-        
+
         // [HttpGet]
         // public async Task<ActionResult<IEnumerable<Course>>> GetCourseClasses()
         // {
@@ -66,19 +66,18 @@ namespace student_monitoring_dashboard.Controllers
         // }
 
         [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string yoloyeet){
+        public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string yoloyeet)
+        {
             var a = await _context.CourseClass.Where(s => s.BelongsTo == yoloyeet).ToListAsync();
-            if (a == null){
+            if (a == null)
+            {
                 var b = await _context.CourseClass.ToListAsync();
                 System.Console.WriteLine("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbbb");
                 return Ok(b);
             }
-            else{
-                foreach(var ohno in a){
-                    System.Console.WriteLine(ohno.BelongsTo);
-                }
-                
-            return Ok(a);
+            else
+            {
+                return Ok(a);
             }
         }
 

@@ -20,7 +20,7 @@ export class CourseClassComponent implements OnInit {
 
   @Input() course !: CourseClass;
  
-  assignmentList: Assignments[] = [];
+  //assignmentList: Assignments[] = [];
 
   //specificAssignmentList$ !: Observable<>;
   assignmentList$ !: Observable<Assignments[]>;
@@ -48,15 +48,10 @@ export class CourseClassComponent implements OnInit {
     this.getRoute();
     this.fetchAssignments();
     this.fetchStudents();
-    this.fetchData();
+    //this.fetchData();
     this.fetchCourseClasses();
     //console.log("assignment test ", this.dbService.getSpecificAssignments());
 
-  }
-
-
-  fetchAssignments() {
-    this.assignmentList$ = this.dbService.getAssignments();
   }
 
   fetchCourseClasses() {
@@ -65,8 +60,10 @@ export class CourseClassComponent implements OnInit {
     this.courseClasses$ = this.dbService.getCourseClasses(this.slug);
   }
   
-  fetchSpecificAssignments() {
-    this.assignmentList$ = this.dbService.getAssignments();
+  fetchAssignments() {
+    let route$ = this.route.params;
+    route$.subscribe((route) => {this.slug = route['slug']});
+    this.assignmentList$ = this.dbService.getAssignments(this.slug);
   }
 
 
@@ -90,13 +87,13 @@ export class CourseClassComponent implements OnInit {
     route$.subscribe((route) => {this.slug = route['slug']});
   }
 
-  fetchData() {
-    this.dbService
-    .getAssignments()
-    .subscribe((result : Assignments[]) => {
-      this.assignmentList = result;
-    }); 
-  }
+  // fetchData() {
+  //   this.dbService
+  //   .getAssignments()
+  //   .subscribe((result : Assignments[]) => {
+  //     this.assignmentList = result;
+  //   }); 
+  // }
 
   /**
    * gets triggered if a row is selected and
