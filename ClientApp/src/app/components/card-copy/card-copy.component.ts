@@ -43,19 +43,19 @@ export class CardCopyComponent implements OnInit {
   setFlag() : Flag {
     let generatedFlag : Flag;
 
-    if(this.assignment.week == 4) {
+    if(this.assignment.grade == 9) {
       return generatedFlag = {
         colorFont: "text-amber-500",
         icon: "stars",
         title: "doing superb"
       }
-    } else if(this.assignment.week == 1) {
+    } else if(this.assignment.grade == 7) {
       return generatedFlag = {
         colorFont: "text-thuas-groen-base",
         icon: "check_circle",
         title: "no worries"
       }
-    } else if(this.assignment.week == 3) {
+    } else if(this.assignment.grade == 5) {
       return generatedFlag = {
         colorFont: "text-thuas-rood-base",
         icon: "error_circle",

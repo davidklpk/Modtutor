@@ -1,6 +1,7 @@
 <app-container>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+    <!---
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
       <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
         <apx-chart
           [series]="TypeFeedback.series"
@@ -15,9 +16,20 @@
       <div class="px-5">
         <h2 class="font-medium text-black/60">Total Review Comments</h2>
       </div>
+    </mat-card>-->
+
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
+      <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
+        <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">21</p>
+      </div>
+
+      <div class="px-5">
+        <h2 class="font-medium text-black/60">Total comments</h2>
+      </div>
     </mat-card>
 
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
       <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
         <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">5.1</p>
       </div>
@@ -27,7 +39,7 @@
       </div>
     </mat-card>
 
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
       <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-4 w-full md:h-full h-52">
         <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">122</p>
       </div>
@@ -37,7 +49,7 @@
       </div>
     </mat-card>
 
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
       <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-10 w-full md:h-full h-52">
         <apx-chart
           [series]="TypeFeedback.series"
@@ -55,7 +67,7 @@
     </mat-card>
   </div>
 
-  <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 mt-10 w-full rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+  <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 mt-10 w-full rounded-[12px] shadow-none outline outline-1 outline-gray-200">
     <div class="bg-gray-200 rounded-t-[12px] p-5 md:px-20 md:py-10 w-full">
       <apx-chart class="w-full"
         [series]="chartOptions.series!"
@@ -73,7 +85,7 @@
   </mat-card>
 
 
-  <h1 class="font-medium mt-14">List Of Students</h1>
+  <!---  <h1 class="font-medium mt-14">List Of Students</h1>
   <div class="p-0 outline outline-1 outline-gray-200 bg-white rounded-[12px]">
     <table mat-table [dataSource]="dataSource" matSort class="w-full rounded-[12px]">
       <ng-container matColumnDef="name">
@@ -103,5 +115,6 @@
         class="rounded-[12px]">
     </mat-paginator>
   </div>
+-->
 </app-container>
 

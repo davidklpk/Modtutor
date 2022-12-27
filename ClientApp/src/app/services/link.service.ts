@@ -11,12 +11,12 @@ export class LinkService {
   private selectedCourseViaButton = new BehaviorSubject<string>('');
 
   emitAssignmentEvent(assignmentName: string){
-    console.log("emit")
+    //console.log("emit")
     this.selectedAssignmentViaButton.next(assignmentName)
   }
 
   assignmentEventListner(){
-    console.log("return to service")
+    //console.log("return to service")
     return this.selectedAssignmentViaButton.asObservable();
   } 
 
