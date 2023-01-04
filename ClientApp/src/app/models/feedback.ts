@@ -1,13 +1,13 @@
 
 export class Feedback {
     feedbackID !: number;
-    typeOfFeedback !: boolean;
-    readInstructions !: boolean;
-    handedIn !: boolean;
-    finishedFeedback !: boolean;
+    typeOfFeedback !: string;
+    readInstructions !: string;
+    handedIn !: string;
+    finishedFeedback !: string;
     timeSpent !: number;
     totalReviewComments !: number;
-    readFeedback !: boolean;
+    readFeedback !: string;
     //overallGrade !: number;
     studentId !: number;
     assignmentId !: number;

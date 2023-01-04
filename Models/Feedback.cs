@@ -7,7 +7,7 @@ public class Feedback
     public string TypeOfFeedback { get; set; }
     public string ReadInstructions { get; set; }
     public string HandedIn { get; set; }
-    public string FinishedFeedback { get; set; }
+
     public int TimeSpent { get; set; }
     public int TotalReviewComments { get; set; }
     public string ReadFeedback { get; set; }
