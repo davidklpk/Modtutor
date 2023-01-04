@@ -21,7 +21,9 @@
 
     <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
       <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
-        <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">21</p>
+        <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">
+          {{ totalComments }}
+        </p>
       </div>
 
       <div class="px-5">
@@ -29,6 +31,7 @@
       </div>
     </mat-card>
 
+    <!--
     <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
       <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-5 md:p-10 w-full h-full">
         <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">5.1</p>
@@ -37,11 +40,13 @@
       <div class="px-5">
         <h2 class="font-medium text-black/60">Average Grade</h2>
       </div>
-    </mat-card>
+    </mat-card>-->
 
     <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-200">
       <div class="flex justify-center align-middle items-center bg-gray-200 rounded-t-[12px] p-4 w-full md:h-full h-52">
-        <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">122</p>
+        <p class="p-0 m-0 text-6xl md:text-7xl font-black text-thuas-groen-base">
+          {{ totalTimeSpent }}
+        </p>
       </div>
 
       <div class="px-5">
@@ -83,38 +88,5 @@
       <h2 class="font-medium text-black/60">Total Review Comments</h2>
     </div>
   </mat-card>
-
-
-  <!---  <h1 class="font-medium mt-14">List Of Students</h1>
-  <div class="p-0 outline outline-1 outline-gray-200 bg-white rounded-[12px]">
-    <table mat-table [dataSource]="dataSource" matSort class="w-full rounded-[12px]">
-      <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" class="text-base text-black/80 rounded-[12px]">
-              Name
-          </th>
-          <td mat-cell *matCellDef="let student"> {{student.name}} </td>
-      </ng-container>
-      <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by ID" class="text-base text-black/80">
-              ID
-          </th>
-          <td mat-cell *matCellDef="let student" class="text-black/60"> {{student.id}} </td>
-      </ng-container>
-      <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status" class="text-base text-black/80 rounded-[12px]">
-              Status
-          </th>
-          <td mat-cell *matCellDef="let student" class="text-black/60"> {{student.courses}} </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr class="hover:bg-black/5 cursor-pointer" mat-row (click)="navigate(row.name)" *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-        showFirstLastButtons 
-        aria-label="Select page of students"
-        class="rounded-[12px]">
-    </mat-paginator>
-  </div>
--->
 </app-container>
 

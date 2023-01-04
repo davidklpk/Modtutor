@@ -25,12 +25,8 @@ export type ChartOptions = {
 
 export class AssignmentComponent implements OnInit {
 
-  @ViewChild("chart") chart !: ChartComponent;
   public chartOptions !: Partial<ChartOptions> | any;
   public TypeFeedback !: Partial<ChartOptions> | any;
-  public TotalReviewComments !: Partial<ChartOptions> | any;
-  public TimeSpent !: Partial<ChartOptions> | any;
-  public AvgGrade !: Partial<ChartOptions> | any;
 
   studentList : Student[] = [
     {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 5,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
@@ -49,16 +45,27 @@ export class AssignmentComponent implements OnInit {
   assignmentName : string = "name"
   slug : string = "";
   FeedBacks$ !: Observable<Feedback[]>;
+  feedBackList : Feedback[] = [];
+
+  dataSeries !: number[];
+  typeOfFeedbackSeries : number[] = [50,50];
+  totalTimeSpent : number = 0;
+  totalComments : number = 0;
 
   constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute) { 
-
     setGlobalCurrentPage(ASSIGNMENT + this.assignmentName);
+  }
 
+  ngOnInit(): void {
+    this.getRoute();
+    this.fetchFeedbackFruitsData();
+
+    // Total Review Comments
     this.chartOptions = {
       series: [
         {
           name: "Amount of students",
-          data: [70, 80, 60, 50]
+          data: this.dataSeries
         }
       ],
       title:{
@@ -95,8 +102,9 @@ export class AssignmentComponent implements OnInit {
       }
     };
 
+    // Type of Feedback
     this.TypeFeedback = {
-      series :[40,60],
+      series: this.typeOfFeedbackSeries,
       chart: {
         type: "pie",
       },
@@ -135,113 +143,6 @@ export class AssignmentComponent implements OnInit {
         }
       ]
     };
-    this.TotalReviewComments = {
-      series :[40,60],
-      chart: {
-        type: "pie",
-      },
-      fill:
-        {colors: ['#ca433c','#00b2cd']
-      },
-      legend: {
-        show: false
-      },
-      title: {
-        text: "Total Review Comments",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 100,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
-    this.TimeSpent = {
-      series :[1],
-      chart: {
-        type: "pie",
-      },
-      legend: {
-        show: false
-      },
-      fill:
-        {colors: ['#ffba00']
-      },
-      title: {
-        text: "Time Spent",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 100,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
-    this.AvgGrade = {
-      series :[90,10],
-      chart: {
-        type: "pie",
-      },
-      legend: {
-        show: false
-      },
-      fill:
-        {colors: ['#00b2cd','#ca433c']
-      },
-      title: {
-        text: "Average Grade",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 100,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
-  }
-
-  ngOnInit(): void {
-    this.getRoute();
-    this.fetchFeedbackFruitsData();
   }
 
   getRoute() {
@@ -251,12 +152,71 @@ export class AssignmentComponent implements OnInit {
   }
 
   fetchFeedbackFruitsData(){
-    let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
-    this.FeedBacks$ = this.dbService.getFeedBacks(this.slug);
+    this.getRoute();
+    this.dbService
+    .getFeedBacks(this.slug)
+    .subscribe((result : Feedback[]) => {
+      this.feedBackList = result;
+      this.getChartSeries(result);
+    }); 
   }
 
-  
+  /**
+   * Processes all the data received by the backend and
+   * prepares it for this component
+   * 
+   * @param feedback Fetched Feedback 
+   */
+  getChartSeries(feedback : Feedback[]) {
+    let readInstructions : number = 0;
+    let handedIn : number = 0;
+    let finishedFeedback : number = 0;
+    let readFeedback : number = 0;
+
+    let isFeedback : number = 0;
+    let isCompliment : number = 0;
+
+    let totalTimeSpent : number = 0;
+    let totalComments : number = 0;
+
+    feedback.forEach(element => {
+
+      if (element.readInstructions === "Yes") {
+        readInstructions++;
+      }
+      if (element.handedIn === "Yes") {
+        handedIn++;
+      }
+      if (element.finishedFeedback === "Yes") {
+        finishedFeedback++;
+      }
+      if (element.readFeedback === "Yes") {
+        readFeedback++;
+      }
+
+      if (element.typeOfFeedback  === "Taken") {
+        isFeedback++;
+      } else {
+        isCompliment++;
+      }
+
+      totalTimeSpent += element.timeSpent;
+      totalComments += element.totalReviewComments;
+    });
+
+    this.totalComments = totalComments;
+    this.totalTimeSpent = totalTimeSpent;
+    this.typeOfFeedbackSeries = [isFeedback, isCompliment];
+    this.dataSeries = [readInstructions, handedIn, finishedFeedback, readFeedback];
+
+    this.chartOptions.series = [{
+      data: this.dataSeries
+    }];
+
+    this.TypeFeedback.series = this.typeOfFeedbackSeries; 
+    
+  }
+
   navigate(student : string){
     this.router.navigate(['/profile', student]); 
   }

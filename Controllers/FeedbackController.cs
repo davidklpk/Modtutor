@@ -33,7 +33,7 @@ namespace student_monitoring_dashboard.Controllers
             }
             else
             {
-                System.Console.WriteLine("a");
+                //System.Console.WriteLine("a");
                 return Ok(a);
             }
         }
