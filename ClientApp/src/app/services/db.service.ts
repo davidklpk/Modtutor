@@ -12,6 +12,8 @@ import { Teacher } from '../models/teacher';
 import { Component, Input, OnInit } from '@angular/core';
 import { Feedback } from '../models/feedback';
 import { StudentClass } from '../models/studentClass';
+import { Attendance } from '../models/attendance';
+import { Week } from '../models/week';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,8 @@ export class DBService {;
   private urlTeachers = "Teachers";
   private urlFeedBacks = "Feedbacks";
   private urlStudentClass = "StudentClasses";
+  private urlAttendance = "Attendances";
+  private urlWeek = "Weeks";
   
   public urlparameter = "";
 
@@ -51,12 +55,16 @@ export class DBService {;
     return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${yeet}`);
   }
 
+  public getAttendances(yeet : number) : Observable<Attendance[]>{
+    return this.http.get<Attendance[]>(`${environment.apiUrl}/${this.urlAttendance}/${yeet}`);
+  }
+
   public getCourseClasses(yeet: string) : Observable<CourseClass[]>{
     return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${yeet}`);
   }
 
-  public getCriterias() : Observable<Criteria[]>{
-    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}`);
+  public getCriterias(yeet : number) : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}/${yeet}`);
   }
 
   public getMediaSites(yeet : number) : Observable<Mediasite[]>{
@@ -77,6 +85,10 @@ export class DBService {;
 
   public getTeachers() : Observable<Teacher[]>{
     return this.http.get<Teacher[]>(`${environment.apiUrl}/${this.urlTeachers}`);
+  }
+
+  public getWeeks(yeet : number) : Observable<Week[]>{
+    return this.http.get<Week[]>(`${environment.apiUrl}/${this.urlWeek}/${yeet}`);
   }
 
 

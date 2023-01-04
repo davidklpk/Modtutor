@@ -7,6 +7,9 @@ import { DBService } from 'src/app/services/db.service';
 import { STUDENT_PROFILE, setGlobalCurrentPage } from 'src/app/shared/global-var';
 import { Feedback } from 'src/app/models/feedback';
 import { Mediasite } from 'src/app/models/mediasite';
+import { Criteria } from 'src/app/models/criteria';
+import { Attendance } from 'src/app/models/attendance';
+import { Week } from 'src/app/models/week';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +29,10 @@ export class ProfileComponent implements OnInit {
   students$ !: Observable<Student[]>;
   MediaSites$ !: Observable<Mediasite[]>;
   Feedback !: Feedback[];
+  Criteria !: Criteria[];
   mediaSite !: Mediasite[];
+  attendance !: Attendance[];
+  week !: Week[];
 
   constructor(private route: ActivatedRoute, private assService : LinkService, private dbService : DBService) { 
     setGlobalCurrentPage(STUDENT_PROFILE + this.studentName);
@@ -36,8 +42,11 @@ export class ProfileComponent implements OnInit {
     // Both Observables we need in this component
     this.getRoute();
     this.fetchStudents();
+    this.fetchCriteria();
     this.fetchFeedBackFruitsData();
     this.fetchMediaSiteData();
+    this.fetchAttendance();
+    this.fetchWeek();
     // This outputs both observables parallel
     this.fetchStudentList();
 
@@ -75,6 +84,42 @@ export class ProfileComponent implements OnInit {
       this.setAcronym();
     })
 
+  }
+
+  fetchCriteria(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getCriterias(this.slug)
+    .subscribe((result : Criteria[]) => {
+      this.Criteria = result;
+    });
+  }
+
+  fetchAttendance(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getAttendances(this.slug)
+    .subscribe((result : Attendance[]) => {
+      this.attendance = result;
+    });
+  }
+
+  fetchWeek(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getWeeks(this.slug)
+    .subscribe((result : Week[]) => {
+      this.week = result;
+    });
   }
 
   fetchFeedBackFruitsData() {

@@ -13,7 +13,7 @@ namespace student_monitoring_dashboard.Controllers
     [Route("api/Criterias")]
     [ApiController]
     public class CriteriaController : ControllerBase
-    {
+    {   
         private readonly DashContext _context;
 
         public CriteriaController(DashContext context)
@@ -26,14 +26,21 @@ namespace student_monitoring_dashboard.Controllers
         //     return Ok(await _context.Courses.ToListAsync());
 
         // }
-        [HttpGet]
+        
         /*public IEnumerable<Criteria> GetCriteria()
         {
             return _context.Criteria;
         }*/
-        public async Task<ActionResult<List<Criteria>>> GetCriteria()
+        [HttpGet("{yoloyeet}")]
+        public async Task<ActionResult<List<Criteria>>> GetCriteria(int yoloyeet)
         {
-            return Ok(await _context.Criteria.ToListAsync());
+            var query =
+            from c in _context.Criteria
+            join f in _context.Feedback on c.FeedBackID equals f.FeedbackID
+            join s in _context.Student on f.StudentID equals s.StudentID
+            where s.StudentID == yoloyeet
+            select c;
+            return Ok(query);
         }
     }
 }
