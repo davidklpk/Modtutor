@@ -1,5 +1,5 @@
 export class Student{
-    studentID = "";
+    studentID !: number;
     fullName = "";
     email = "";
     password = "";

@@ -241,7 +241,6 @@ export class AssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoute();
-    this.fetchFeedbackFruitsData();
   }
 
   getRoute() {
@@ -250,11 +249,7 @@ export class AssignmentComponent implements OnInit {
     route$.subscribe((route) => {this.slug = route['slug']});
   }
 
-  fetchFeedbackFruitsData(){
-    let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
-    this.FeedBacks$ = this.dbService.getFeedBacks(this.slug);
-  }
+
 
   
   navigate(student : string){

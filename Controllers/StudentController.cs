@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using student_monitoring_dashboard.Data;
 
 namespace student_monitoring_dashboard.Controllers
-{   
+{
     [Produces("application/json")]
     [Route("api/Students")]
     [ApiController]
@@ -20,16 +20,20 @@ namespace student_monitoring_dashboard.Controllers
         {
             _context = context;
         }
-        
-        [HttpGet]
-        public async Task<ActionResult<List<Student>>> GetStudent()
+
+        // [HttpGet]
+        // public async Task<ActionResult<List<Student>>> GetStudent()
+        // {
+        //     return Ok(await _context.Student.ToListAsync());
+        // }
+
+        [HttpGet("{yoloyeet}")]
+        public async Task<ActionResult<List<Student>>> GetStudents(int yoloyeet)
         {
-            return Ok(await _context.Student.ToListAsync());
+            System.Console.WriteLine("aaaaa");
+           var a = await _context.Student.Where(s => s.StudentID == yoloyeet).ToListAsync();
+           return Ok(a);
         }
-        /*
-        public IEnumerable<Student> GetStudent()
-        {
-            return _context.Student;
-        }*/
+
     }
 }

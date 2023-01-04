@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { axisLeft, axisRight, color, text } from 'd3';
 import { LinkService } from 'src/app/services/link.service';
 import { DBService } from 'src/app/services/db.service';
 import { KeyCard } from '../all-tab/all-tab.component';
+import { Observable } from 'rxjs';
+import { Feedback } from 'src/app/models/feedback';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -38,7 +40,8 @@ export class FeedbackfruitsTabComponent implements OnInit {
   public TotalReviewComments!: Partial<ChartOptions> | any;
   public TimeSpent!: Partial<ChartOptions> | any;
   public AvgGrade!: Partial<ChartOptions> | any;
-
+  slug: string = "";
+  FeedBacks$ !: Observable<Feedback[]>;
   // Declaration of each series within a chart object
   totalComments !: number;
   timeSpent !: number;
@@ -59,7 +62,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
   selectionOptions !: string[];
 
 
-  constructor(private router : Router, private assService : LinkService, private dbService : DBService) {  }
+  constructor(private route: ActivatedRoute, private router : Router, private assService : LinkService, private dbService : DBService) {  }
 
   ngOnInit(): void {
     this.getSelectedAssignment();    // IMPORTANT! DO NOT DELETE!
@@ -68,7 +71,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
     .subscribe((result : Course[]) => {
       this.courseList = result;
     }); */
-
+    
     // TODO: Initialization of series based on DB output
     this.totalComments = 80;
     this.timeSpent = 90;
@@ -439,4 +442,10 @@ export class FeedbackfruitsTabComponent implements OnInit {
       }
     })
   }
+
+  // getFeedBackData(){
+  //   let route$ = this.route.params;
+  //   route$.subscribe((route) => {this.slug = route['slug']});
+  //   this.FeedBacks$ = this.dbService.getFeedBacks(this.slug);
+  // }
 }

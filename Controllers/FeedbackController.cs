@@ -22,24 +22,12 @@ namespace student_monitoring_dashboard.Controllers
         }
         
         [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<Feedback>>> GetFeedback(int yoloyeet)
+        public async Task<ActionResult<List<Feedback>>> GetFeedbacks(int yoloyeet)
         {
-            var a = await _context.Feedback.Where(s => s.AssignmentID == yoloyeet).ToListAsync();
-            if (a == null)
-            {
-                var b = await _context.Feedback.ToListAsync();
-                System.Console.WriteLine("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbbb");
-                return Ok(b);
-            }
-            else
-            {
-                System.Console.WriteLine("a");
-                return Ok(a);
-            }
+            System.Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            var a = await _context.Feedback.Where(s => s.StudentID == yoloyeet).ToListAsync();
+            return Ok(a);
         }
-        /*public IEnumerable<Assignment> GetAssignment()
-        {
-            return _context.Assignment;
-        }*/
+        
     }
 }

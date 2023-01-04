@@ -21,7 +21,27 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
 
-        // [HttpGet]
+        [HttpGet("{yoloyeet}")]
+        public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string yoloyeet)
+        {
+            var a = await _context.CourseClass.Where(s => s.BelongsTo == yoloyeet).ToListAsync();
+            if (a == null)
+            {
+                var b = await _context.CourseClass.ToListAsync();
+                System.Console.WriteLine("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbbb");
+                return Ok(b);
+            }
+            else
+            {
+                return Ok(a);
+            }
+        }
+
+    }
+}
+
+
+ // [HttpGet]
         // public async Task<ActionResult<IEnumerable<Course>>> GetCourseClasses()
         // {
         //     return Ok(await _context.CourseClass.ToListAsync());
@@ -64,22 +84,3 @@ namespace student_monitoring_dashboard.Controllers
         //     var a = await _context.CourseClass.Where(s => s.BelongsTo == CourseIDee).ToListAsync();
         //     return Ok(a);
         // }
-
-        [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string yoloyeet)
-        {
-            var a = await _context.CourseClass.Where(s => s.BelongsTo == yoloyeet).ToListAsync();
-            if (a == null)
-            {
-                var b = await _context.CourseClass.ToListAsync();
-                System.Console.WriteLine("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbbb");
-                return Ok(b);
-            }
-            else
-            {
-                return Ok(a);
-            }
-        }
-
-    }
-}

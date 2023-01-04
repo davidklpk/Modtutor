@@ -20,20 +20,11 @@ namespace student_monitoring_dashboard.Controllers
         {
             _context = context;
         }
-        
-        // public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
-        // {
-        //     return Ok(await _context.Courses.ToListAsync());
-
-        // }
-        [HttpGet]
-        /*public IEnumerable<MediaSite> GetMediaSite()
+        [HttpGet("{yoloyeet}")]
+        public async Task<ActionResult<List<MediaSite>>> GetMediaSite(int yoloyeet)
         {
-            return _context.MediaSite;
-        }*/
-        public async Task<ActionResult<List<MediaSite>>> GetMediaSite()
-        {
-            return Ok(await _context.MediaSite.ToListAsync());
+            var a = await _context.MediaSite.Where(s => s.StudentID == yoloyeet).ToListAsync();
+            return Ok(a);
         }
     }
 }

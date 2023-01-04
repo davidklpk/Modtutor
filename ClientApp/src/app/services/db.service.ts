@@ -11,6 +11,7 @@ import { Student } from '../models/student';
 import { Teacher } from '../models/teacher';
 import { Component, Input, OnInit } from '@angular/core';
 import { Feedback } from '../models/feedback';
+import { StudentClass } from '../models/studentClass';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,14 @@ export class DBService {;
   //Riciano's Stuff:
     //these are the urls for the different data classes:
   private urlAssignments = "Assignments";
-  private urlSpecificAssignment = "Assignments/GetSpecificAssignment";
-  //private urlGetCourseClassesInCourse = "CourseClasses";
   private urlCourses = "Courses";
   private urlCourseClasses = "CourseClasses";
   private urlCriterias = "Criterias";
   private urlMediaSites = "MediaSites";
   private urlStudents = "Students";
   private urlTeachers = "Teachers";
-  private urlFeedBack = "Feedbacks";
+  private urlFeedBacks = "Feedbacks";
+  private urlStudentClass = "StudentClasses";
   
   public urlparameter = "";
 
@@ -51,10 +51,6 @@ export class DBService {;
     return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${yeet}`);
   }
 
-  // public getCourseClasses2() : Observable<CourseClass[]>{
-  //   return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlGetCourseClassesInCourse}/${this.urlparameter}`);
-  // }
-
   public getCourseClasses(yeet: string) : Observable<CourseClass[]>{
     return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${yeet}`);
   }
@@ -63,16 +59,20 @@ export class DBService {;
     return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}`);
   }
 
-  public getMediaSites() : Observable<Mediasite[]>{
-    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}`);
+  public getMediaSites(yeet : number) : Observable<Mediasite[]>{
+    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}/${yeet}`);
   }
 
-  public getFeedBacks(yeet : string) : Observable<Feedback[]>{
-    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBack}/${yeet}`)
+  public getFeedBacks(yeet : number) : Observable<Feedback[]>{
+    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBacks}/${yeet}`)
   }
 
-  public getStudents() : Observable<Student[]>{
-    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}`);
+  public getStudents(yeet : number) : Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}/${yeet}`);
+  }
+
+  public getStudentClasses(yeet : string) : Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudentClass}/${yeet}`);
   }
 
   public getTeachers() : Observable<Teacher[]>{
