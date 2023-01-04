@@ -25,6 +25,8 @@ export class ProfileComponent implements OnInit {
   studentList : Student[] = [];
   students$ !: Observable<Student[]>;
   MediaSites$ !: Observable<Mediasite[]>;
+  Feedback !: Feedback[];
+  mediaSite !: Mediasite[];
 
   constructor(private route: ActivatedRoute, private assService : LinkService, private dbService : DBService) { 
     setGlobalCurrentPage(STUDENT_PROFILE + this.studentName);
@@ -77,14 +79,26 @@ export class ProfileComponent implements OnInit {
 
   fetchFeedBackFruitsData() {
     let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
-    this.FeedBacks$ = this.dbService.getFeedBacks(this.slug);
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getFeedBacks(this.slug)
+    .subscribe((result : Feedback[]) => {
+      this.Feedback = result;
+      console.log(this.Feedback);
+    });
   }
 
   fetchMediaSiteData(){
     let route$ = this.route.params;
     route$.subscribe((route) => {this.slug = route['slug']});
-    this.MediaSites$ = this.dbService.getMediaSites(this.slug);
+
+    this.dbService.getMediaSites(this.slug)    
+    .subscribe((result : Mediasite[]) => {
+      this.mediaSite = result;
+      console.log("Mediasite Data:" ,this.mediaSite);
+    });
   }
 
 

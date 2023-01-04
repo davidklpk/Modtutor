@@ -58,7 +58,7 @@ export class AssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoute();
-    this.fetchFeedbackFruitsData();
+    //this.fetchFeedbackFruitsData();
 
     // Total Review Comments
     this.chartOptions = {
