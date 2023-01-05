@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {  ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
+import { Week } from 'src/app/models/week';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -21,13 +22,16 @@ export type ChartOptions = {
 })
 
 export class AttendanceComponent implements OnInit {
+  @Input() attendanceList !: Week[];
 
   @ViewChild("chart") chart !: ChartComponent;
   public Attendance!: Partial<ChartOptions> | any;
 
-  constructor() { 
+  constructor() { }
+
+  ngOnInit(): void {
     this.Attendance = {
-      series :[80],
+      series :[0],
       chart: {
         height: 200,
         type: "radialBar",
@@ -52,7 +56,14 @@ export class AttendanceComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
+  /**
+   * Calculates the percentual data-series for the charts.
+   * 
+   * @param base the max value (e.g. 10) 
+   * @param percentage the actual value (e.g. 5)
+   * @returns Percentage of 100% (e.g. 50%)
+   */
+  calculatePercentage(base : number, percentage : number) {
+    return (percentage*100)/base;
   }
-
 }

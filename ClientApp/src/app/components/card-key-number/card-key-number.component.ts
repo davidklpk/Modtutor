@@ -13,6 +13,7 @@ export class CardKeyNumberComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

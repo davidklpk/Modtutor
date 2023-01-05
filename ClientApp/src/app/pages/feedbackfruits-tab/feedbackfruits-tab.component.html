@@ -8,7 +8,7 @@
     <div class="flex flex-row w-full items-center justify-end">
       <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
         <mat-label>Select an assignment</mat-label>
-        <mat-select [(value)]="selectedAssignment">
+        <mat-select [disabled]="true" [(value)]="selectedAssignment">
           <mat-option value="option1">Assignment 1</mat-option>
           <mat-option value="option2">Assignment 2</mat-option>
           <mat-option value="option3">Assignment 3</mat-option>
@@ -19,165 +19,119 @@
     
   <mat-divider class="my-5 mb-10"></mat-divider>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-2">
-    <!--<mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-        <apx-chart
-          [series]="TotalReviewComments.series"
-          [labels]="TotalReviewComments.labels"
-          [chart]="TotalReviewComments.chart"
-          [responsive]="TotalReviewComments.responsive"
-          [fill]="TotalReviewComments.fill"
-          [legend]= "TotalReviewComments.legend"
-        ></apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Reviewed Comments</h3>
-      </div>
-    </mat-card>-->
-
-    <app-card-key-number [keyCard]="keyCardComments" ></app-card-key-number>
-
-    <!--
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-        <apx-chart
-          [series]="TimeSpent.series"
-          [chart]="TimeSpent.chart"
-          [labels]="TimeSpent.labels"
-          [responsive]="TimeSpent.responsive"
-          [fill]="TimeSpent.fill"
-          [legend]= "TimeSpent.legend"
-        ></apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Time spent</h3>
-      </div>
-    </mat-card>-->
-
-    <app-card-key-number [keyCard]="keyCardTime" ></app-card-key-number>
-
-    <!--
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-        <apx-chart
-          [series]="AvgGrade.series"
-          [chart]="AvgGrade.chart"
-          [responsive]="AvgGrade.responsive"
-          [fill]="AvgGrade.fill"
-          [labels]="AvgGrade.labels"
-          [legend]= "AvgGrade.legend"
-        ></apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Average grade</h3>
-      </div>
-    </mat-card>-->
-    
-    <app-card-key-number [keyCard]="keyCardGrade" ></app-card-key-number>
-
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-        <apx-chart
-          [series]="TypeFeedback.series"
-          [chart]="TypeFeedback.chart"
-          [labels]="TypeFeedback.labels"
-          [responsive]="TypeFeedback.responsive"
-          [fill]="TypeFeedback.fill"
-          [legend]= "TypeFeedback.legend"
-        ></apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Type of feedback</h3>
-      </div>
-    </mat-card>
-
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
-        <apx-chart class="-mb-8"
-          [series]="ReadInstructions.series"
-          [chart]="ReadInstructions.chart"
-          [labels]="ReadInstructions.labels"
-          [grid]="ReadInstructions.grid"
-          [legend]= "ReadInstructions.legend"
-          [plotOptions]="ReadInstructions.plotOptions"
-          [responsive]="ReadInstructions.responsive"
-          [fill]="ReadInstructions.fill">
-        </apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Read instructions</h3>
-      </div>
-    </mat-card>
-
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
-        <apx-chart class="-mb-8"
-          [series]="HandedIn.series"
-          [chart]="HandedIn.chart"
-          [labels]="HandedIn.labels"
-          [grid]="HandedIn.grid"
-          [legend]= "HandedIn.legend"
-          [plotOptions]="HandedIn.plotOptions"
-          [responsive]="HandedIn.responsive"
-          [fill]="HandedIn.fill">
-        </apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Handed in</h3>
-      </div>
-    </mat-card>
-
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
-        <apx-chart class="-mb-8"
-          [series]="FinishedFeedback.series"
-          [chart]="FinishedFeedback.chart"
-          [labels]="FinishedFeedback.labels"
-          [grid]="FinishedFeedback.grid"
-          [plotOptions]="FinishedFeedback.plotOptions"
-          [responsive]="FinishedFeedback.responsive"
-          [fill]="FinishedFeedback.fill"
-          [legend]= "FinishedFeedback.legend"
-        ></apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Finished feedback</h3>
-      </div>
-    </mat-card>
-
-    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
-        <apx-chart class="-mb-8"
-          [series]="ReadFeedback.series"
-          [chart]="ReadFeedback.chart"
-          [labels]="ReadFeedback.labels"
-          [grid]="ReadFeedback.grid"
-          [plotOptions]="ReadFeedback.plotOptions"
-          [responsive]="ReadFeedback.responsive"
-          [fill]="ReadFeedback.fill"
-          [legend]= "ReadFeedback.legend"
-        ></apx-chart>
-      </div>
-      <div class="px-5">
-        <h3 class="font-medium text-black/60 leading-none text-center">Read feedback</h3>
-      </div>
-    </mat-card>
-  </div>
-
-  <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 mt-10 w-full rounded-[12px] shadow-none outline outline-1 outline-gray-300 mb-5">
-    <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 md:px-10 md:py-5 w-full h-full">
-    <apx-chart class="w-full"
-      [series]="Grades.series!"
-      [chart]="Grades.chart!"
-      [dataLabels]="Grades.dataLabels!"
-      [plotOptions]="Grades.plotOptions!"
-      [xaxis]="Grades.xaxis!"
-      [fill]="Grades.fill">
-    </apx-chart>
+  <ng-container *ngIf="feedBackList.length != 0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-2">
+      <app-card-key-number [keyCard]="keyCardComments" ></app-card-key-number>
+      <app-card-key-number [keyCard]="keyCardTime" ></app-card-key-number>
+      <app-card-key-number [keyCard]="keyCardGrade" ></app-card-key-number>
+  
+      <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+        <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
+          <apx-chart
+            [series]="TypeFeedback.series"
+            [chart]="TypeFeedback.chart"
+            [labels]="TypeFeedback.labels"
+            [responsive]="TypeFeedback.responsive"
+            [fill]="TypeFeedback.fill"
+            [legend]= "TypeFeedback.legend"
+          ></apx-chart>
+        </div>
+        <div class="px-5">
+          <h3 class="font-medium text-black/60 leading-none text-center">Type of feedback</h3>
+        </div>
+      </mat-card>
+  
+      <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+        <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
+          <apx-chart class="-mb-8"
+            [series]="ReadInstructions.series"
+            [chart]="ReadInstructions.chart"
+            [labels]="ReadInstructions.labels"
+            [grid]="ReadInstructions.grid"
+            [legend]= "ReadInstructions.legend"
+            [plotOptions]="ReadInstructions.plotOptions"
+            [responsive]="ReadInstructions.responsive"
+            [fill]="ReadInstructions.fill">
+          </apx-chart>
+        </div>
+        <div class="px-5">
+          <h3 class="font-medium text-black/60 leading-none text-center">Read instructions</h3>
+        </div>
+      </mat-card>
+  
+      <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+        <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
+          <apx-chart class="-mb-8"
+            [series]="HandedIn.series"
+            [chart]="HandedIn.chart"
+            [labels]="HandedIn.labels"
+            [grid]="HandedIn.grid"
+            [legend]= "HandedIn.legend"
+            [plotOptions]="HandedIn.plotOptions"
+            [responsive]="HandedIn.responsive"
+            [fill]="HandedIn.fill">
+          </apx-chart>
+        </div>
+        <div class="px-5">
+          <h3 class="font-medium text-black/60 leading-none text-center">Handed in</h3>
+        </div>
+      </mat-card>
+  
+      <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+        <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
+          <apx-chart class="-mb-8"
+            [series]="FinishedFeedback.series"
+            [chart]="FinishedFeedback.chart"
+            [labels]="FinishedFeedback.labels"
+            [grid]="FinishedFeedback.grid"
+            [plotOptions]="FinishedFeedback.plotOptions"
+            [responsive]="FinishedFeedback.responsive"
+            [fill]="FinishedFeedback.fill"
+            [legend]= "FinishedFeedback.legend"
+          ></apx-chart>
+        </div>
+        <div class="px-5">
+          <h3 class="font-medium text-black/60 leading-none text-center">Finished feedback</h3>
+        </div>
+      </mat-card>
+  
+      <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
+        <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 py-5 w-full h-full">
+          <apx-chart class="-mb-8"
+            [series]="ReadFeedback.series"
+            [chart]="ReadFeedback.chart"
+            [labels]="ReadFeedback.labels"
+            [grid]="ReadFeedback.grid"
+            [plotOptions]="ReadFeedback.plotOptions"
+            [responsive]="ReadFeedback.responsive"
+            [fill]="ReadFeedback.fill"
+            [legend]= "ReadFeedback.legend"
+          ></apx-chart>
+        </div>
+        <div class="px-5">
+          <h3 class="font-medium text-black/60 leading-none text-center">Read feedback</h3>
+        </div>
+      </mat-card>
     </div>
-    <div class="px-5">
-      <h3 class="font-medium text-black/60 leading-none text-center">Grades per criteria</h3>
-    </div>
-  </mat-card>
+
+    <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 mt-10 w-full rounded-[12px] shadow-none outline outline-1 outline-gray-300 mb-5">
+      <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 md:px-10 md:py-5 w-full h-full">
+      <apx-chart class="w-full"
+        [series]="Grades.series!"
+        [chart]="Grades.chart!"
+        [dataLabels]="Grades.dataLabels!"
+        [plotOptions]="Grades.plotOptions!"
+        [xaxis]="Grades.xaxis!"
+        [fill]="Grades.fill">
+      </apx-chart>
+      </div>
+      <div class="px-5">
+        <h3 class="font-medium text-black/60 leading-none text-center">Grades per criteria</h3>
+      </div>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="feedBackList.length === 0">
+    <app-error-message></app-error-message>
+  </ng-container>
 </div>

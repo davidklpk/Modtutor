@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Assignment } from 'src/app/interfaces/assignment';
 import { DBService } from 'src/app/services/db.service';
+import { OverviewData } from '../profile/profile.component';
 
 export interface KeyCard {
-  metric : string,
+  metric ?: string | number | undefined,
   label : string
 }
 
@@ -14,6 +15,8 @@ export interface KeyCard {
 })
 
 export class AllTabComponent implements OnInit {
+
+  @Input() overViewData !: OverviewData;
 
   assignmentList : Assignment[] = [
     { name: "Research Report", grade:7, week: 1 },
@@ -29,13 +32,14 @@ export class AllTabComponent implements OnInit {
   keyCardTime !: KeyCard;
   keyCardAttendance !: KeyCard;
 
-  constructor(private dbService : DBService) { }
+  constructor() { }
 
   ngOnInit(): void {
+    console.log("ovefvewi", this.overViewData);
 
     // Initialize the keyCards from DB here:
-    this.keyCardGrade  = { metric : "6.1", label : "Average Grade" }
-    this.keyCardTime = { metric : "122", label : "Time spent" }
-    this.keyCardAttendance  = { metric : "80%",  label : "Attendance" }
+    this.keyCardGrade  = { metric : this.overViewData.averageGrade, label : "Average Grade" }
+    this.keyCardTime = { metric : this.overViewData.averageTime, label : "Time spent" }
+    this.keyCardAttendance  = { metric : this.overViewData.averagePresence+"%",  label : "Attendance" }
   }
 }

@@ -51,16 +51,16 @@
         <div class="flex flex-col gap-2 w-full">
             <mat-tab-group [(selectedIndex)]="selectedTab" mat-stretch-tabs="false" mat-align-tabs="center" class="bg-white rounded-[12px] outline outline-gray-300 outline-[1px]">
                 <mat-tab label="Overview">
-                    <app-all-tab></app-all-tab>
+                    <app-all-tab [overViewData]="overViewData"></app-all-tab>
                 </mat-tab>
                 <mat-tab label="Feedback Fruits">
-                    <app-feedbackfruits-tab></app-feedbackfruits-tab>
+                    <app-feedbackfruits-tab [feedBackList]="feedback"></app-feedbackfruits-tab>
                 </mat-tab>
                 <mat-tab label="Media Site">
-                    <app-mediasite-tab></app-mediasite-tab>
+                    <app-mediasite-tab [mediaSiteList]="mediaSite"></app-mediasite-tab>
                 </mat-tab>
                 <mat-tab label="Attendance">
-                    <app-attendance></app-attendance>
+                    <app-attendance [attendanceList]="week"></app-attendance>
                 </mat-tab>
                 <mat-tab label="Stepik">
                     <app-stepik-tab></app-stepik-tab>

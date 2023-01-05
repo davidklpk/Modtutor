@@ -11,6 +11,12 @@ import { Criteria } from 'src/app/models/criteria';
 import { Attendance } from 'src/app/models/attendance';
 import { Week } from 'src/app/models/week';
 
+export interface OverviewData {
+  averageGrade : number;
+  averageTime : number;
+  averagePresence : number;
+}
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -28,7 +34,10 @@ export class ProfileComponent implements OnInit {
   studentList : Student[] = [];
   students$ !: Observable<Student[]>;
   MediaSites$ !: Observable<Mediasite[]>;
-  Feedback !: Feedback[];
+
+  overViewData !: OverviewData;
+
+  feedback !: Feedback[];
   Criteria !: Criteria[];
   mediaSite !: Mediasite[];
   attendance !: Attendance[];
@@ -39,8 +48,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Both Observables we need in this component
-    this.getRoute();
     this.fetchStudents();
     this.fetchCriteria();
     this.fetchFeedBackFruitsData();
@@ -49,6 +56,7 @@ export class ProfileComponent implements OnInit {
     this.fetchWeek();
     // This outputs both observables parallel
     this.fetchStudentList();
+    this.createOverviewObject();
 
     // Gets the selected assignment in order to switch tab
     this.assService.assignmentEventListner().subscribe(assignmentName =>{
@@ -61,7 +69,8 @@ export class ProfileComponent implements OnInit {
   getRoute() {
     // gets the current course by getting the slug (.../course/slugOfCourse)
     let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
+    return route$.subscribe((route) => {this.slug = route['slug']});
+
   }
 
   fetchStudents(){
@@ -119,6 +128,7 @@ export class ProfileComponent implements OnInit {
     this.dbService.getWeeks(this.slug)
     .subscribe((result : Week[]) => {
       this.week = result;
+      this.createOverviewObject();
     });
   }
 
@@ -130,8 +140,7 @@ export class ProfileComponent implements OnInit {
 
     this.dbService.getFeedBacks(this.slug)
     .subscribe((result : Feedback[]) => {
-      this.Feedback = result;
-      console.log(this.Feedback);
+      this.feedback = result;
     });
   }
 
@@ -142,24 +151,43 @@ export class ProfileComponent implements OnInit {
     this.dbService.getMediaSites(this.slug)    
     .subscribe((result : Mediasite[]) => {
       this.mediaSite = result;
-      console.log("Mediasite Data:" ,this.mediaSite);
     });
   }
 
 
+  createOverviewObject() {
+    this.overViewData  = {
+      averageGrade : 10,
+      averageTime : 122,
+      averagePresence : 10
+    }
+    console.log(this.overViewData);
+  }
+
+  calculatePresence() : number {
+    let actualPresence !: number;
+    let maxPresence !: number;
+
+    this.week.forEach(element => {
+      actualPresence+= element.weekPresence;
+      maxPresence+= element.weekPossiblePresence;
+    });
+
+    console.log("math", actualPresence, maxPresence);
+
+    return (actualPresence*100)/maxPresence;
+  }
 
   /**
- * Creates the acronym for the teachers name by splitting the string on whitespaces 
- * and grabing the first letter of each word.
- */
+  * Creates the acronym for the teachers name by splitting the string on whitespaces 
+  * and grabing the first letter of each word.
+  */
   setAcronym() {
     return this.studentAcronym = this.student.fullName.split(/\s/).reduce((accumulator, word) => accumulator + word.charAt(0), '');
   }
 
   /**
    * Searches a student based on its ID and reassigns a variable
-   * 
-   * TODO: seems like a job for the service class as callback function
    * 
    * @param id the studentID provided in the slug
    */

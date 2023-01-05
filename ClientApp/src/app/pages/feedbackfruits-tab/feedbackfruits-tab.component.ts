@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
-import { ActivatedRoute, Router } from '@angular/router';
-import { axisLeft, axisRight, color, text } from 'd3';
+import { Router } from '@angular/router';
 import { LinkService } from 'src/app/services/link.service';
 import { DBService } from 'src/app/services/db.service';
 import { KeyCard } from '../all-tab/all-tab.component';
-import { Observable } from 'rxjs';
 import { Feedback } from 'src/app/models/feedback';
+import { thresholdSturges } from 'd3';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -28,7 +27,7 @@ export type ChartOptions = {
 })
 
 export class FeedbackfruitsTabComponent implements OnInit {
-  //@ViewChild("chart") chart !: ChartComponent;
+  @Input() feedBackList !: Feedback[];
 
   // Declaration of each chart object
   public Grades!: Partial<ChartOptions> | any;
@@ -40,121 +39,55 @@ export class FeedbackfruitsTabComponent implements OnInit {
   public TotalReviewComments!: Partial<ChartOptions> | any;
   public TimeSpent!: Partial<ChartOptions> | any;
   public AvgGrade!: Partial<ChartOptions> | any;
+
   slug: string = "";
-  FeedBacks$ !: Observable<Feedback[]>;
+
   // Declaration of each series within a chart object
-  totalComments !: number;
-  timeSpent !: number;
-  averageGrade !: number;
   typeOfFeedback !: number[];
   readInstructions !: number[];
   handedIn !: number;
   finishedFeedback !: number;
   readFeedback !: number;
 
-  // keyCard objects
-  keyCardGrade : KeyCard = { metric: "10", label: "Average Grade" }
-  keyCardTime : KeyCard = { metric: "122", label: "Time spent" }
-  keyCardComments : KeyCard = { metric: "21", label: "Comments" }
+  // Declaration for Keycard objects
+  totalReviewComments : number = 0;
+  totalTimeSpent : number = 0;
+  avgGrade : number = 0;
 
-  // Other important vars
+  totalGivenFeedback : number = 0;
+  totalTakenFeedback : number = 0;
+
+  totalFeedback : number[] = [0,0];           // [given, taken]
+  totalReadInstructions : number[] = [0,0];   // [yes, no]
+  totalHandedIn : number[] = [0,0];           // [yes, no]
+  totalFinishedFeedback : number[] = [0,0];   // [yes, no]
+  totalReadFeedback : number[] = [0,0];       // [yes, no]
+
+  // Keycard objects
+  keyCardGrade !: KeyCard;
+  keyCardTime !: KeyCard;
+  keyCardComments !: KeyCard;
+
+  // vars for the dropdown
   selectedAssignment = "option1";
-  selectionOptions !: string[];
 
-
-  constructor(private route: ActivatedRoute, private router : Router, private assService : LinkService, private dbService : DBService) {  }
+  constructor(private router : Router, private assService : LinkService, private dbService : DBService) {  }
 
   ngOnInit(): void {
     this.getSelectedAssignment();    // IMPORTANT! DO NOT DELETE!
-    /*this.dbService
-    .getAssignments()
-    .subscribe((result : Course[]) => {
-      this.courseList = result;
-    }); */
-    
-    // TODO: Initialization of series based on DB output
-    this.totalComments = 80;
-    this.timeSpent = 90;
-    this.averageGrade = 60;
-    this.typeOfFeedback = [30, 70];
+    this.extractFeedback();
 
-    // First (Reviewed Comments)
-    this.TotalReviewComments = {
-      series :[this.totalComments],
-      chart: {
-        height: 200,
-        type: "radialBar",
-      },
-      fill:
-        {colors: ['#ffba00']
-      },
-      dataLabels: {
-        name: {
-          show: false
-        }
-      },
-      labels: ['Total Comments'],
-      legend: {
-        show: false
-      },
-    };
+    // keyCard objects
+    this.keyCardGrade  = { metric: 10, label: "Average Grade" }
+    this.keyCardTime = { metric: this.totalTimeSpent, label: "Time spent" }
+    this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
 
-    // Second (Time spent)
-    this.TimeSpent = {
-      series :[this.timeSpent],
-      chart: {
-        type: "pie",
-      },
-      legend: {
-        show: false
-      },
-      fill:
-        {colors: ['#ca433c']
-      },
-      title: {
-        text: "Time Spent",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-    };
+    console.log(this.feedBackList)
 
-    // Third (Average Grade)
-    this.AvgGrade = {
-      series :[this.averageGrade],
-      chart: {
-        height: 200,
-        type: "radialBar",
-      },
-      dataLabels: {
-        name: {
-          show: false
-        }
-      },
-      labels: ['Grade'],
-      legend: {
-        show: false
-      },
-      fill:
-        {colors: ['#00b2cd']
-      },
-      title: {
-        text: "Average Grade",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-    };
 
     // Fourth (Type of Feedback)
     this.TypeFeedback = {
-      series : this.typeOfFeedback,
+      series : this.totalFeedback,
       chart: {
         type: "pie",
       },
@@ -178,12 +111,12 @@ export class FeedbackfruitsTabComponent implements OnInit {
           color:  '#263238'
         }
       },
-      labels: ["Suggestions", "Compliments"],
+      labels: ["Given", "Taken"],
     };  
 
     // Second row (Read Instructions)
     this.ReadInstructions = {
-      series: [1,0],
+      series: this.totalReadInstructions,
       chart: {
         type: "donut"
       },
@@ -210,7 +143,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#00b2cd', '#ca433c']
+        {colors: ['#ca433c', '#ffba00']
       },
       title: {
         text: "Read Instructions",
@@ -225,7 +158,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
 
     // Second row (Handed In)
     this.HandedIn = {
-      series: [1, 0],
+      series: this.totalHandedIn,
       chart: {
         type: "donut"
       },
@@ -252,7 +185,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#00b2cd', '#ca433c']
+        {colors: ['#ca433c', '#ffba00']
       },
       title: {
         text: "Handed in",
@@ -267,7 +200,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
 
     // Third row (Finished Feedback)
     this.FinishedFeedback = {
-      series: [0, 1],
+      series: this.totalFinishedFeedback,
       chart: {
         type: "donut"
       },
@@ -294,7 +227,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#ca433c', '#00b2cd']
+        {colors: ['#ca433c', '#ffba00']
       },
       title: {
         text: "Finished Feedback",
@@ -322,7 +255,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
 
     // Fourth row (Read Feedback)
     this.ReadFeedback = {
-      series: [0,1],
+      series: this.totalReadFeedback,
       chart: {
         type: "donut"
       },
@@ -349,7 +282,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       },
       fill:
-        {colors: ['#ca433c', '#00b2cd']
+        {colors: ['#ca433c', '#ffba00']
       },
       title: {
         text: "Read Feedback",
@@ -426,7 +359,28 @@ export class FeedbackfruitsTabComponent implements OnInit {
     };
   }
   
-  
+  extractFeedback() {
+    this.feedBackList.forEach(feedback => {
+      this.totalReviewComments += feedback.totalReviewComments;
+      this.totalTimeSpent += feedback.timeSpent;
+
+      // Filters TypeOfFeedback
+      feedback.typeOfFeedback === "Given" ? this.totalFeedback[0]++ : this.totalFeedback[1]++;
+
+      // Filters instructions
+      feedback.readInstructions === "Yes" ? this.totalReadInstructions[0]++ : this.totalReadInstructions[1]++;
+
+      // Filters handedIn
+      feedback.handedIn === "Yes" ? this.totalHandedIn[0]++ : this.totalHandedIn[1]++;
+
+      // Filters finishedFeedback
+      feedback.finishedFeedback === "Yes" ? this.totalFinishedFeedback[0]++ : this.totalFinishedFeedback[1]++;
+
+      // Filters finishedFeedback
+      feedback.readFeedback === "Yes" ? this.totalReadFeedback[0]++ : this.totalReadFeedback[1]++;
+    });
+  }
+
   navigate(student : string){
     this.router.navigate(['/profile', student]); 
   }
@@ -442,10 +396,4 @@ export class FeedbackfruitsTabComponent implements OnInit {
       }
     })
   }
-
-  // getFeedBackData(){
-  //   let route$ = this.route.params;
-  //   route$.subscribe((route) => {this.slug = route['slug']});
-  //   this.FeedBacks$ = this.dbService.getFeedBacks(this.slug);
-  // }
 }

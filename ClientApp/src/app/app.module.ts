@@ -28,6 +28,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AttendanceComponent } from './pages/attendance/attendance.component';
 import { CardKeyNumberComponent } from './components/card-key-number/card-key-number.component';
 import { StepikTabComponent } from './stepik-tab/stepik-tab.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { StepikTabComponent } from './stepik-tab/stepik-tab.component';
     FooterComponent,
     AttendanceComponent,
     CardKeyNumberComponent,
-    StepikTabComponent
+    StepikTabComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
