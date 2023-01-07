@@ -162,18 +162,9 @@ export class AssignmentComponent implements OnInit {
     this.dbService.getAssignmentsFeedBack(this.slug)
     .subscribe((result : Feedback[]) => {
       this.fbflist = result;
+      this.getChartSeries(this.fbflist);
     });
   }
-
-  /*fetchFeedbackFruitsData(){
-    this.getRoute();
-    this.dbService
-    .getFeedBacks(this.slug)
-    .subscribe((result : Feedback[]) => {
-      this.feedBackList = result;
-      this.getChartSeries(result);
-    }); 
-  }*/
 
   /**
    * Processes all the data received by the backend and
@@ -228,7 +219,6 @@ export class AssignmentComponent implements OnInit {
     }];
 
     this.TypeFeedback.series = this.typeOfFeedbackSeries; 
-    
   }
 
   navigate(student : string){
