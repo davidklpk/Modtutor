@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill, ApexResponsive } from "ng-apexcharts";
+import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { Router } from '@angular/router';
 import { LinkService } from 'src/app/services/link.service';
 import { DBService } from 'src/app/services/db.service';
 import { KeyCard } from '../all-tab/all-tab.component';
 import { Feedback } from 'src/app/models/feedback';
-import { thresholdSturges } from 'd3';
+import { Criteria } from 'src/app/models/criteria';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -14,8 +14,6 @@ export type ChartOptions = {
   plotOptions: ApexPlotOptions;
   xaxis: ApexXAxis;
   fill : ApexFill;
-  responsive : ApexResponsive;
-  title : ApexTitleSubtitle;
   legend : ApexLegend;
   grid : ApexGrid;
 };
@@ -28,6 +26,7 @@ export type ChartOptions = {
 
 export class FeedbackfruitsTabComponent implements OnInit {
   @Input() feedBackList !: Feedback[];
+  @Input() criteriaList !: Criteria[];
 
   // Declaration of each chart object
   public Grades!: Partial<ChartOptions> | any;
@@ -82,34 +81,17 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.keyCardTime = { metric: this.totalTimeSpent, label: "Time spent" }
     this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
 
-    console.log(this.feedBackList)
-
-
     // Fourth (Type of Feedback)
     this.TypeFeedback = {
       series : this.totalFeedback,
       chart: {
         type: "pie",
       },
-      fill:
-        {colors: ['#ca433c', '#ffba00']
+      fill: {
+        colors: ['#ca433c', '#ffba00']
       },
       legend: {
-        show: false,
-        horizontalAlign: 'center',
-        position: 'top',
-        labels: {
-          UseSeriesColors: true
-      }
-    },
-      title: {
-        text: "Type of Feedback",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
+        show: false,  
       },
       labels: ["Given", "Taken"],
     };  
@@ -129,30 +111,14 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       grid: {
         padding: {
-          bottom: -20,
-          axisRight: 20,
-          axisLeft: 20
+          bottom: -20
         }
       },
       legend: {
         show: false,
-        horizontalAlign: 'center',
-        position: 'top',
-        labels: {
-          colors: '#000'
       },
-      },
-      fill:
-        {colors: ['#ca433c', '#ffba00']
-      },
-      title: {
-        text: "Read Instructions",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
+      fill: {
+        colors: ['#ca433c', '#ffba00']
       },
     };
 
@@ -178,23 +144,9 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       legend: {
         show: false,
-        horizontalAlign: 'center',
-        position: 'top',
-        labels: {
-          colors: '#000'
       },
-      },
-      fill:
-        {colors: ['#ca433c', '#ffba00']
-      },
-      title: {
-        text: "Handed in",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
+      fill: {
+        colors: ['#ca433c', '#ffba00']
       },
     };
 
@@ -219,38 +171,11 @@ export class FeedbackfruitsTabComponent implements OnInit {
         }
       },
       legend: {
-        show: false,
-        horizontalAlign: 'center',
-        position: 'top',
-        labels: {
-          colors: '#000'
-      },
+        show: false
       },
       fill:
         {colors: ['#ca433c', '#ffba00']
       },
-      title: {
-        text: "Finished Feedback",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 380,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom',
-            }
-          }
-        }
-      ]
     };
 
     // Fourth row (Read Feedback)
@@ -275,49 +200,21 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       legend: {
         show: false,
-        horizontalAlign: 'center',
-        position: 'top',
-        labels: {
-          UserSeriesColor : true
-      },
       },
       fill:
         {colors: ['#ca433c', '#ffba00']
       },
-      title: {
-        text: "Read Feedback",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-      responsive: [
-        {
-          breakpoint: 380,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom',
-            }
-          }
-        }
-      ]
     };  
 
     // The bottom chart
     this.Grades = {
       series: [
         {
-          name: "Average Grades Given",
+          name: "Grades Given",
           data: [8, 9, 5, 8, 7, 9, 8]
         },
         {
-          name: "Average Grades Received",
-
+          name: "Grades Received",
           data: [7, 8, 9, 10, 9, 9, 8]
         }
       ],
@@ -366,19 +263,19 @@ export class FeedbackfruitsTabComponent implements OnInit {
 
       // Filters TypeOfFeedback
       feedback.typeOfFeedback === "Given" ? this.totalFeedback[0]++ : this.totalFeedback[1]++;
-
       // Filters instructions
       feedback.readInstructions === "Yes" ? this.totalReadInstructions[0]++ : this.totalReadInstructions[1]++;
-
       // Filters handedIn
       feedback.handedIn === "Yes" ? this.totalHandedIn[0]++ : this.totalHandedIn[1]++;
-
       // Filters finishedFeedback
       feedback.finishedFeedback === "Yes" ? this.totalFinishedFeedback[0]++ : this.totalFinishedFeedback[1]++;
-
       // Filters finishedFeedback
       feedback.readFeedback === "Yes" ? this.totalReadFeedback[0]++ : this.totalReadFeedback[1]++;
     });
+  }
+
+  extractCriteria() {
+    
   }
 
   navigate(student : string){

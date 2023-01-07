@@ -158,7 +158,7 @@ export class ProfileComponent implements OnInit {
   createOverviewObject() {
     this.overViewData  = {
       averageGrade : 10,
-      averageTime : 122,
+      averageTime : 12,
       averagePresence : 10
     }
     console.log(this.overViewData);

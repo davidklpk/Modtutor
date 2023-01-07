@@ -35,7 +35,7 @@ export class AllTabComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("ovefvewi", this.overViewData);
+    console.log("overview", this.overViewData);
 
     // Initialize the keyCards from DB here:
     this.keyCardGrade  = { metric : this.overViewData.averageGrade, label : "Average Grade" }
