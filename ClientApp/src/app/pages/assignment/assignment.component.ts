@@ -43,9 +43,10 @@ export class AssignmentComponent implements OnInit {
   displayedColumns: string[] = ['name', 'id', 'status'];
   dataSource = new MatTableDataSource<Student>(this.studentList);
   assignmentName : string = "name"
-  slug : string = "";
+  slug !: number;
   FeedBacks$ !: Observable<Feedback[]>;
   feedBackList : Feedback[] = [];
+  fbflist !: Feedback[];
 
   dataSeries !: number[];
   typeOfFeedbackSeries : number[] = [50,50];
@@ -58,6 +59,7 @@ export class AssignmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoute();
+    this.getFeedBacksFromAssignment();
     //this.fetchFeedbackFruitsData();
 
     // Total Review Comments
@@ -149,6 +151,18 @@ export class AssignmentComponent implements OnInit {
     // gets the current course by getting the slug (.../course/slugOfCourse)
     let route$ = this.route.params;
     route$.subscribe((route) => {this.slug = route['slug']});
+  }
+  
+  getFeedBacksFromAssignment(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getAssignmentsFeedBack(this.slug)
+    .subscribe((result : Feedback[]) => {
+      this.fbflist = result;
+    });
   }
 
   /*fetchFeedbackFruitsData(){
