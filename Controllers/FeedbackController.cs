@@ -24,7 +24,7 @@ namespace student_monitoring_dashboard.Controllers
         [HttpGet("{yoloyeet}")]
         public async Task<ActionResult<List<Feedback>>> GetFeedbacks(int yoloyeet)
         {
-            System.Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            //System.Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             var a = await _context.Feedback.Where(s => s.StudentID == yoloyeet).ToListAsync();
             return Ok(a);
         }

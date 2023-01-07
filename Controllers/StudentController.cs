@@ -30,7 +30,7 @@ namespace student_monitoring_dashboard.Controllers
         [HttpGet("{yoloyeet}")]
         public async Task<ActionResult<List<Student>>> GetStudents(int yoloyeet)
         {
-            System.Console.WriteLine("aaaaa");
+            //System.Console.WriteLine("aaaaa");
            var a = await _context.Student.Where(s => s.StudentID == yoloyeet).ToListAsync();
            return Ok(a);
         }
