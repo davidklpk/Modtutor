@@ -56,11 +56,18 @@ export class FeedbackfruitsTabComponent implements OnInit {
   totalGivenFeedback : number = 0;
   totalTakenFeedback : number = 0;
 
+  // For extracting the in-depth feedback data
   totalFeedback : number[] = [0,0];           // [given, taken]
   totalReadInstructions : number[] = [0,0];   // [yes, no]
   totalHandedIn : number[] = [0,0];           // [yes, no]
   totalFinishedFeedback : number[] = [0,0];   // [yes, no]
   totalReadFeedback : number[] = [0,0];       // [yes, no]
+
+  // For extracting the in-depth criteria data
+  feedbackCategories : string[] = [];
+  gradesGiven : number[] = [];
+  gradesReceived : number[] = [];
+  feedbackComments : string[] = [];
 
   // Keycard objects
   keyCardGrade !: KeyCard;
@@ -70,16 +77,11 @@ export class FeedbackfruitsTabComponent implements OnInit {
   // vars for the dropdown
   selectedAssignment = "option1";
 
-  constructor(private router : Router, private assService : LinkService, private dbService : DBService) {  }
+  constructor(private router : Router, private assService : LinkService) {  }
 
   ngOnInit(): void {
     this.getSelectedAssignment();    // IMPORTANT! DO NOT DELETE!
     this.extractFeedback();
-
-    // keyCard objects
-    this.keyCardGrade  = { metric: 10, label: "Average Grade" }
-    this.keyCardTime = { metric: this.totalTimeSpent, label: "Time spent" }
-    this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
 
     // Fourth (Type of Feedback)
     this.TypeFeedback = {
@@ -213,14 +215,15 @@ export class FeedbackfruitsTabComponent implements OnInit {
           name: "Grades Given",
           data: [8, 9, 5, 8, 7, 9, 8]
         },
-        {
-          name: "Grades Received",
-          data: [7, 8, 9, 10, 9, 9, 8]
-        }
       ],
       chart: {
         type: "bar",
-        height: "300"
+        height: "300",
+        events: {
+          dataPointSelection: (event: any, chartContext: any, config: any) => {
+            this.getComment(config.dataPointIndex)
+          }
+        },
       },
       plotOptions: {
         bar: {
@@ -252,8 +255,16 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
       xaxis: {
         categories: ["Orientation", "In-text citations", "Quality of the primary Sources", "Reference list", "Use of secondary Sources", "New knowledge", "Search term/keywords"]
-      }
+      },
     };
+
+    this.extractCriteria();
+    this.calculateAverageGrade();
+
+    // keyCard objects
+    this.keyCardGrade  = { metric: this.avgGrade, label: "Average Grade" }
+    this.keyCardTime = { metric: this.totalTimeSpent, label: "Time spent" }
+    this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
   }
   
   extractFeedback() {
@@ -275,7 +286,35 @@ export class FeedbackfruitsTabComponent implements OnInit {
   }
 
   extractCriteria() {
-    
+    this.criteriaList.forEach(criteria => {
+      this.gradesReceived.push(criteria.grade);
+      this.feedbackCategories.push(criteria.criteriaName);
+      this.feedbackComments.push(criteria.comment);
+    });
+
+    this.Grades.series = [{
+      name : "Grades Received",
+      data : this.gradesReceived
+    }];
+
+    this.Grades.xaxis = {
+      categories : this.feedbackCategories
+    };
+  }
+
+  getComment(id : number) {
+    window.alert("Comment for id #" + id + ": " + this.feedbackComments[id]);
+  }
+
+  calculateAverageGrade() {
+    let sum = 0;
+    this.gradesReceived.forEach(grade => {
+      if(grade === null) {
+        grade = 0;
+      }
+      sum += grade;
+    });
+    this.avgGrade = (sum/this.gradesReceived.length)
   }
 
   navigate(student : string){

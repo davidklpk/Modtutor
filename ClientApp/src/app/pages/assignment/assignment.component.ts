@@ -1,10 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
-import { Student } from 'src/app/interfaces/student';
+import { Component, OnInit } from '@angular/core';
+import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ASSIGNMENT, setGlobalCurrentPage } from 'src/app/shared/global-var';
-import { Observable } from 'rxjs';
 import { Feedback } from 'src/app/models/feedback';
 import { DBService } from 'src/app/services/db.service';
 
@@ -28,24 +25,8 @@ export class AssignmentComponent implements OnInit {
   public chartOptions !: Partial<ChartOptions> | any;
   public TypeFeedback !: Partial<ChartOptions> | any;
 
-  studentList : Student[] = [
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 5,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Bob Doe", id: "123456", FFgrade: 7, MSgrade: 7,STgrade:9, AAgrade: 5,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 5, MSgrade: 9,STgrade:5, AAgrade: 5,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 7, MSgrade: 9,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 7, MSgrade: 5,STgrade:5, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 5,STgrade:9, AAgrade: 7,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 5, MSgrade: 7,STgrade:7, AAgrade: 7,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 7,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 5,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-  ]
-
-  displayedColumns: string[] = ['name', 'id', 'status'];
-  dataSource = new MatTableDataSource<Student>(this.studentList);
   assignmentName : string = "name"
   slug !: number;
-  FeedBacks$ !: Observable<Feedback[]>;
-  feedBackList : Feedback[] = [];
   fbflist !: Feedback[];
 
   dataSeries !: number[];
@@ -60,7 +41,6 @@ export class AssignmentComponent implements OnInit {
   ngOnInit(): void {
     this.getRoute();
     this.getFeedBacksFromAssignment();
-    //this.fetchFeedbackFruitsData();
 
     // Total Review Comments
     this.chartOptions = {
@@ -70,15 +50,6 @@ export class AssignmentComponent implements OnInit {
           data: this.dataSeries
         }
       ],
-      title:{
-        text: "Overall Data of the Class",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
       chart: {
         type: "bar",
         height: 200
@@ -121,30 +92,20 @@ export class AssignmentComponent implements OnInit {
           UseSeriesColors: true
       }
     },
-      title: {
-        text: "Type of Feedback",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-      labels: ["Suggestions", "Compliments"],
-      responsive: [
-        {
-          breakpoint: 100,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
+    labels: ["Suggestions", "Compliments"],
+    responsive: [
+      {
+        breakpoint: 100,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
           }
         }
-      ]
-    };
+      }
+    ]};
   }
 
   getRoute() {
