@@ -51,7 +51,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
   // Declaration for Keycard objects
   totalReviewComments : number = 0;
   totalTimeSpent : number = 0;
-  avgGrade : number = 0;
+  avgGrade : string = "0";
 
   totalGivenFeedback : number = 0;
   totalTakenFeedback : number = 0;
@@ -82,6 +82,9 @@ export class FeedbackfruitsTabComponent implements OnInit {
   ngOnInit(): void {
     this.getSelectedAssignment();    // IMPORTANT! DO NOT DELETE!
     this.extractFeedback();
+
+    console.log("fb", this.feedBackList)
+    console.log("crit", this.criteriaList)
 
     // Fourth (Type of Feedback)
     this.TypeFeedback = {
@@ -267,6 +270,10 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
   }
   
+  /**
+   * Loops through the feedback and formats it in a way which is 
+   * accessible for Apex
+   */
   extractFeedback() {
     this.feedBackList.forEach(feedback => {
       this.totalReviewComments += feedback.totalReviewComments;
@@ -285,6 +292,10 @@ export class FeedbackfruitsTabComponent implements OnInit {
     });
   }
 
+  /**
+   * Loops through the criteria and formats it in a way which is 
+   * accessible for Apex.
+   */
   extractCriteria() {
     this.criteriaList.forEach(criteria => {
       this.gradesReceived.push(criteria.grade);
@@ -302,6 +313,13 @@ export class FeedbackfruitsTabComponent implements OnInit {
     };
   }
 
+  /**
+   * Searches for the feedback comment and displays it
+   * via alert
+   //TODO find better solution than alert
+   * 
+   * @param id the n element of the data-series array
+   */
   getComment(id : number) {
     window.alert("Comment for id #" + id + ": " + this.feedbackComments[id]);
   }
@@ -314,7 +332,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       }
       sum += grade;
     });
-    this.avgGrade = (sum/this.gradesReceived.length)
+    this.avgGrade = (sum/this.gradesReceived.length).toFixed(1);
   }
 
   navigate(student : string){
