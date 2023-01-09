@@ -51,7 +51,7 @@
         <div class="flex flex-col gap-2 w-full">
             <mat-tab-group [(selectedIndex)]="selectedTab" mat-stretch-tabs="false" mat-align-tabs="center" class="bg-white rounded-[12px] outline outline-gray-300 outline-[1px]">
                 <mat-tab label="Overview">
-                    <app-all-tab [overViewData]="overViewData"></app-all-tab>
+                    <app-all-tab [overViewData]="overViewData" [studentAssignments]="assignment"></app-all-tab>
                 </mat-tab>
                 <mat-tab label="Feedback Fruits">
                     <app-feedbackfruits-tab [feedBackList]="feedback" [criteriaList]="Criteria"></app-feedbackfruits-tab>

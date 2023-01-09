@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { Router } from '@angular/router';
 import { LinkService } from 'src/app/services/link.service';
-import { DBService } from 'src/app/services/db.service';
 import { KeyCard } from '../all-tab/all-tab.component';
 import { Feedback } from 'src/app/models/feedback';
 import { Criteria } from 'src/app/models/criteria';

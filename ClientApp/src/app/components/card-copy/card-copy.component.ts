@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Assignment } from 'src/app/interfaces/assignment';
+import { Assignments } from 'src/app/models/assignment';
 import { LinkService } from 'src/app/services/link.service';
 
 // Interface for the indicator
@@ -17,7 +18,7 @@ export interface Flag {
 
 export class CardCopyComponent implements OnInit {
   
-  @Input() assignment !: Assignment;
+  @Input() assignment !: Assignments;
   @Output() newItemEvent = new EventEmitter<string>();
 
   constructor(private assService : LinkService) {  }
@@ -40,6 +41,7 @@ export class CardCopyComponent implements OnInit {
    * Therefore, it returns a flag, build with the fitting attributes.
    * TODO: Parameter Student or smth like that 
    */
+  /*
   setFlag() : Flag {
     let generatedFlag : Flag;
 
@@ -67,5 +69,5 @@ export class CardCopyComponent implements OnInit {
       icon: "help_circle",
       title: "unknown"
     }
-  }
+  }*/
 }

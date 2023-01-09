@@ -13,9 +13,9 @@ import { Week } from 'src/app/models/week';
 import { Assignments } from 'src/app/models/assignment';
 
 export interface OverviewData {
-  averageGrade : number;
-  averageTime : number;
-  averagePresence : number;
+  averageGrade : number | string;
+  averageTime : number | string;
+  averagePresence : number | string;
 }
 
 @Component({
@@ -25,7 +25,6 @@ export interface OverviewData {
 })
 
 export class ProfileComponent implements OnInit {
-
   slug !: number;
   studentName : string = "student";
   selectedTab : number = 0;
@@ -34,7 +33,11 @@ export class ProfileComponent implements OnInit {
   studentAcronym : string = ""
   studentList : Student[] = [];
   students$ !: Observable<Student[]>;
-  MediaSites$ !: Observable<Mediasite[]>;
+
+  // All-tab overview data
+  avgAttendance : number = 0;
+  avgGrade : string = "";
+  avgTime : number = 0;
 
   overViewData !: OverviewData;
 
@@ -50,30 +53,37 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchStudents();
-    this.fetchCriteria();
-    this.fetchFeedBackFruitsData();
-    this.fetchMediaSiteData();
-    this.fetchAttendance();
-    this.fetchWeek();
-    // This outputs both observables parallel
-    this.fetchStudentList();
-    this.fetchStudentAssignments();
-    this.createOverviewObject();
+    setTimeout(() => {  
+      this.fetchStudentAssignments();
+      this.fetchStudents();
+    }, 10);
+     
+    setTimeout(() => {  
+      this.fetchCriteria();
+      this.fetchMediaSiteData();
+    }, 20);
 
-    // Gets the selected assignment in order to switch tab
-    this.assService.assignmentEventListner().subscribe(assignmentName =>{
-      if(assignmentName.length !== 0) {
-        this.selectedTab = 1;
-      }
-    })
+    setTimeout(() => {  
+      this.fetchWeek();
+      this.fetchFeedBackFruitsData();
+    }, 30);
+
+    setTimeout(() => {    
+      this.fetchAttendance();
+      this.fetchStudentList();
+      // Gets the selected assignment in order to switch tab
+      this.assService.assignmentEventListner().subscribe(assignmentName =>{
+        if(assignmentName.length !== 0) {
+          this.selectedTab = 1;
+        }
+      })
+    }, 40);
   }
 
   getRoute() {
     // gets the current course by getting the slug (.../course/slugOfCourse)
     let route$ = this.route.params;
     return route$.subscribe((route) => {this.slug = route['slug']});
-
   }
 
   fetchStudents(){
@@ -85,6 +95,7 @@ export class ProfileComponent implements OnInit {
   fetchStudentList(){
     let route$ = this.route.params;
     route$.subscribe((route) => {this.slug = route['slug']});
+
     route$.pipe(
       combineLatestWith(this.students$)
     ). 
@@ -92,10 +103,9 @@ export class ProfileComponent implements OnInit {
       this.slug = route['slug'];
       this.studentList = studentList;
       this.searchStudent(this.slug);
-      this.studentName = this.student.fullName;
+      //this.studentName = this.student.fullName;
       this.setAcronym();
     })
-
   }
 
   fetchCriteria(){
@@ -107,6 +117,7 @@ export class ProfileComponent implements OnInit {
     this.dbService.getCriterias(this.slug)
     .subscribe((result : Criteria[]) => {
       this.Criteria = result;
+      this.calculateAverageGrade();
     });
   }
 
@@ -129,9 +140,9 @@ export class ProfileComponent implements OnInit {
     });
 
     this.dbService.getStudentAssignments(this.slug)
-    .subscribe((result : Assignments[]) => {
-      this.assignment = result;
-    });
+      .subscribe((result: Assignments[]) => {
+        this.assignment = result;
+      });
   }
 
   fetchWeek(){
@@ -143,6 +154,7 @@ export class ProfileComponent implements OnInit {
     this.dbService.getWeeks(this.slug)
     .subscribe((result : Week[]) => {
       this.week = result;
+      this.calculatePresence();
       this.createOverviewObject();
     });
   }
@@ -166,31 +178,58 @@ export class ProfileComponent implements OnInit {
     this.dbService.getMediaSites(this.slug)    
     .subscribe((result : Mediasite[]) => {
       this.mediaSite = result;
+      this.avgTime = this.mediaSite[0].totalViews;
     });
   }
 
-
-  createOverviewObject() {
-    this.overViewData  = {
-      averageGrade : 10,
-      averageTime : 12,
-      averagePresence : 10
-    }
-    console.log(this.overViewData);
-  }
-
-  calculatePresence() : number {
-    let actualPresence !: number;
-    let maxPresence !: number;
+  /**
+   * Calculates the presence for the all-tab
+   */
+  calculatePresence() {
+    let actualPresence : number = 0;
+    let maxPresence : number = 0;
 
     this.week.forEach(element => {
       actualPresence+= element.weekPresence;
       maxPresence+= element.weekPossiblePresence;
     });
 
-    console.log("math", actualPresence, maxPresence);
+    if(actualPresence === 0) {
+      this.avgAttendance = 0;
+    } else {
+      this.avgAttendance = (actualPresence*100)/maxPresence;
+    }
+  }
 
-    return (actualPresence*100)/maxPresence;
+  /**
+   * Calculates the average grade for the all-tab
+   */
+  calculateAverageGrade() {
+    let sum = 0;
+
+    this.Criteria.forEach(criteria => {
+      if(criteria.grade === null) {
+        criteria.grade = 0;
+      }
+      sum += criteria.grade;
+    })
+
+    if(sum === 0) {
+      this.avgGrade = "0";
+    } else {
+      this.avgGrade = (sum/this.Criteria.length).toFixed(1);
+    }
+  }
+
+/**
+ * cosntructs the overview-object for the all-tab
+ */
+  createOverviewObject() {
+    this.overViewData  = {
+      averageGrade : this.avgGrade,
+      averageTime : this.avgTime,
+      averagePresence : this.avgAttendance
+    }
   }
 
   /**
@@ -203,7 +242,6 @@ export class ProfileComponent implements OnInit {
 
   /**
    * Searches a student based on its ID and reassigns a variable
-   * 
    * @param id the studentID provided in the slug
    */
   searchStudent(id : number) {
