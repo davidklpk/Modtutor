@@ -76,7 +76,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
   keyCardComments !: KeyCard;
 
   // vars for the dropdown
-  selectedAssignment = "option1";
+  selectedAssignment = 0;
 
   constructor(private router : Router, private assService : LinkService) {  }
 
@@ -346,9 +346,9 @@ export class FeedbackfruitsTabComponent implements OnInit {
   getSelectedAssignment() {
     // Gets the selected assignment in order to switch tab
     this.assService.assignmentEventListner().subscribe(assignmentName =>{
-      if(assignmentName.length !== 0) {
-        this.selectedAssignment = "option2";
-      }
+      console.log("received!", assignmentName);
+      this.selectedAssignment = assignmentName;
+      console.log(this.selectedAssignment);
     })
   }
 }

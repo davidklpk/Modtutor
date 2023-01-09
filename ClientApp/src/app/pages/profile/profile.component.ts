@@ -71,9 +71,10 @@ export class ProfileComponent implements OnInit {
     setTimeout(() => {    
       this.fetchAttendance();
       this.fetchStudentList();
+      
       // Gets the selected assignment in order to switch tab
       this.assService.assignmentEventListner().subscribe(assignmentName =>{
-        if(assignmentName.length !== 0) {
+        if(assignmentName !== 0) {
           this.selectedTab = 1;
         }
       })

@@ -21,7 +21,7 @@ export interface Flag {
 
 export class CardCopyComponent implements OnInit {
   @Input() assignment !: Assignments;
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newItemEvent = new EventEmitter<number>();
 
   slug !: number;
   criteria !: Criteria[];
@@ -36,7 +36,7 @@ export class CardCopyComponent implements OnInit {
    * 
    * @param assignment the Assignment that has been selected
    */
-  emitAssignment(assignment : string) {
+  emitAssignment(assignment : number) {
     this.assService.emitAssignmentEvent(assignment);
   }
 
