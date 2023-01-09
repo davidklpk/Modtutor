@@ -36,6 +36,7 @@ export class DBService {;
   private urlWeek = "Weeks";
   private urlfbfassignment = "FBFAssignment";
   private urlStudentAssignment = "StudentAssignments";
+  private urlAssignmentCriterias = "AssignmentCriterias";
   
   public urlparameter = "";
 
@@ -59,6 +60,10 @@ export class DBService {;
 
   public getAssignmentsFeedBack(yeet: number) : Observable<Feedback[]>{
     return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlfbfassignment}/${yeet}`);
+  }
+
+  public getAssignmentsCriterias(yeet: number) : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlAssignmentCriterias}/${yeet}`);
   }
 
   public getAttendances(yeet : number) : Observable<Attendance[]>{
