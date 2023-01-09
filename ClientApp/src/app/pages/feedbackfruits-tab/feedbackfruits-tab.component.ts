@@ -5,6 +5,7 @@ import { LinkService } from 'src/app/services/link.service';
 import { KeyCard } from '../all-tab/all-tab.component';
 import { Feedback } from 'src/app/models/feedback';
 import { Criteria } from 'src/app/models/criteria';
+import { Assignments } from 'src/app/models/assignment';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -26,6 +27,7 @@ export type ChartOptions = {
 export class FeedbackfruitsTabComponent implements OnInit {
   @Input() feedBackList !: Feedback[];
   @Input() criteriaList !: Criteria[];
+  @Input() assignmentList !: Assignments[];
 
   // Declaration of each chart object
   public Grades!: Partial<ChartOptions> | any;

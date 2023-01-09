@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Assignment } from 'src/app/interfaces/assignment';
 import { Assignments } from 'src/app/models/assignment';
+import { Criteria } from 'src/app/models/criteria';
+import { DBService } from 'src/app/services/db.service';
 import { LinkService } from 'src/app/services/link.service';
 
 // Interface for the indicator
@@ -17,11 +20,13 @@ export interface Flag {
 })
 
 export class CardCopyComponent implements OnInit {
-  
   @Input() assignment !: Assignments;
   @Output() newItemEvent = new EventEmitter<string>();
 
-  constructor(private assService : LinkService) {  }
+  slug !: number;
+  criteria !: Criteria[];
+
+  constructor(private assService : LinkService, private route: ActivatedRoute, private dbService : DBService) {  }
 
   ngOnInit(): void {   }
 
@@ -70,4 +75,17 @@ export class CardCopyComponent implements OnInit {
       title: "unknown"
     }
   }*/
+
+  fetchCriteria(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getCriterias(this.slug)
+    .subscribe((result : Criteria[]) => {
+      this.criteria = result;
+      //this.calculateAverageGrade();
+    });
+  }
 }

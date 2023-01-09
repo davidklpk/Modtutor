@@ -14,7 +14,6 @@ export interface KeyCard {
 })
 
 export class AllTabComponent implements OnInit {
-
   @Input() overViewData !: OverviewData;
   @Input() studentAssignments !: Assignments[];
 

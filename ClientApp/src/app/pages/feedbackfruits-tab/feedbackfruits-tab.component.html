@@ -9,9 +9,9 @@
       <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
         <mat-label>Select an assignment</mat-label>
         <mat-select [disabled]="false" [(value)]="selectedAssignment">
-          <mat-option value="option1">Assignment 1</mat-option>
-          <mat-option value="option2">Assignment 2</mat-option>
-          <mat-option value="option3">Assignment 3</mat-option>
+          <ng-container *ngFor="let assignment of assignmentList">
+            <mat-option value="option1">{{ assignment.assignmentName }}</mat-option>
+          </ng-container>
         </mat-select>
       </mat-form-field>
     </div>
