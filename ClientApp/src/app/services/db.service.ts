@@ -34,8 +34,8 @@ export class DBService {;
   private urlStudentClass = "StudentClasses";
   private urlAttendance = "Attendances";
   private urlWeek = "Weeks";
-
   private urlfbfassignment = "FBFAssignment";
+  private urlStudentAssignment = "StudentAssignments";
   
   public urlparameter = "";
 
@@ -87,6 +87,10 @@ export class DBService {;
 
   public getStudentClasses(yeet : string) : Observable<Student[]>{
     return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudentClass}/${yeet}`);
+  }
+
+  public getStudentAssignments(yeet: number) : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlStudentAssignment}/${yeet}`);
   }
 
   public getTeachers() : Observable<Teacher[]>{

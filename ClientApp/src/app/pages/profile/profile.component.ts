@@ -10,6 +10,7 @@ import { Mediasite } from 'src/app/models/mediasite';
 import { Criteria } from 'src/app/models/criteria';
 import { Attendance } from 'src/app/models/attendance';
 import { Week } from 'src/app/models/week';
+import { Assignments } from 'src/app/models/assignment';
 
 export interface OverviewData {
   averageGrade : number;
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
   mediaSite !: Mediasite[];
   attendance !: Attendance[];
   week !: Week[];
+  assignment !: Assignments[];
 
   constructor(private route: ActivatedRoute, private assService : LinkService, private dbService : DBService) { 
     setGlobalCurrentPage(STUDENT_PROFILE + this.studentName);
@@ -56,6 +58,7 @@ export class ProfileComponent implements OnInit {
     this.fetchWeek();
     // This outputs both observables parallel
     this.fetchStudentList();
+    this.fetchStudentAssignments();
     this.createOverviewObject();
 
     // Gets the selected assignment in order to switch tab
@@ -116,6 +119,18 @@ export class ProfileComponent implements OnInit {
     this.dbService.getAttendances(this.slug)
     .subscribe((result : Attendance[]) => {
       this.attendance = result;
+    });
+  }
+
+  fetchStudentAssignments(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getStudentAssignments(this.slug)
+    .subscribe((result : Assignments[]) => {
+      this.assignment = result;
     });
   }
 
