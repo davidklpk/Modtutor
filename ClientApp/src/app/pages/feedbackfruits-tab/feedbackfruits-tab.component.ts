@@ -6,6 +6,7 @@ import { KeyCard } from '../all-tab/all-tab.component';
 import { Feedback } from 'src/app/models/feedback';
 import { Criteria } from 'src/app/models/criteria';
 import { Assignments } from 'src/app/models/assignment';
+import { DBService } from 'src/app/services/db.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -69,6 +70,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
   gradesGiven : number[] = [];
   gradesReceived : number[] = [];
   feedbackComments : string[] = [];
+  criteria !: Criteria[];
 
   // Keycard objects
   keyCardGrade !: KeyCard;
@@ -78,7 +80,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
   // vars for the dropdown
   selectedAssignment = 0;
 
-  constructor(private router : Router, private assService : LinkService) {  }
+  constructor(private router : Router, private assService : LinkService, private dbService : DBService) {  }
 
   ngOnInit(): void {
     this.getSelectedAssignment();    // IMPORTANT! DO NOT DELETE!
@@ -262,7 +264,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
       },
     };
 
-    this.extractCriteria();
+    //this.extractCriteria();
     this.calculateAverageGrade();
 
     // keyCard objects
@@ -276,20 +278,20 @@ export class FeedbackfruitsTabComponent implements OnInit {
    * accessible for Apex
    */
   extractFeedback() {
-    this.feedBackList.forEach(feedback => {
-      this.totalReviewComments += feedback.totalReviewComments;
-      this.totalTimeSpent += feedback.timeSpent;
-
-      // Filters TypeOfFeedback
-      feedback.typeOfFeedback === "Given" ? this.totalFeedback[0]++ : this.totalFeedback[1]++;
-      // Filters instructions
-      feedback.readInstructions === "Yes" ? this.totalReadInstructions[0]++ : this.totalReadInstructions[1]++;
-      // Filters handedIn
-      feedback.handedIn === "Yes" ? this.totalHandedIn[0]++ : this.totalHandedIn[1]++;
-      // Filters finishedFeedback
-      feedback.finishedFeedback === "Yes" ? this.totalFinishedFeedback[0]++ : this.totalFinishedFeedback[1]++;
-      // Filters finishedFeedback
-      feedback.readFeedback === "Yes" ? this.totalReadFeedback[0]++ : this.totalReadFeedback[1]++;
+      this.feedBackList.forEach(feedback => {
+        this.totalReviewComments += feedback.totalReviewComments;
+        this.totalTimeSpent += feedback.timeSpent;
+  
+        // Filters TypeOfFeedback
+        feedback.typeOfFeedback === "Given" ? this.totalFeedback[0]++ : this.totalFeedback[1]++;
+        // Filters instructions
+        feedback.readInstructions === "Yes" ? this.totalReadInstructions[0]++ : this.totalReadInstructions[1]++;
+        // Filters handedIn
+        feedback.handedIn === "Yes" ? this.totalHandedIn[0]++ : this.totalHandedIn[1]++;
+        // Filters finishedFeedback
+        feedback.finishedFeedback === "Yes" ? this.totalFinishedFeedback[0]++ : this.totalFinishedFeedback[1]++;
+        // Filters finishedFeedback
+        feedback.readFeedback === "Yes" ? this.totalReadFeedback[0]++ : this.totalReadFeedback[1]++;
     });
   }
 
@@ -345,10 +347,19 @@ export class FeedbackfruitsTabComponent implements OnInit {
    */
   getSelectedAssignment() {
     // Gets the selected assignment in order to switch tab
-    this.assService.assignmentEventListner().subscribe(assignmentName =>{
-      console.log("received!", assignmentName);
+    this.assService.assignmentEventListner().subscribe(async assignmentName =>{
       this.selectedAssignment = assignmentName;
-      console.log(this.selectedAssignment);
+      await this.fetchCriteria(assignmentName);
     })
+  }
+
+  async fetchCriteria(id : number){
+    this.dbService.getAssignmentsCriterias(id)
+    .subscribe((result : Criteria[]) => {
+      this.criteria = result;
+      this.criteriaList = this.criteria;
+      this.extractCriteria();
+      this.calculateAverageGrade();
+    });
   }
 }

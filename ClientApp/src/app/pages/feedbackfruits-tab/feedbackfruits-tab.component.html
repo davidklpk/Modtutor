@@ -1,22 +1,10 @@
 <div class="px-5 pt-5">
   <div class="flex flex-row w-full">
-    <div class="flex flex-row w-full items-center justify-start">
+    <div class="flex flex-row w-full items-center justify-start mt-5">
       <h1 class="font-medium p-0 m-0">Research Report</h1>
     </div>
-
-    <!-- DROPDOWN FIELD -->
-    <div class="flex flex-row w-full items-center justify-end">
-      <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
-        <mat-label>Select an assignment</mat-label>
-        <mat-select [disabled]="false" [(value)]="selectedAssignment">
-          <ng-container *ngFor="let assignment of assignmentList">
-            <mat-option value="{{ assignment.assignmentID }}" id="{{ assignment.assignmentID }}">{{ assignment.assignmentName }}</mat-option>
-          </ng-container>
-        </mat-select>
-      </mat-form-field>
-    </div>
   </div>
-    
+
   <mat-divider class="my-5 mb-10"></mat-divider>
 
   <ng-container *ngIf="feedBackList.length != 0">
@@ -108,6 +96,26 @@
         </div>
       </mat-card>
     </div>
+
+    <div class="flex flex-row w-full     mt-10">
+      <div class="flex flex-row w-full items-center justify-start">
+        <h1 class="font-medium p-0 m-0">Research Report</h1>
+      </div>
+  
+      <!-- DROPDOWN FIELD -->
+      <div class="flex flex-row w-full items-center justify-end">
+        <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
+          <mat-label>Select an assignment</mat-label>
+          <mat-select [disabled]="false" [(value)]="selectedAssignment">
+            <ng-container *ngFor="let assignment of assignmentList">
+              <mat-option value="{{ assignment.assignmentID }}">{{ assignment.assignmentName }}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+      
+    <mat-divider class="my-5 mb-10"></mat-divider>
 
     <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 mt-10 w-full rounded-[12px] shadow-none outline outline-1 outline-gray-300 mb-5">
       <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 md:px-10 md:py-5 w-full h-full">
