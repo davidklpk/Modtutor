@@ -10,7 +10,8 @@
         <mat-label>Select an assignment</mat-label>
         <mat-select [disabled]="false" [(value)]="selectedAssignment">
           <ng-container *ngFor="let assignment of assignmentList">
-            <mat-option value="option1">{{ assignment.assignmentName }}</mat-option>
+            <mat-option value="option1" id="funnyName" class="{{ assignment.assignmentID }}">{{ assignment.assignmentName }}</mat-option>
+            <mat-option value="option1" id="{{ assignment.assignmentID }}" class="funnyName">{{ assignment.assignmentName }}</mat-option>
           </ng-container>
         </mat-select>
       </mat-form-field>
