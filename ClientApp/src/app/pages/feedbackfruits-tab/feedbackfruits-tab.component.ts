@@ -86,9 +86,6 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.getSelectedAssignment();    // IMPORTANT! DO NOT DELETE!
     this.extractFeedback();
 
-    console.log("fb", this.feedBackList)
-    console.log("crit", this.criteriaList)
-
     // Fourth (Type of Feedback)
     this.TypeFeedback = {
       series : this.totalFeedback,
@@ -266,11 +263,6 @@ export class FeedbackfruitsTabComponent implements OnInit {
 
     //this.extractCriteria();
     this.calculateAverageGrade();
-
-    // keyCard objects
-    this.keyCardGrade  = { metric: this.avgGrade, label: "Average Grade" }
-    this.keyCardTime = { metric: this.totalTimeSpent, label: "Time spent" }
-    this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
   }
   
   /**
@@ -300,6 +292,10 @@ export class FeedbackfruitsTabComponent implements OnInit {
    * accessible for Apex.
    */
   extractCriteria() {
+    this.gradesReceived.splice(0);
+    this.feedbackCategories.splice(0);
+    this.feedbackComments.splice(0);
+
     this.criteriaList.forEach(criteria => {
       this.gradesReceived.push(criteria.grade);
       this.feedbackCategories.push(criteria.criteriaName);
@@ -314,6 +310,13 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.Grades.xaxis = {
       categories : this.feedbackCategories
     };
+
+    this.calculateAverageGrade();
+
+    // keyCard objects
+    this.keyCardGrade  = { metric: this.avgGrade, label: "Average Grade" }
+    this.keyCardTime = { metric: this.totalTimeSpent, label: "Time spent" }
+    this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
   }
 
   /**
