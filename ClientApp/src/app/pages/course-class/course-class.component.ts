@@ -30,7 +30,6 @@ export class CourseClassComponent implements OnInit {
 
   //specificAssignmentList$ !: Observable<>;
   assignmentList$ !: Observable<Assignments[]>;
-
   courseClasses$ !: Observable<CourseClass[]>;
   // FeedBacks$ !: Observable<Feedback[]>;
   // studentClasses$ !: Observable<StudentClass[]>;
@@ -48,6 +47,8 @@ export class CourseClassComponent implements OnInit {
   studentList: Student[] = [];
   studentClassList: StudentClass[] = [];
   slug : string = "";
+
+  avgAttendance : number = 0;
 
   gradeMS : number = 4; 
   gradeFF : number = 8; 
@@ -136,10 +137,11 @@ export class CourseClassComponent implements OnInit {
     this.dbService.getWeeksOnCourse(this.slug)
     .subscribe((result : Week[]) => {
       this.weeks = result;
-      //this.calculatePresence();
-      //this.createOverviewObject();
+      this.calculatePresence();
     });
   }
+
+  
 
   fetchAttendances(){
     let route$ = this.route.params;
@@ -184,6 +186,25 @@ export class CourseClassComponent implements OnInit {
     }); 
   }
 
+/**
+ * Calculates the presence for the all-tab
+ */
+  calculatePresence() {
+    let actualPresence : number = 0;
+    let maxPresence : number = 0;
+
+    this.weeks.forEach(element => {
+      actualPresence+= element.weekPresence;
+      maxPresence+= element.weekPossiblePresence;
+    });
+
+    if(actualPresence === 0) {
+      this.avgAttendance = 0;
+    } else {
+      this.avgAttendance = (actualPresence*100)/maxPresence;
+    }
+  }
+
 
   getRoute() {
     // gets the current course by getting the slug (.../course/slugOfCourse)
@@ -217,7 +238,7 @@ export class CourseClassComponent implements OnInit {
    setFlag(grade : number) : Flag {
     let generatedFlag : Flag;
 
-    if(grade > 8) {
+    if(grade >= 8) {
       return generatedFlag = {
         colorFont: "text-amber-500",
         icon: "stars",
@@ -237,9 +258,44 @@ export class CourseClassComponent implements OnInit {
       }
     }
     return generatedFlag = {
-      colorFont: "text-thuas-grijs-base",
+      colorFont: "text-gray-500/80",
       icon: "help_outlined",
       title: "unknown"
     }
   }
+
+    /**
+   * Sets the flag by checking the parameters.
+   * Changes icon and title depending on the result.
+   * Therefore, it returns a flag, build with the fitting attributes.
+   * TODO: Parameter Student or smth like that 
+   */
+    setFlagAttendance(attendance : number) : Flag {
+      let generatedFlag : Flag;
+  
+      if(attendance > 90) {
+        return generatedFlag = {
+          colorFont: "text-amber-500",
+          icon: "stars",
+          title: "doing superb"
+        }
+      } else if(attendance >= 50) {
+        return generatedFlag = {
+          colorFont: "text-thuas-groen-base",
+          icon: "check_circle",
+          title: "no worries"
+        }
+      } else if(attendance > 0) {
+        return generatedFlag = {
+          colorFont: "text-thuas-rood-base",
+          icon: "cancel",
+          title: "in danger"
+        }
+      }
+      return generatedFlag = {
+        colorFont: "text-thuas-grijs-base",
+        icon: "help_outlined",
+        title: "unknown"
+      }
+    }
 }
