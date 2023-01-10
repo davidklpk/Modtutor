@@ -32,9 +32,20 @@ namespace student_monitoring_dashboard.Controllers
             select w;
             return Ok(query);
         }
-        /*public IEnumerable<Assignment> GetAssignment()
-        {
-            return _context.Assignment;
-        }*/
+
+        [HttpGet("/api/Weeks/getWeeksOnCourse/{yeet}")]
+        public async Task<ActionResult<List<Attendance>>> getWeeksOnCourse(string yeet){
+            var query =
+            from w in _context.Week
+            join a in _context.Attendance on w.AttendanceID equals a.AAID
+            join s in _context.Student on a.Has equals s.StudentID
+            join sc in _context.StudentClass on s.StudentID equals sc.StudentID
+            join cc in _context.CourseClass on sc.ClassID equals cc.ClassID
+            join c in _context.Course on cc.BelongsTo equals c.CourseID
+            where c.CourseID == yeet
+            select w;
+            return Ok(query);
+        }
+        
     }
 }

@@ -37,6 +37,12 @@ export class DBService {;
   private urlfbfassignment = "FBFAssignment";
   private urlStudentAssignment = "StudentAssignments";
   private urlAssignmentCriterias = "AssignmentCriterias";
+
+  private urlAsToCourse = "getAttendancesOnCourse";
+  private urlFbToCourse = "getFeedbacksOnCourse";
+  private urlMsToCourse = "getMediasitesOnCourse";
+  private urlCrToCourse = "getCriteriasOnCourse";
+  private urlWkToCourse = "getWeeksOnCourse";
   
   public urlparameter = "";
 
@@ -70,6 +76,10 @@ export class DBService {;
     return this.http.get<Attendance[]>(`${environment.apiUrl}/${this.urlAttendance}/${yeet}`);
   }
 
+  public getAttendancesOnCourse(yeet : string) : Observable<Attendance[]>{
+    return this.http.get<Attendance[]>(`${environment.apiUrl}/${this.urlAttendance}/${this.urlAsToCourse}/${yeet}`);
+  }
+
   public getCourseClasses(yeet: string) : Observable<CourseClass[]>{
     return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${yeet}`);
   }
@@ -78,12 +88,24 @@ export class DBService {;
     return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}/${yeet}`);
   }
 
+  public getCriteriasOnCourse(yeet : string) : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}/${this.urlCrToCourse}/${yeet}`);
+  }
+
   public getMediaSites(yeet : number) : Observable<Mediasite[]>{
     return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}/${yeet}`);
   }
 
+  public getMediaSitesOnCourse(yeet : string) : Observable<Mediasite[]>{
+    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}/${this.urlMsToCourse}/${yeet}`);
+  }
+
   public getFeedBacks(yeet : number) : Observable<Feedback[]>{
     return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBacks}/${yeet}`)
+  }
+
+  public getFeedBacksOnCourse(yeet : string) : Observable<Feedback[]>{
+    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBacks}/${this.urlFbToCourse}/${yeet}`)
   }
 
   public getStudents(yeet : number) : Observable<Student[]>{
@@ -104,6 +126,10 @@ export class DBService {;
 
   public getWeeks(yeet : number) : Observable<Week[]>{
     return this.http.get<Week[]>(`${environment.apiUrl}/${this.urlWeek}/${yeet}`);
+  }
+
+  public getWeeksOnCourse(yeet : string) : Observable<Week[]>{
+    return this.http.get<Week[]>(`${environment.apiUrl}/${this.urlWeek}/${this.urlWkToCourse}/${yeet}`);
   }
 
 
