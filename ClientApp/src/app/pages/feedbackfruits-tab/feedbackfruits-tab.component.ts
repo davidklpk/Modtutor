@@ -352,6 +352,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
     // Gets the selected assignment in order to switch tab
     this.assService.assignmentEventListner().subscribe(async assignmentName =>{
       this.selectedAssignment = assignmentName;
+      console.log(this.selectedAssignment, "slect")
       await this.fetchCriteria(assignmentName);
     })
   }

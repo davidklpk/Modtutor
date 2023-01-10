@@ -106,9 +106,9 @@
       <div class="flex flex-row w-full items-center justify-end">
         <mat-form-field appearance="outline" color="accent" class="mb-[-1.25em]">
           <mat-label>Select an assignment</mat-label>
-          <mat-select [disabled]="false" [(value)]="selectedAssignment">
+          <mat-select [(value)]="selectedAssignment">
             <ng-container *ngFor="let assignment of assignmentList">
-              <mat-option value="{{ assignment.assignmentID }}">{{ assignment.assignmentName }}</mat-option>
+              <mat-option value="{{assignment.assignmentID}}">{{ assignment.assignmentName }}</mat-option>
             </ng-container>
           </mat-select>
         </mat-form-field>
