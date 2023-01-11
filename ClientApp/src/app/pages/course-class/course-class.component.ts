@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Assignments } from '../../models/assignment';
 import { Student } from '../../models/student';
 import { DBService } from 'src/app/services/db.service';
-import { COURSE, setGlobalCurrentPage } from 'src/app/shared/global-var';
 import { MatPaginator } from '@angular/material/paginator';
 import { Flag } from 'src/app/components/card-copy/card-copy.component';
 import { CourseClass } from 'src/app/models/courseClass';
