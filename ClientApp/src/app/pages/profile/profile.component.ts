@@ -48,9 +48,7 @@ export class ProfileComponent implements OnInit {
   week !: Week[];
   assignment !: Assignments[];
 
-  constructor(private route: ActivatedRoute, private assService : LinkService, private dbService : DBService) { 
-    setGlobalCurrentPage(STUDENT_PROFILE + this.studentName);
-  }
+  constructor(private route: ActivatedRoute, private assService : LinkService, private dbService : DBService) { }
 
   ngOnInit(): void {
     setTimeout(() => {  
@@ -249,6 +247,7 @@ export class ProfileComponent implements OnInit {
     this.studentList.find((student) => {
       if(student.studentID == id) {
         this.student = student;
+        this.assService.currentPageName.next(STUDENT_PROFILE + student.fullName)
       }
     })
   }

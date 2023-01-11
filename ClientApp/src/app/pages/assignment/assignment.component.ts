@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ASSIGNMENT, setGlobalCurrentPage } from 'src/app/shared/global-var';
 import { Feedback } from 'src/app/models/feedback';
 import { DBService } from 'src/app/services/db.service';
+import { LinkService } from 'src/app/services/link.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -34,14 +35,15 @@ export class AssignmentComponent implements OnInit {
   totalTimeSpent : number = 0;
   totalComments : number = 0;
 
-  constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute) { 
-    setGlobalCurrentPage(ASSIGNMENT + this.assignmentName);
+  constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute, private linkService : LinkService) { 
+    setGlobalCurrentPage(ASSIGNMENT);
   }
 
   ngOnInit(): void {
     this.getRoute();
     this.getFeedBacksFromAssignment();
 
+    
     // Total Review Comments
     this.chartOptions = {
       series: [
@@ -123,6 +125,7 @@ export class AssignmentComponent implements OnInit {
     this.dbService.getAssignmentsFeedBack(this.slug)
     .subscribe((result : Feedback[]) => {
       this.fbflist = result;
+      this.linkService.currentPageName.next("Assignment " + this.fbflist[0].feedbackID);
       this.getChartSeries(this.fbflist);
     });
   }

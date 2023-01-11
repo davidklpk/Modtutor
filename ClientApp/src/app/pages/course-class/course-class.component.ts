@@ -2,7 +2,6 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignments } from '../../models/assignment';
-import { Course } from '../../models/course'
 import { Student } from '../../models/student';
 import { DBService } from 'src/app/services/db.service';
 import { COURSE, setGlobalCurrentPage } from 'src/app/shared/global-var';
@@ -25,18 +24,9 @@ import { Attendance } from 'src/app/models/attendance';
 export class CourseClassComponent implements OnInit {
 
   @Input() course !: CourseClass;
- 
-  //assignmentList: Assignments[] = [];
 
-  //specificAssignmentList$ !: Observable<>;
   assignmentList$ !: Observable<Assignments[]>;
   courseClasses$ !: Observable<CourseClass[]>;
-  // FeedBacks$ !: Observable<Feedback[]>;
-  // studentClasses$ !: Observable<StudentClass[]>;
-  // MediaSites$ !: Observable<Mediasite[]>;
-  // Criterias$ !: Observable<Criteria[]>;
-  // Weeks$ !: Observable<Week[]>;
-  // Attendances$ !: Observable<Attendance[]>;
   feedbacks !: Feedback[];
   Criterias !: Criteria[];
   mediaSites !: Mediasite[];
@@ -46,13 +36,13 @@ export class CourseClassComponent implements OnInit {
 
   studentList: Student[] = [];
   studentClassList: StudentClass[] = [];
-  slug : string = "";
+  slug: string = "";
 
-  avgAttendance : number = 0;
+  avgAttendance: number = 0;
 
-  gradeMS : number = 4; 
-  gradeFF : number = 8; 
-  gradeAA : number = 10; 
+  gradeMS: number = 4;
+  gradeFF: number = 8;
+  gradeAA: number = 10;
 
   // Table vars
   displayedColumns: string[] = ['name', 'id', 'gradems', 'gradeff', 'gradeaa'];
@@ -60,35 +50,29 @@ export class CourseClassComponent implements OnInit {
   dataSource$ !: any;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
-  constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute) {
-    //setGlobalCurrentPage(COURSE + this.course.courseName);
-  }
+  constructor(private dbService: DBService, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getRoute();
     this.fetchAssignments();
-    //this.fetchStudentClasses();
     this.fetchStudents();
-    //this.fetchData();
     this.fetchCourseClasses();
     this.fetchFeedBacks();
     this.fetchMediaSites();
     this.fetchCriterias();
     this.fetchWeeks();
     this.fetchAttendances();
-    //console.log("assignment test ", this.dbService.getSpecificAssignments());
-
   }
 
   fetchCourseClasses() {
     let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
+    route$.subscribe((route) => { this.slug = route['slug'] });
     this.courseClasses$ = this.dbService.getCourseClasses(this.slug);
   }
-  
+
   fetchAssignments() {
     let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
+    route$.subscribe((route) => { this.slug = route['slug'] });
     this.assignmentList$ = this.dbService.getAssignments(this.slug);
   }
 
@@ -99,20 +83,20 @@ export class CourseClassComponent implements OnInit {
     });
 
     this.dbService.getFeedBacksOnCourse(this.slug)
-    .subscribe((result : Feedback[]) => {
-      this.feedbacks = result;
-    });
+      .subscribe((result: Feedback[]) => {
+        this.feedbacks = result;
+      });
   }
 
   fetchMediaSites() {
     let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
+    route$.subscribe((route) => { this.slug = route['slug'] });
 
-    this.dbService.getMediaSitesOnCourse(this.slug)    
-    .subscribe((result : Mediasite[]) => {
-      this.mediaSites = result;
-      //this.avgTime = this.mediaSite[0].totalViews;
-    });
+    this.dbService.getMediaSitesOnCourse(this.slug)
+      .subscribe((result: Mediasite[]) => {
+        this.mediaSites = result;
+        //this.avgTime = this.mediaSite[0].totalViews;
+      });
   }
 
   fetchCriterias() {
@@ -122,10 +106,10 @@ export class CourseClassComponent implements OnInit {
     });
 
     this.dbService.getCriteriasOnCourse(this.slug)
-    .subscribe((result : Criteria[]) => {
-      this.Criterias = result;
-      //this.calculateAverageGrade();
-    });
+      .subscribe((result: Criteria[]) => {
+        this.Criterias = result;
+        //this.calculateAverageGrade();
+      });
   }
 
   fetchWeeks() {
@@ -135,98 +119,70 @@ export class CourseClassComponent implements OnInit {
     });
 
     this.dbService.getWeeksOnCourse(this.slug)
-    .subscribe((result : Week[]) => {
-      this.weeks = result;
-      this.calculatePresence();
-    });
+      .subscribe((result: Week[]) => {
+        this.weeks = result;
+        this.calculatePresence();
+      });
   }
 
-  
-
-  fetchAttendances(){
+  fetchAttendances() {
     let route$ = this.route.params;
     route$.subscribe((route) => {
       this.slug = route['slug']
     });
 
     this.dbService.getAttendancesOnCourse(this.slug)
-    .subscribe((result : Attendance[]) => {
-      this.attendances = result;
-    });
+      .subscribe((result: Attendance[]) => {
+        this.attendances = result;
+      });
   }
-
-
-
-
-
-  // fetchStudentClasses() {
-  //   let route$ = this.route.params;
-  //   route$.subscribe((route) => {this.slug = route['slug']});
-  //   this.studentClasses$ = this.dbService.getStudentClasses(this.slug); 
-  // }
-
-  // fetchStudents2() {
-  //   let route$ = this.route.params;
-  //   route$.subscribe((route) => {this.slug = route['slug']});
-  //   this.students$ = this.dbService.getStudents(this.slug); 
-  // }
-
 
   fetchStudents() {
     let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
+    route$.subscribe((route) => { this.slug = route['slug'] });
     this.dbService
-    .getStudentClasses(this.slug)
-    .subscribe((result : Student[]) => {
-      this.studentList = result;
-      // Fill the table with data and prepare the paginator
-      this.dataSource = new MatTableDataSource<Student>(this.studentList);
-      this.dataSource.paginator = this.paginator;
-      this.setFlag(this.gradeFF);
-    }); 
+      .getStudentClasses(this.slug)
+      .subscribe((result: Student[]) => {
+        this.studentList = result;
+        // Fill the table with data and prepare the paginator
+        this.dataSource = new MatTableDataSource<Student>(this.studentList);
+        this.dataSource.paginator = this.paginator;
+        this.setFlag(this.gradeFF);
+      });
   }
 
-/**
- * Calculates the presence for the all-tab
- */
+  /**
+   * Calculates the presence for the all-tab
+   */
   calculatePresence() {
-    let actualPresence : number = 0;
-    let maxPresence : number = 0;
+    let actualPresence: number = 0;
+    let maxPresence: number = 0;
 
     this.weeks.forEach(element => {
-      actualPresence+= element.weekPresence;
-      maxPresence+= element.weekPossiblePresence;
+      actualPresence += element.weekPresence;
+      maxPresence += element.weekPossiblePresence;
     });
 
-    if(actualPresence === 0) {
+    if (actualPresence === 0) {
       this.avgAttendance = 0;
     } else {
-      this.avgAttendance = (actualPresence*100)/maxPresence;
+      this.avgAttendance = (actualPresence * 100) / maxPresence;
     }
   }
-
 
   getRoute() {
     // gets the current course by getting the slug (.../course/slugOfCourse)
     let route$ = this.route.params;
-    route$.subscribe((route) => {this.slug = route['slug']});
+    route$.subscribe((route) => { this.slug = route['slug'] });
   }
-
-  // fetchData() {
-  //   this.dbService
-  //   .getAssignments()
-  //   .subscribe((result : Assignments[]) => {
-  //     this.assignmentList = result;
-  //   }); 
-  // }
 
   /**
    * gets triggered if a row is selected and
    * navigates to the profile of a specific student
    * @param student the selected student in the table
    */
-  navigate(student : string){
-    this.router.navigate(['/profile', student]); 
+  navigate(student: string) {
+    this.router.navigate(['/profile', student]);
   }
 
   /**
@@ -235,22 +191,21 @@ export class CourseClassComponent implements OnInit {
    * Therefore, it returns a flag, build with the fitting attributes.
    * TODO: Parameter Student or smth like that 
    */
-   setFlag(grade : number) : Flag {
-    let generatedFlag : Flag;
-
-    if(grade >= 8) {
+  setFlag(grade: number): Flag {
+    let generatedFlag: Flag;
+    if (grade >= 8) {
       return generatedFlag = {
         colorFont: "text-amber-500",
         icon: "stars",
         title: "doing superb"
       }
-    } else if(grade >= 6) {
+    } else if (grade >= 6) {
       return generatedFlag = {
         colorFont: "text-thuas-groen-base",
         icon: "check_circle",
         title: "no worries"
       }
-    } else if(grade > 0) {
+    } else if (grade > 0) {
       return generatedFlag = {
         colorFont: "text-thuas-rood-base",
         icon: "cancel",
@@ -264,38 +219,37 @@ export class CourseClassComponent implements OnInit {
     }
   }
 
-    /**
+  /**
    * Sets the flag by checking the parameters.
    * Changes icon and title depending on the result.
    * Therefore, it returns a flag, build with the fitting attributes.
    * TODO: Parameter Student or smth like that 
    */
-    setFlagAttendance(attendance : number) : Flag {
-      let generatedFlag : Flag;
-  
-      if(attendance > 90) {
-        return generatedFlag = {
-          colorFont: "text-amber-500",
-          icon: "stars",
-          title: "doing superb"
-        }
-      } else if(attendance >= 50) {
-        return generatedFlag = {
-          colorFont: "text-thuas-groen-base",
-          icon: "check_circle",
-          title: "no worries"
-        }
-      } else if(attendance > 0) {
-        return generatedFlag = {
-          colorFont: "text-thuas-rood-base",
-          icon: "cancel",
-          title: "in danger"
-        }
-      }
+  setFlagAttendance(attendance: number): Flag {
+    let generatedFlag: Flag;
+    if (attendance > 90) {
       return generatedFlag = {
-        colorFont: "text-thuas-grijs-base",
-        icon: "help_outlined",
-        title: "unknown"
+        colorFont: "text-amber-500",
+        icon: "stars",
+        title: "doing superb"
+      }
+    } else if (attendance >= 50) {
+      return generatedFlag = {
+        colorFont: "text-thuas-groen-base",
+        icon: "check_circle",
+        title: "no worries"
+      }
+    } else if (attendance > 0) {
+      return generatedFlag = {
+        colorFont: "text-thuas-rood-base",
+        icon: "cancel",
+        title: "in danger"
       }
     }
+    return generatedFlag = {
+      colorFont: "text-thuas-grijs-base",
+      icon: "help_outlined",
+      title: "unknown"
+    }
+  }
 }
