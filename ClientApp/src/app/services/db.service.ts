@@ -14,6 +14,7 @@ import { Feedback } from '../models/feedback';
 import { StudentClass } from '../models/studentClass';
 import { Attendance } from '../models/attendance';
 import { Week } from '../models/week';
+import { Ultimate } from '../models/ultimate';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,7 @@ export class DBService {;
   private urlfbfassignment = "FBFAssignment";
   private urlStudentAssignment = "StudentAssignments";
   private urlAssignmentCriterias = "AssignmentCriterias";
+  private urlUltimates = "Ultimates";
 
   private urlAsToCourse = "getAttendancesOnCourse";
   private urlFbToCourse = "getFeedbacksOnCourse";
@@ -51,6 +53,9 @@ export class DBService {;
   }
   constructor(private http: HttpClient) { }
 
+  public getUltimates(yeet : string) : Observable<Ultimate[]>{
+    return this.http.get<Ultimate[]>(`${environment.apiUrl}/${this.urlUltimates}/${yeet}`);
+  }
   //Methods to [Get] the data (see app.components.ts as well):
   public getCourses() : Observable<Course[]>{
     return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`)
