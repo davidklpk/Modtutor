@@ -5,6 +5,7 @@ import { ASSIGNMENT, setGlobalCurrentPage } from 'src/app/shared/global-var';
 import { Feedback } from 'src/app/models/feedback';
 import { DBService } from 'src/app/services/db.service';
 import { LinkService } from 'src/app/services/link.service';
+import { Assignments } from 'src/app/models/assignment';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -27,6 +28,7 @@ export class AssignmentComponent implements OnInit {
   public TypeFeedback !: Partial<ChartOptions> | any;
 
   assignmentName : string = "name"
+  assignmentNameReal !: Assignments[];
   slug !: number;
   fbflist !: Feedback[];
 
@@ -42,7 +44,7 @@ export class AssignmentComponent implements OnInit {
   ngOnInit(): void {
     this.getRoute();
     this.getFeedBacksFromAssignment();
-
+    this.fetchAssignmentName();
     
     // Total Review Comments
     this.chartOptions = {
@@ -129,7 +131,18 @@ export class AssignmentComponent implements OnInit {
       this.getChartSeries(this.fbflist);
     });
   }
+  fetchAssignmentName() {
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
 
+    this.dbService.getAssignmentName(this.slug)
+      .subscribe((result: Assignments[]) => {
+        this.assignmentNameReal = result;
+        //this.calculateAverageGrade();
+      });
+  }
   /**
    * Processes all the data received by the backend and
    * prepares it for this component

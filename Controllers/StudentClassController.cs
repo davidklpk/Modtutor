@@ -21,20 +21,16 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
 
-        [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<StudentClass>>> GetStudentClasses(string yoloyeet)
+        [HttpGet("{InputString}")]
+        public async Task<ActionResult<List<StudentClass>>> GetStudentClasses(string InputString)
         {
             var query = 
             from s in _context.Student
             join sc in _context.StudentClass on s.StudentID equals sc.StudentID
             join cc in _context.CourseClass on sc.ClassID equals cc.ClassID
-            where cc.BelongsTo == yoloyeet 
+            where cc.BelongsTo == InputString 
             select s;
             return Ok(query);
         }
-        /*public IEnumerable<Assignment> GetAssignment()
-        {
-            return _context.Assignment;
-        }*/
     }
 }

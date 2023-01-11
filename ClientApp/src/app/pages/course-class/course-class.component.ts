@@ -16,6 +16,7 @@ import { Criteria } from 'src/app/models/criteria';
 import { Week } from 'src/app/models/week';
 import { Attendance } from 'src/app/models/attendance';
 import { Ultimate } from 'src/app/models/ultimate';
+import { Course } from 'src/app/models/course';
 
 @Component({
   selector: 'app-course-class',
@@ -28,6 +29,7 @@ export class CourseClassComponent implements OnInit {
 
   assignmentList$ !: Observable<Assignments[]>;
   courseClasses$ !: Observable<CourseClass[]>;
+  courseName !: Course[];
   feedbacks !: Feedback[];
   Criterias !: Criteria[];
   mediaSites !: Mediasite[];
@@ -58,6 +60,7 @@ export class CourseClassComponent implements OnInit {
     this.getRoute();
     this.fetchAssignments();
     //this.fetchStudents();
+    this.fetchCourseName();
     this.fetchCourseClasses();
     this.fetchUltimates();
   }
@@ -74,38 +77,16 @@ export class CourseClassComponent implements OnInit {
     this.assignmentList$ = this.dbService.getAssignments(this.slug);
   }
 
-  fetchFeedBacks() {
+
+  fetchCourseName() {
     let route$ = this.route.params;
     route$.subscribe((route) => {
       this.slug = route['slug']
     });
 
-    this.dbService.getFeedBacksOnCourse(this.slug)
-      .subscribe((result: Feedback[]) => {
-        this.feedbacks = result;
-      });
-  }
-
-  fetchMediaSites() {
-    let route$ = this.route.params;
-    route$.subscribe((route) => { this.slug = route['slug'] });
-
-    this.dbService.getMediaSitesOnCourse(this.slug)
-      .subscribe((result: Mediasite[]) => {
-        this.mediaSites = result;
-        //this.avgTime = this.mediaSite[0].totalViews;
-      });
-  }
-
-  fetchCriterias() {
-    let route$ = this.route.params;
-    route$.subscribe((route) => {
-      this.slug = route['slug']
-    });
-
-    this.dbService.getCriteriasOnCourse(this.slug)
-      .subscribe((result: Criteria[]) => {
-        this.Criterias = result;
+    this.dbService.getCourseName(this.slug)
+      .subscribe((result: Course[]) => {
+        this.courseName = result;
         //this.calculateAverageGrade();
       });
   }
@@ -123,32 +104,6 @@ export class CourseClassComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       //this.calculateAverageGrade();
     });
-  }
-
-
-  fetchWeeks() {
-    let route$ = this.route.params;
-    route$.subscribe((route) => {
-      this.slug = route['slug']
-    });
-
-    this.dbService.getWeeksOnCourse(this.slug)
-      .subscribe((result: Week[]) => {
-        this.weeks = result;
-        this.calculatePresence();
-      });
-  }
-
-  fetchAttendances() {
-    let route$ = this.route.params;
-    route$.subscribe((route) => {
-      this.slug = route['slug']
-    });
-
-    this.dbService.getAttendancesOnCourse(this.slug)
-      .subscribe((result: Attendance[]) => {
-        this.attendances = result;
-      });
   }
 
   fetchStudents() {

@@ -21,30 +21,11 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
         
-        [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<Attendance>>> GetAttendance(int yoloyeet)
+        [HttpGet("{InputInt}")]
+        public async Task<ActionResult<List<Attendance>>> GetAttendance(int InputInt)
         {
-            var a = await _context.Attendance.Where(s => s.Has == yoloyeet).ToListAsync();
+            var a = await _context.Attendance.Where(s => s.Has == InputInt).ToListAsync();
             return Ok(a);
         }
-
-        
-
-        [HttpGet("/api/Attendances/getAttendancesOnCourse/{yeet}")]
-        public async Task<ActionResult<List<Attendance>>> getAttendancesOnCourse(string yeet){
-            var query =
-            from a in _context.Attendance
-            join s in _context.Student on a.Has equals s.StudentID
-            join sc in _context.StudentClass on s.StudentID equals sc.StudentID
-            join cc in _context.CourseClass on sc.ClassID equals cc.ClassID
-            join c in _context.Course on cc.BelongsTo equals c.CourseID
-            where c.CourseID == yeet
-            select a;
-            return Ok(query);
-        }
-        /*public IEnumerable<Assignment> GetAssignment()
-        {
-            return _context.Assignment;
-        }*/
     }
 }
