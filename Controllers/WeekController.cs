@@ -21,31 +21,16 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
         
-        [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<Week>>> GetWeek(int yoloyeet)
+        [HttpGet("{InputInt}")]
+        public async Task<ActionResult<List<Week>>> GetWeek(int InputInt)
         {
             var query =
             from w in _context.Week
             join at in _context.Attendance on w.AttendanceID equals at.AAID
             join s in _context.Student on at.Has equals s.StudentID
-            where s.StudentID == yoloyeet
+            where s.StudentID == InputInt
             select w;
             return Ok(query);
         }
-
-        [HttpGet("/api/Weeks/getWeeksOnCourse/{yeet}")]
-        public async Task<ActionResult<List<Attendance>>> getWeeksOnCourse(string yeet){
-            var query =
-            from w in _context.Week
-            join a in _context.Attendance on w.AttendanceID equals a.AAID
-            join s in _context.Student on a.Has equals s.StudentID
-            join sc in _context.StudentClass on s.StudentID equals sc.StudentID
-            join cc in _context.CourseClass on sc.ClassID equals cc.ClassID
-            join c in _context.Course on cc.BelongsTo equals c.CourseID
-            where c.CourseID == yeet
-            select w;
-            return Ok(query);
-        }
-        
     }
 }

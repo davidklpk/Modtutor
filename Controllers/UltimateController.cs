@@ -22,15 +22,15 @@ namespace student_monitoring_dashboard.Controllers
         }
 
         public List<Ultimate> Ultimates = new List<Ultimate>();
-        [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<Assignment>>> GetUltimate(string yoloyeet)
+        [HttpGet("{InputString}")]
+        public async Task<ActionResult<List<Assignment>>> GetUltimate(string InputString)
         {
             Ultimates.Clear();
             var queryStudent =
             from s in _context.Student
             join sc in _context.StudentClass on s.StudentID equals sc.StudentID
             join cc in _context.CourseClass on sc.ClassID equals cc.ClassID
-            where cc.BelongsTo == yoloyeet
+            where cc.BelongsTo == InputString
             select s;
             int UID = 0;
             foreach (var gatherer in queryStudent)
@@ -73,18 +73,11 @@ namespace student_monitoring_dashboard.Controllers
                 foreach (var item in queryCriteria)
                 {
                     countup += item.Grade ?? default(int);
-                    //System.Console.WriteLine("AAAAAAAAAAAAAAAAA " + countup);
                 }
-                //System.Console.WriteLine("BBBBBB " + countup);
-                //System.Console.WriteLine("CCCCCC " + queryCriteria.Count());
                 int final = (countup / queryCriteria.Count());
-                //System.Console.WriteLine("DDDDDDDD " + final);
                 return final;
             }
-            else
-            {
-                return 1;
-            }
+            else { return 1; }
         }
 
         //calculate Attendance Percentage (in int)
@@ -104,12 +97,8 @@ namespace student_monitoring_dashboard.Controllers
                 countup2 += item.WeekPossiblePresence;
             }
             int final = (int)((countup1 / countup2) * 100);
-            if (final < 0){
-                return 1;
-            }
-            else{
-                return final;
-            }
+            if (final < 0) { return 1; }
+            else { return final; }
         }
     }
 }

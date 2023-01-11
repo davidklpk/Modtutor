@@ -20,41 +20,17 @@ namespace student_monitoring_dashboard.Controllers
         {
             _context = context;
         }
-        
-        // public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
-        // {
-        //     return Ok(await _context.Courses.ToListAsync());
 
-        // }
-        
-        /*public IEnumerable<Criteria> GetCriteria()
-        {
-            return _context.Criteria;
-        }*/
-        [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<Criteria>>> GetCriteria(int yoloyeet)
+        [HttpGet("{InputInt}")]
+        public async Task<ActionResult<List<Criteria>>> GetCriteria(int InputInt)
         {
             var query =
             from c in _context.Criteria
             join f in _context.Feedback on c.FeedBackID equals f.FeedbackID
             join s in _context.Student on f.StudentID equals s.StudentID
-            where s.StudentID == yoloyeet
+            where s.StudentID == InputInt
             select c;
             return Ok(query);
         }
-
-        [HttpGet("/api/Criterias/getCriteriasOnCourse/{yeet}")]
-         public async Task<ActionResult<List<Feedback>>> getCriteriasOnCourse(string yeet){
-            var query =
-            from cr in _context.Criteria
-            join f in _context.Feedback on cr.FeedBackID equals f.FeedbackID
-            join s in _context.Student on f.StudentID equals s.StudentID
-            join sc in _context.StudentClass on s.StudentID equals sc.StudentID
-            join cc in _context.CourseClass on sc.ClassID equals cc.ClassID
-            join c in _context.Course on cc.BelongsTo equals c.CourseID
-            where c.CourseID == yeet
-            select cr;
-            return Ok(query);
-         }
     }
 }
