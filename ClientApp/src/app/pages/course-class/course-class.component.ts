@@ -16,6 +16,8 @@ import { Week } from 'src/app/models/week';
 import { Attendance } from 'src/app/models/attendance';
 import { Ultimate } from 'src/app/models/ultimate';
 import { Course } from 'src/app/models/course';
+import { LinkService } from 'src/app/services/link.service';
+import { COURSE } from 'src/app/shared/global-var';
 
 @Component({
   selector: 'app-course-class',
@@ -53,7 +55,7 @@ export class CourseClassComponent implements OnInit {
   dataSource$ !: any;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
-  constructor(private dbService: DBService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private dbService: DBService, private router: Router, private route: ActivatedRoute, private linkService : LinkService) { }
 
   ngOnInit(): void {
     this.getRoute();
@@ -87,6 +89,7 @@ export class CourseClassComponent implements OnInit {
       .subscribe((result: Course[]) => {
         this.courseName = result;
         //this.calculateAverageGrade();
+        this.linkService.currentPageName.next(this.courseName[0].courseName)
       });
   }
 

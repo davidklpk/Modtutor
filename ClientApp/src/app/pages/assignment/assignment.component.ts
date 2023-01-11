@@ -6,6 +6,7 @@ import { Feedback } from 'src/app/models/feedback';
 import { DBService } from 'src/app/services/db.service';
 import { LinkService } from 'src/app/services/link.service';
 import { Assignments } from 'src/app/models/assignment';
+import { thresholdSturges } from 'd3';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -141,6 +142,7 @@ export class AssignmentComponent implements OnInit {
       .subscribe((result: Assignments[]) => {
         this.assignmentNameReal = result;
         //this.calculateAverageGrade();
+        this.linkService.currentPageName.next(ASSIGNMENT + this.assignmentNameReal[0].assignmentName)
       });
   }
   /**
