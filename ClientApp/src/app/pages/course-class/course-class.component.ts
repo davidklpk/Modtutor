@@ -57,13 +57,8 @@ export class CourseClassComponent implements OnInit {
   ngOnInit(): void {
     this.getRoute();
     this.fetchAssignments();
-    this.fetchStudents();
+    //this.fetchStudents();
     this.fetchCourseClasses();
-    this.fetchFeedBacks();
-    this.fetchMediaSites();
-    this.fetchCriterias();
-    this.fetchWeeks();
-    this.fetchAttendances();
     this.fetchUltimates();
   }
   
@@ -124,6 +119,8 @@ export class CourseClassComponent implements OnInit {
     this.dbService.getUltimates(this.slug)
     .subscribe((result : Ultimate[]) => {
       this.ultimates = result;
+      this.dataSource = new MatTableDataSource<Ultimate>(this.ultimates);
+      this.dataSource.paginator = this.paginator;
       //this.calculateAverageGrade();
     });
   }
@@ -162,8 +159,8 @@ export class CourseClassComponent implements OnInit {
       .subscribe((result: Student[]) => {
         this.studentList = result;
         // Fill the table with data and prepare the paginator
-        this.dataSource = new MatTableDataSource<Student>(this.studentList);
-        this.dataSource.paginator = this.paginator;
+        //this.dataSource = new MatTableDataSource<Student>(this.studentList);
+        //this.dataSource.paginator = this.paginator;
         this.setFlag(this.gradeFF);
       });
   }

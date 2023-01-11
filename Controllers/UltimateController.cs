@@ -73,12 +73,12 @@ namespace student_monitoring_dashboard.Controllers
                 foreach (var item in queryCriteria)
                 {
                     countup += item.Grade ?? default(int);
-                    System.Console.WriteLine("AAAAAAAAAAAAAAAAA " + countup);
+                    //System.Console.WriteLine("AAAAAAAAAAAAAAAAA " + countup);
                 }
-                System.Console.WriteLine("BBBBBB " + countup);
-                System.Console.WriteLine("CCCCCC " + queryCriteria.Count());
+                //System.Console.WriteLine("BBBBBB " + countup);
+                //System.Console.WriteLine("CCCCCC " + queryCriteria.Count());
                 int final = (countup / queryCriteria.Count());
-                System.Console.WriteLine("DDDDDDDD " + final);
+                //System.Console.WriteLine("DDDDDDDD " + final);
                 return final;
             }
             else

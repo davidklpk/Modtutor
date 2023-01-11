@@ -3,6 +3,6 @@ export class Ultimate{
     studentID !: number;
     studentName = "";
     mediaSiteAverageTime !: number;
-    fBFGrade !: number;
+    fbfGrade !: number;
     attendancePercentage !: number;
 }

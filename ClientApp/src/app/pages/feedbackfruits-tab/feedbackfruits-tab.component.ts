@@ -314,7 +314,7 @@ export class FeedbackfruitsTabComponent implements OnInit {
     this.calculateAverageGrade();
 
     // keyCard objects
-    this.keyCardGrade  = { metric: this.avgGrade, label: "Average Grade" }
+    this.keyCardGrade  = { metric: this.avgGrade, label: "Grade" }
     this.keyCardTime = { metric: this.totalTimeSpent, label: "Time spent" }
     this.keyCardComments = { metric: this.totalReviewComments, label: "Comments" }
   }
