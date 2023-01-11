@@ -16,6 +16,7 @@ import { Mediasite } from 'src/app/models/mediasite';
 import { Criteria } from 'src/app/models/criteria';
 import { Week } from 'src/app/models/week';
 import { Attendance } from 'src/app/models/attendance';
+import { Ultimate } from 'src/app/models/ultimate';
 
 @Component({
   selector: 'app-course-class',
@@ -44,6 +45,7 @@ export class CourseClassComponent implements OnInit {
   attendances !: Attendance[];
   weeks !: Week[];
   assignments !: Assignments[];
+  ultimates !: Ultimate[];
 
   studentList: Student[] = [];
   studentClassList: StudentClass[] = [];
@@ -70,15 +72,16 @@ export class CourseClassComponent implements OnInit {
     this.fetchStudents();
     //this.fetchData();
     this.fetchCourseClasses();
-    this.fetchFeedBacks();
-    this.fetchMediaSites();
-    this.fetchCriterias();
-    this.fetchWeeks();
-    this.fetchAttendances();
+    // this.fetchFeedBacks();
+    // this.fetchMediaSites();
+    // this.fetchCriterias();
+    // this.fetchWeeks();
+    // this.fetchAttendances();
+    this.fetchUltimates();
     //console.log("assignment test ", this.dbService.getSpecificAssignments());
 
   }
-
+  
   fetchCourseClasses() {
     let route$ = this.route.params;
     route$.subscribe((route) => {this.slug = route['slug']});
@@ -126,6 +129,20 @@ export class CourseClassComponent implements OnInit {
       //this.calculateAverageGrade();
     });
   }
+
+  fetchUltimates() {
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
+
+    this.dbService.getUltimates(this.slug)
+    .subscribe((result : Ultimate[]) => {
+      this.ultimates = result;
+      //this.calculateAverageGrade();
+    });
+  }
+
 
   fetchWeeks() {
     let route$ = this.route.params;
