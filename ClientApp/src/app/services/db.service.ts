@@ -49,76 +49,76 @@ export class DBService {;
   }
   constructor(private http: HttpClient) { }
 
-  public getUltimates(yeet : string) : Observable<Ultimate[]>{
-    return this.http.get<Ultimate[]>(`${environment.apiUrl}/${this.urlUltimates}/${yeet}`);
+  public getUltimates(insertValue : string) : Observable<Ultimate[]>{
+    return this.http.get<Ultimate[]>(`${environment.apiUrl}/${this.urlUltimates}/${insertValue}`);
   }
   //Methods to [Get] the data (see app.components.ts as well):
   public getCourses() : Observable<Course[]>{
     return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`)
   }
 
-  public getCourseName(yeet: string) : Observable<Course[]>{
-    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}/${this.urlCourseName}/${yeet}`)
+  public getCourseName(insertValue: string) : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}/${this.urlCourseName}/${insertValue}`)
   }
 
   public searchCourse(id : string) {
     this.getCourses().forEach
   }
 
-  public getAssignments(yeet: string) : Observable<Assignments[]>{
-    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${yeet}`);
+  public getAssignments(insertValue: string) : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${insertValue}`);
   }
 
-  public getAssignmentsFeedBack(yeet: number) : Observable<Feedback[]>{
-    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlFbfromAs}/${yeet}`);
+  public getAssignmentsFeedBack(insertValue: number) : Observable<Feedback[]>{
+    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlFbfromAs}/${insertValue}`);
   }
 
-  public getAssignmentsCriterias(yeet: number) : Observable<Criteria[]>{
-    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlCrfromAs}/${yeet}`);
+  public getAssignmentsCriterias(insertValue: number) : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlCrfromAs}/${insertValue}`);
   }
 
-  public getAssignmentName(yeet: number) : Observable<Assignments[]>{
-    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlAssignmentName}/${yeet}`);
+  public getAssignmentName(insertValue: number) : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlAssignmentName}/${insertValue}`);
   }
 
-  public getAttendances(yeet : number) : Observable<Attendance[]>{
-    return this.http.get<Attendance[]>(`${environment.apiUrl}/${this.urlAttendance}/${yeet}`);
+  public getAttendances(insertValue : number) : Observable<Attendance[]>{
+    return this.http.get<Attendance[]>(`${environment.apiUrl}/${this.urlAttendance}/${insertValue}`);
   }
 
-  public getCourseClasses(yeet: string) : Observable<CourseClass[]>{
-    return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${yeet}`);
+  public getCourseClasses(insertValue: string) : Observable<CourseClass[]>{
+    return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${insertValue}`);
   }
 
-  public getCriterias(yeet : number) : Observable<Criteria[]>{
-    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}/${yeet}`);
+  public getCriterias(insertValue : number) : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}/${insertValue}`);
   }
 
-  public getMediaSites(yeet : number) : Observable<Mediasite[]>{
-    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}/${yeet}`);
+  public getMediaSites(insertValue : number) : Observable<Mediasite[]>{
+    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}/${insertValue}`);
   }
 
-  public getFeedBacks(yeet : number) : Observable<Feedback[]>{
-    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBacks}/${yeet}`)
+  public getFeedBacks(insertValue : number) : Observable<Feedback[]>{
+    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBacks}/${insertValue}`)
   }
 
-  public getStudents(yeet : number) : Observable<Student[]>{
-    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}/${yeet}`);
+  public getStudents(insertValue : number) : Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}/${insertValue}`);
   }
 
-  public getStudentClasses(yeet : string) : Observable<Student[]>{
-    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudentClass}/${yeet}`);
+  public getStudentClasses(insertValue : string) : Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudentClass}/${insertValue}`);
   }
 
-  public getStudentAssignments(yeet: number) : Observable<Assignments[]>{
-    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlStudents}/${this.urlAsfromSt}/${yeet}`);
+  public getStudentAssignments(insertValue: number) : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlStudents}/${this.urlAsfromSt}/${insertValue}`);
   }
 
   public getTeachers() : Observable<Teacher[]>{
     return this.http.get<Teacher[]>(`${environment.apiUrl}/${this.urlTeachers}`);
   }
 
-  public getWeeks(yeet : number) : Observable<Week[]>{
-    return this.http.get<Week[]>(`${environment.apiUrl}/${this.urlWeek}/${yeet}`);
+  public getWeeks(insertValue : number) : Observable<Week[]>{
+    return this.http.get<Week[]>(`${environment.apiUrl}/${this.urlWeek}/${insertValue}`);
   }
 
 
