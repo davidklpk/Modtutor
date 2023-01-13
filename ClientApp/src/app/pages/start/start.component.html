@@ -6,6 +6,12 @@
         </ng-container>
     </div>
 
+    <ng-container *ngIf="courseList.length === 0">
+        <div class="flex w-full justify-center">
+            <app-error-message></app-error-message>
+        </div>
+    </ng-container>
+
     
     <mat-divider class="mb-10"></mat-divider>
     
@@ -31,6 +37,6 @@
     </div>
 
     <div class="flex w-full my-5 justify-center" *ngIf="(courseList | classes : searchTerm).length === 0">
-        <h1 class="text-center">Sorry, no results for »{{searchTerm}}« :(</h1>
+        <h1 class="text-center">No results for "{{searchTerm}}" 😕</h1>
     </div>
 </app-container>

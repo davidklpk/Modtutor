@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Assignment } from 'src/app/interfaces/assignment';
-import { DBService } from 'src/app/services/db.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { OverviewData } from '../profile/profile.component';
+import { Assignments } from 'src/app/models/assignment';
 
 export interface KeyCard {
-  metric : string,
+  metric ?: string | number | undefined,
   label : string
 }
 
@@ -14,28 +14,20 @@ export interface KeyCard {
 })
 
 export class AllTabComponent implements OnInit {
-
-  assignmentList : Assignment[] = [
-    { name: "Research Report", grade:7, week: 1 },
-    { name: "Mid term Report", grade:9, week:1},
-    { name: "End term Report", grade: 5, week:1 },
-    { name: "English Report", grade: 5, week:2 },
-    { name: "Cultural Report", grade: 9, week:3 },
-    { name: "Literature Review", grade: 7, week:4 },
-  ]
+  @Input() overViewData !: OverviewData;
+  @Input() studentAssignments !: Assignments[];
 
   // Keycards (top row)
   keyCardGrade !: KeyCard;
   keyCardTime !: KeyCard;
   keyCardAttendance !: KeyCard;
 
-  constructor(private dbService : DBService) { }
+  constructor() { }
 
   ngOnInit(): void {
-
     // Initialize the keyCards from DB here:
-    this.keyCardGrade  = { metric : "6.1", label : "Average Grade" }
-    this.keyCardTime = { metric : "122", label : "Time spent" }
-    this.keyCardAttendance  = { metric : "80%",  label : "Attendance" }
+    this.keyCardGrade  = { metric : this.overViewData.averageGrade, label : "Average Grade" }
+    this.keyCardTime = { metric : this.overViewData.averageTime, label : "Time spent (min)" }
+    this.keyCardAttendance  = { metric : this.overViewData.averagePresence+"%",  label : "Attendance" }
   }
 }

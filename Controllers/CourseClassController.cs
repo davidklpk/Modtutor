@@ -21,64 +21,12 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
 
-        // [HttpGet]
-        // public async Task<ActionResult<IEnumerable<Course>>> GetCourseClasses()
-        // {
-        //     return Ok(await _context.CourseClass.ToListAsync());
-
-        // }
-        // [HttpGet("{string}")]
-        // public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string url){
-        //     System.Console.WriteLine(url);
-        //     var a = await _context.CourseClass.Where(s => s.BelongsTo == "ITD-HMVT22-K70_2022_VT").ToListAsync();
-        //     if (a == null){
-        //         return Ok(await _context.CourseClass.ToListAsync());
-        //     }
-        //     else return Ok(a);
-        //     //var a = _context.CourseClass.Where(s => s.BelongsTo == "ITD-HMVT22-K70_2022_VT").ToListAsync();
-        //     //return Ok( await _context.CourseClass.Where(s => s.BelongsTo == url).ToListAsync());
-        // }
-
-        // [HttpGet]
-        // public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string yeet){
-        //     // var a = await _context.CourseClass.Where(s => s.BelongsTo == id).ToListAsync();
-        //     // if (a == null){
-        //     //     return Ok(await _context.CourseClass.ToListAsync());
-        //     // }
-        //     // else return Ok(a);
-        //     //var a = _context.CourseClass.Where(s => s.BelongsTo == "ITD-HMVT22-K70_2022_VT").ToListAsync();
-        //     //return Ok( await _context.CourseClass.Where(s => s.BelongsTo == url).ToListAsync());
-        //     var a = _context.CourseClass.Where(s => s.BelongsTo == yeet).ToListAsync();
-        //     var b = _context.CourseClass.ToListAsync();
-        //     if (await a == null){
-        //         System.Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        //         return Ok(await b);
-        //     }
-        //     else{
-        //     return Ok(await a);
-        //     }
-        // }
-
-        // [HttpGet("{CourseIDee}")]
-        // public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string CourseIDee){
-        //     var a = await _context.CourseClass.Where(s => s.BelongsTo == CourseIDee).ToListAsync();
-        //     return Ok(a);
-        // }
-
-        [HttpGet("{yoloyeet}")]
-        public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string yoloyeet)
+        [HttpGet("{InputString}")]
+        public async Task<ActionResult<List<CourseClass>>> GetCourseClasses(string InputString)
         {
-            var a = await _context.CourseClass.Where(s => s.BelongsTo == yoloyeet).ToListAsync();
-            if (a == null)
-            {
-                var b = await _context.CourseClass.ToListAsync();
-                System.Console.WriteLine("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbbb");
-                return Ok(b);
-            }
-            else
-            {
-                return Ok(a);
-            }
+            var a = await _context.CourseClass.Where(s => s.BelongsTo == InputString).ToListAsync();
+            if (a == null) { var b = await _context.CourseClass.ToListAsync(); return Ok(b); }
+            else { return Ok(a); }
         }
 
     }

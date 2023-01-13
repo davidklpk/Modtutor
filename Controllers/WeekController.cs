@@ -21,14 +21,16 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
         
-        [HttpGet]
-        public async Task<ActionResult<List<Week>>> GetWeek()
+        [HttpGet("{InputInt}")]
+        public async Task<ActionResult<List<Week>>> GetWeek(int InputInt)
         {
-            return Ok(await _context.Week.ToListAsync());
+            var query =
+            from w in _context.Week
+            join at in _context.Attendance on w.AttendanceID equals at.AAID
+            join s in _context.Student on at.Has equals s.StudentID
+            where s.StudentID == InputInt
+            select w;
+            return Ok(query);
         }
-        /*public IEnumerable<Assignment> GetAssignment()
-        {
-            return _context.Assignment;
-        }*/
     }
 }

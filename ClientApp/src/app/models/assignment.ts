@@ -1,5 +1,5 @@
 export class Assignments{
-    assignmentID = "";
+    assignmentID !: number;
     assignmentName = "";
     handedInDate !: Date;
     madeIn !: number;

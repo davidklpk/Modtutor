@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
-import { Student } from 'src/app/interfaces/student';
+import { Component, OnInit } from '@angular/core';
+import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexXAxis, ApexPlotOptions, ApexFill } from "ng-apexcharts";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ASSIGNMENT, setGlobalCurrentPage } from 'src/app/shared/global-var';
-import { Observable } from 'rxjs';
 import { Feedback } from 'src/app/models/feedback';
 import { DBService } from 'src/app/services/db.service';
+import { LinkService } from 'src/app/services/link.service';
+import { Assignments } from 'src/app/models/assignment';
+import { thresholdSturges } from 'd3';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -28,38 +28,25 @@ export class AssignmentComponent implements OnInit {
   public chartOptions !: Partial<ChartOptions> | any;
   public TypeFeedback !: Partial<ChartOptions> | any;
 
-  studentList : Student[] = [
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 5,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Bob Doe", id: "123456", FFgrade: 7, MSgrade: 7,STgrade:9, AAgrade: 5,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 5, MSgrade: 9,STgrade:5, AAgrade: 5,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 7, MSgrade: 9,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 7, MSgrade: 5,STgrade:5, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 5,STgrade:9, AAgrade: 7,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 5, MSgrade: 7,STgrade:7, AAgrade: 7,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 7,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-    {name: "Jon Doe", id: "123456", FFgrade: 9, MSgrade: 5,STgrade:7, AAgrade: 9,classes: [{ name: "European Project Semester", slug: "eps", description: "Lorem Ipsum dolrem eres.", semester: "Fall 2022/2023", members: 52, lecturer: "Karel" }]},
-  ]
-
-  displayedColumns: string[] = ['name', 'id', 'status'];
-  dataSource = new MatTableDataSource<Student>(this.studentList);
   assignmentName : string = "name"
-  slug : string = "";
-  FeedBacks$ !: Observable<Feedback[]>;
-  feedBackList : Feedback[] = [];
+  assignmentNameReal !: Assignments[];
+  slug !: number;
+  fbflist !: Feedback[];
 
   dataSeries !: number[];
   typeOfFeedbackSeries : number[] = [50,50];
   totalTimeSpent : number = 0;
   totalComments : number = 0;
 
-  constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute) { 
-    setGlobalCurrentPage(ASSIGNMENT + this.assignmentName);
+  constructor(private dbService : DBService, private router : Router, private route : ActivatedRoute, private linkService : LinkService) { 
+    setGlobalCurrentPage(ASSIGNMENT);
   }
 
   ngOnInit(): void {
     this.getRoute();
-    this.fetchFeedbackFruitsData();
-
+    this.getFeedBacksFromAssignment();
+    this.fetchAssignmentName();
+    
     // Total Review Comments
     this.chartOptions = {
       series: [
@@ -68,15 +55,6 @@ export class AssignmentComponent implements OnInit {
           data: this.dataSeries
         }
       ],
-      title:{
-        text: "Overall Data of the Class",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
       chart: {
         type: "bar",
         height: 200
@@ -119,30 +97,20 @@ export class AssignmentComponent implements OnInit {
           UseSeriesColors: true
       }
     },
-      title: {
-        text: "Type of Feedback",
-        align: 'center',
-        style: {
-          fontSize:  '20px',
-          fontWeight:  'bold',
-          color:  '#263238'
-        }
-      },
-      labels: ["Suggestions", "Compliments"],
-      responsive: [
-        {
-          breakpoint: 100,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
+    labels: ["Suggestions", "Compliments"],
+    responsive: [
+      {
+        breakpoint: 100,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
           }
         }
-      ]
-    };
+      }
+    ]};
   }
 
   getRoute() {
@@ -150,17 +118,33 @@ export class AssignmentComponent implements OnInit {
     let route$ = this.route.params;
     route$.subscribe((route) => {this.slug = route['slug']});
   }
+  
+  getFeedBacksFromAssignment(){
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
 
-  fetchFeedbackFruitsData(){
-    this.getRoute();
-    this.dbService
-    .getFeedBacks(this.slug)
+    this.dbService.getAssignmentsFeedBack(this.slug)
     .subscribe((result : Feedback[]) => {
-      this.feedBackList = result;
-      this.getChartSeries(result);
-    }); 
+      this.fbflist = result;
+      this.linkService.currentPageName.next("Assignment " + this.fbflist[0].feedbackID);
+      this.getChartSeries(this.fbflist);
+    });
   }
+  fetchAssignmentName() {
+    let route$ = this.route.params;
+    route$.subscribe((route) => {
+      this.slug = route['slug']
+    });
 
+    this.dbService.getAssignmentName(this.slug)
+      .subscribe((result: Assignments[]) => {
+        this.assignmentNameReal = result;
+        //this.calculateAverageGrade();
+        this.linkService.currentPageName.next(ASSIGNMENT + this.assignmentNameReal[0].assignmentName)
+      });
+  }
   /**
    * Processes all the data received by the backend and
    * prepares it for this component
@@ -214,7 +198,6 @@ export class AssignmentComponent implements OnInit {
     }];
 
     this.TypeFeedback.series = this.typeOfFeedbackSeries; 
-    
   }
 
   navigate(student : string){

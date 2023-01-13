@@ -22,10 +22,6 @@ namespace student_monitoring_dashboard.Controllers
         }
         
         [HttpGet]
-        /*public IEnumerable<Teacher> GetTeacher()
-        {
-            return _context.Teacher;
-        }*/
         public async Task<ActionResult<List<Teacher>>> GetTeacher()
         {
             return Ok(await _context.Teacher.ToListAsync());

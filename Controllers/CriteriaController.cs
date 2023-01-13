@@ -13,27 +13,24 @@ namespace student_monitoring_dashboard.Controllers
     [Route("api/Criterias")]
     [ApiController]
     public class CriteriaController : ControllerBase
-    {
+    {   
         private readonly DashContext _context;
 
         public CriteriaController(DashContext context)
         {
             _context = context;
         }
-        
-        // public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
-        // {
-        //     return Ok(await _context.Courses.ToListAsync());
 
-        // }
-        [HttpGet]
-        /*public IEnumerable<Criteria> GetCriteria()
+        [HttpGet("{InputInt}")]
+        public async Task<ActionResult<List<Criteria>>> GetCriteria(int InputInt)
         {
-            return _context.Criteria;
-        }*/
-        public async Task<ActionResult<List<Criteria>>> GetCriteria()
-        {
-            return Ok(await _context.Criteria.ToListAsync());
+            var query =
+            from c in _context.Criteria
+            join f in _context.Feedback on c.FeedBackID equals f.FeedbackID
+            join s in _context.Student on f.StudentID equals s.StudentID
+            where s.StudentID == InputInt
+            select c;
+            return Ok(query);
         }
     }
 }

@@ -21,14 +21,11 @@ namespace student_monitoring_dashboard.Controllers
             _context = context;
         }
         
-        [HttpGet]
-        public async Task<ActionResult<List<Attendance>>> GetAttendance()
+        [HttpGet("{InputInt}")]
+        public async Task<ActionResult<List<Attendance>>> GetAttendance(int InputInt)
         {
-            return Ok(await _context.Attendance.ToListAsync());
+            var a = await _context.Attendance.Where(s => s.Has == InputInt).ToListAsync();
+            return Ok(a);
         }
-        /*public IEnumerable<Assignment> GetAssignment()
-        {
-            return _context.Assignment;
-        }*/
     }
 }

@@ -11,6 +11,10 @@ import { Student } from '../models/student';
 import { Teacher } from '../models/teacher';
 import { Component, Input, OnInit } from '@angular/core';
 import { Feedback } from '../models/feedback';
+import { StudentClass } from '../models/studentClass';
+import { Attendance } from '../models/attendance';
+import { Week } from '../models/week';
+import { Ultimate } from '../models/ultimate';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +22,25 @@ import { Feedback } from '../models/feedback';
 
 export class DBService {;
   @Input() course !: Course;
-  //Riciano's Stuff:
-    //these are the urls for the different data classes:
+  //these are the urls for the direct data classes:
   private urlAssignments = "Assignments";
-  private urlSpecificAssignment = "Assignments/GetSpecificAssignment";
-  //private urlGetCourseClassesInCourse = "CourseClasses";
   private urlCourses = "Courses";
   private urlCourseClasses = "CourseClasses";
   private urlCriterias = "Criterias";
   private urlMediaSites = "MediaSites";
   private urlStudents = "Students";
   private urlTeachers = "Teachers";
-  private urlFeedBack = "Feedbacks";
+  private urlFeedBacks = "Feedbacks";
+  private urlStudentClass = "StudentClasses";
+  private urlAttendance = "Attendances";
+  private urlWeek = "Weeks";
+  private urlUltimates = "Ultimates";
+  //these are the urls for specific method calls
+  private urlCourseName = "getCourseName";
+  private urlCrfromAs = "GetCriteriasfromAssignment";
+  private urlFbfromAs = "GetFeedbacksFromAssignment";
+  private urlAsfromSt = "GetAssignmentsFromStudent";
+  private urlAssignmentName = "getAssignmentName";
   
   public urlparameter = "";
 
@@ -38,45 +49,76 @@ export class DBService {;
   }
   constructor(private http: HttpClient) { }
 
+  public getUltimates(insertValue : string) : Observable<Ultimate[]>{
+    return this.http.get<Ultimate[]>(`${environment.apiUrl}/${this.urlUltimates}/${insertValue}`);
+  }
   //Methods to [Get] the data (see app.components.ts as well):
   public getCourses() : Observable<Course[]>{
     return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`)
+  }
+
+  public getCourseName(insertValue: string) : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}/${this.urlCourseName}/${insertValue}`)
   }
 
   public searchCourse(id : string) {
     this.getCourses().forEach
   }
 
-  public getAssignments(yeet: string) : Observable<Assignments[]>{
-    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${yeet}`);
+  public getAssignments(insertValue: string) : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${insertValue}`);
   }
 
-  // public getCourseClasses2() : Observable<CourseClass[]>{
-  //   return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlGetCourseClassesInCourse}/${this.urlparameter}`);
-  // }
-
-  public getCourseClasses(yeet: string) : Observable<CourseClass[]>{
-    return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${yeet}`);
+  public getAssignmentsFeedBack(insertValue: number) : Observable<Feedback[]>{
+    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlFbfromAs}/${insertValue}`);
   }
 
-  public getCriterias() : Observable<Criteria[]>{
-    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}`);
+  public getAssignmentsCriterias(insertValue: number) : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlCrfromAs}/${insertValue}`);
   }
 
-  public getMediaSites() : Observable<Mediasite[]>{
-    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}`);
+  public getAssignmentName(insertValue: number) : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlAssignments}/${this.urlAssignmentName}/${insertValue}`);
   }
 
-  public getFeedBacks(yeet : string) : Observable<Feedback[]>{
-    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBack}/${yeet}`)
+  public getAttendances(insertValue : number) : Observable<Attendance[]>{
+    return this.http.get<Attendance[]>(`${environment.apiUrl}/${this.urlAttendance}/${insertValue}`);
   }
 
-  public getStudents() : Observable<Student[]>{
-    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}`);
+  public getCourseClasses(insertValue: string) : Observable<CourseClass[]>{
+    return this.http.get<CourseClass[]>(`${environment.apiUrl}/${this.urlCourseClasses}/${insertValue}`);
+  }
+
+  public getCriterias(insertValue : number) : Observable<Criteria[]>{
+    return this.http.get<Criteria[]>(`${environment.apiUrl}/${this.urlCriterias}/${insertValue}`);
+  }
+
+  public getMediaSites(insertValue : number) : Observable<Mediasite[]>{
+    return this.http.get<Mediasite[]>(`${environment.apiUrl}/${this.urlMediaSites}/${insertValue}`);
+  }
+
+  public getFeedBacks(insertValue : number) : Observable<Feedback[]>{
+    return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBacks}/${insertValue}`)
+  }
+
+  public getStudents(insertValue : number) : Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}/${insertValue}`);
+  }
+
+  public getStudentClasses(insertValue : string) : Observable<Student[]>{
+    return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudentClass}/${insertValue}`);
+  }
+
+  public getStudentAssignments(insertValue: number) : Observable<Assignments[]>{
+    return this.http.get<Assignments[]>(`${environment.apiUrl}/${this.urlStudents}/${this.urlAsfromSt}/${insertValue}`);
   }
 
   public getTeachers() : Observable<Teacher[]>{
     return this.http.get<Teacher[]>(`${environment.apiUrl}/${this.urlTeachers}`);
+  }
+
+  public getWeeks(insertValue : number) : Observable<Week[]>{
+    return this.http.get<Week[]>(`${environment.apiUrl}/${this.urlWeek}/${insertValue}`);
   }
 
 

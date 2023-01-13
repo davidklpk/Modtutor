@@ -1,9 +1,16 @@
 <div class="px-5 py-5">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+    <ng-container *ngIf="attendanceList.length == 0">
+        <app-error-message></app-error-message>
+    </ng-container>
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <ng-container *ngFor="let week of attendanceList">
             <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
                 <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
                     <apx-chart
-                    [series]="Attendance.series"
+                    [series]="[calculatePercentage(week.weekPossiblePresence, week.weekPresence)]"
                     [chart]="Attendance.chart"
                     [labels]="Attendance.labels"
                     [plotOptions]="Attendance.plotOptions"
@@ -11,66 +18,10 @@
                     ></apx-chart>
                 </div>
                 <div class="px-5">
-                    <h3 class="font-medium text-black/60 leading-none text-center">Week 1</h3>
+                    <h3 class="font-medium text-black/60 leading-none text-center">Week {{ week.numberOfWeek }}</h3>
                 </div>
             </mat-card>
-            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-                <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-                    <apx-chart
-                    [series]="Attendance.series"
-                    [chart]="Attendance.chart"
-                    [labels]="Attendance.labels"
-                    [plotOptions]="Attendance.plotOptions"
-                    [fill]="Attendance.fill"
-                    ></apx-chart>
-                </div>
-                <div class="px-5">
-                    <h3 class="font-medium text-black/60 leading-none text-center">Week 2</h3>
-                </div>
-            </mat-card>
-            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-                <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-                    <apx-chart
-                    [series]="Attendance.series"
-                    [chart]="Attendance.chart"
-                    [labels]="Attendance.labels"
-                    [plotOptions]="Attendance.plotOptions"
-                    [fill]="Attendance.fill"
-                    ></apx-chart>
-                </div>
-                <div class="px-5">
-                    <h3 class="font-medium text-black/60 leading-none text-center">Week 3</h3>
-                </div>
-            </mat-card>
-            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-                <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-                    <apx-chart
-                    [series]="Attendance.series"
-                    [chart]="Attendance.chart"
-                    [labels]="Attendance.labels"
-                    [plotOptions]="Attendance.plotOptions"
-                    [fill]="Attendance.fill"
-                    ></apx-chart>
-                </div>
-                <div class="px-5">
-                    <h3 class="font-medium text-black/60 leading-none text-center">Week 4</h3>
-                </div>
-            </mat-card>
-            <mat-card class="flex flex-col gap-5 items-center align-middle justify-center p-0 m-0 rounded-[12px] shadow-none outline outline-1 outline-gray-300">
-                <div class="flex justify-center align-middle items-center bg-gray-100 rounded-t-[12px] p-2 w-full h-full">
-                    <apx-chart
-                    [series]="Attendance.series"
-                    [chart]="Attendance.chart"
-                    [labels]="Attendance.labels"
-                    [plotOptions]="Attendance.plotOptions"
-                    [fill]="Attendance.fill"
-                    ></apx-chart>
-                </div>
-                <div class="px-5">
-                    <h3 class="font-medium text-black/60 leading-none text-center">Week 5</h3>
-                </div>
-            </mat-card>
-            
-        </div>
+        </ng-container>
+    </div>
 </div>
 
