@@ -64,7 +64,7 @@ namespace student_monitoring_dashboard.Controllers
             int countup = new int();
             var queryCriteria =
             from cr in _context.Criteria
-            join f in _context.Feedback on cr.FeedBackID equals f.FeedbackID
+            join f in _context.Feedback on cr.Grades equals f.FeedbackID
             join s in _context.Student on f.StudentID equals s.StudentID
             where s.StudentID == SID2
             select cr;

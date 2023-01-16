@@ -101,6 +101,10 @@ export class DBService {;
     return this.http.get<Feedback[]>(`${environment.apiUrl}/${this.urlFeedBacks}/${insertValue}`)
   }
 
+  public getRecentlyViewed() : Observable<Course[]>{
+    return this.http.get<Course[]>(`${environment.apiUrl}/${this.urlCourses}`)
+  }
+
   public getStudents(insertValue : number) : Observable<Student[]>{
     return this.http.get<Student[]>(`${environment.apiUrl}/${this.urlStudents}/${insertValue}`);
   }

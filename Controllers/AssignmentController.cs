@@ -34,7 +34,7 @@ namespace student_monitoring_dashboard.Controllers
             var query =
             from a in _context.Assignment
             join f in _context.Feedback on a.AssignmentID equals f.AssignmentID
-            join c in _context.Criteria on f.FeedbackID equals c.FeedBackID
+            join c in _context.Criteria on f.FeedbackID equals c.Grades
             where a.AssignmentID == inputInt
             select c;
             return Ok(query);

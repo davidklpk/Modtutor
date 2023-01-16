@@ -33,5 +33,12 @@ namespace student_monitoring_dashboard.Controllers
             return Ok(a);
         }
 
+        [HttpPut("{InputString}")]
+        public async Task<ActionResult<List<Course>>> PutCourseDate(string InputString){
+            var a = await _context.Course.Where(c => c.CourseID == InputString).SingleOrDefaultAsync();
+            a.LastClicked = DateTime.Now;
+            return Ok(a);
+        }
+
     }
 }

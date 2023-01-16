@@ -1,6 +1,6 @@
 export class Criteria {
     criteriaID !: number;
-    feedbackID !: number;
+    grades !: number;
     criteriaName !: string;
     grade !: number;
     kindOfFeedback !: string;

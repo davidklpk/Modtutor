@@ -16,6 +16,7 @@ export class StartComponent implements OnInit {
 
   searchTerm : string = "";
   courseList : Course[] = [];
+  recentlyCourseList : Course[] = [];
 
   courseList$ : Observable<Course[]> = this.dbService.getCourses();
 
@@ -29,5 +30,12 @@ export class StartComponent implements OnInit {
     .subscribe((result : Course[]) => {
       this.courseList = result;
     }); 
+
+    this.dbService
+    .getRecentlyViewed()
+    .subscribe((result : Course[]) => {
+      this.recentlyCourseList = result;
+    }); 
+    
   }
 }

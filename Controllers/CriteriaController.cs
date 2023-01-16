@@ -26,7 +26,7 @@ namespace student_monitoring_dashboard.Controllers
         {
             var query =
             from c in _context.Criteria
-            join f in _context.Feedback on c.FeedBackID equals f.FeedbackID
+            join f in _context.Feedback on c.Grades equals f.FeedbackID
             join s in _context.Student on f.StudentID equals s.StudentID
             where s.StudentID == InputInt
             select c;

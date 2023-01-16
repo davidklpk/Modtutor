@@ -5,10 +5,7 @@ public class Course{
     [Key]
     public string CourseID { get; set; }
     public string CourseName { get; set; }
-    
-    //Relations
-    // public List<Student> students;
-    // public List<Teacher> teachers;
-    // public List<CourseClass> courseclasses;
+
+    public DateTime? LastClicked { get; set; }
    
 }
