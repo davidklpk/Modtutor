@@ -8,12 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DashContext>(options => 
 
-//options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONRiciano")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONRiciano2")));
 //options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONRiciano1")));
 
 //options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONMarta")));
 
-options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONDavidHome")));
+//options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONDavidHome")));
 //options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVERCONNECTIONDavid")));
 
 builder.Services.AddCors(options => options.AddPolicy(name: "DashOrigins",
